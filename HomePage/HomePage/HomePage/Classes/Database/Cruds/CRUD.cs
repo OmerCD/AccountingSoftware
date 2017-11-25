@@ -26,7 +26,28 @@ namespace HomePage.Classes.Database
 
         }
 
+        public virtual async Task<T> GetOne(params KeyValuePair<string, string>[] matchCriterias)
+        {
+            try
+            {
+                var filter = new BsonDocument();
+                foreach (KeyValuePair<string,string> criteria in matchCriterias)
+                {
+                    filter.Add(criteria.Key,criteria.Value);
+                }
+                
+                using (var cursor = await Table.FindAsync(filter))
+                {
+                    return JsonConvert.DeserializeObject<T>(cursor.First().ToString());
+                }
 
+            }
+            catch (Exception)
+            {
+
+                return new T { _id = null };
+            }
+        }
         public virtual async Task<bool> Delete(string id)
         {
             try

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HomePage.Classes.Database.Enums;
 using HomePage.Forms;
 
 namespace HomePage
@@ -33,67 +34,11 @@ namespace HomePage
 
         private void button1_Click(object sender, EventArgs e)
         {
-            User user = new User("", "", "", "", Classes.Database.Enums.UserTypes.Administrator);
-            CreateFoo<User>();
-
-
-
+            User user = new User();
+            container1.Object = user;
+            container1.ClickEvent = ContainerButton_Click;
         }
 
-        void CreateFoo<T>() where T : class
-        {
-            var properties = typeof(T).GetProperties();
-            foreach (var property in properties)
-            {
-                var attributes = property.GetCustomAttributes(true);
-                if (attributes.Length > 0)
-                {
-                    LabelAndTextbox lat = new LabelAndTextbox(attributes[0] as CustomAttribute)
-                    {
-                        LatLabel = { Name = property.Name }
-                    };
-                    container1.Add(lat);
-                }
-
-            }
-            container1.ContainerButton.Visible = true;
-            container1.ContainerButton.Text = "Kayıt Ol";
-            container1.ContainerButton.Click += ContainerButton_Click;
-            container1.LocateButton();
-        }
-        object GetValues<T>() where T : DbObject, new()
-        {
-            var myType = typeof(T);
-            var myObject = Activator.CreateInstance(myType);
-            foreach (var control in container1.Controls)
-            {
-                if (control is LabelAndTextbox)
-                {
-
-
-                    var properties = typeof(T).GetProperties();
-                    foreach (var property in properties)
-                    {
-                        var cont = (control as LabelAndTextbox);
-                        var propName = cont.LatLabel.Name;
-                        if (propName == property.Name)
-                        {
-                            foreach (var prop in myType.GetProperties())
-                            {
-                                if (prop.Name == propName)
-                                {
-                                    prop.SetValue(myObject, cont.LatTextBox.Text);
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-
-                    }
-                }
-            }
-            return myObject;
-        }
         private void ContainerButton_Click(object sender, EventArgs e)
         {
             bool isOk = true;
@@ -110,15 +55,32 @@ namespace HomePage
             {
                 var crud = new UserCRUD();
                 //oldUser
-                User user = (User)GetValues<User>();
+                User user = (User)container1.Object;
                 //user._id = oldUser._id
                 crud.Insert(user);
+                MessageBox.Show("Success");
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void kullanıcıEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var frm = new AddUser(UserTypes.Personnel))
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void müşteriEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var frm = new AddUser(UserTypes.Customer))
+            {
+                frm.ShowDialog();
+            }
         }
     }
 }

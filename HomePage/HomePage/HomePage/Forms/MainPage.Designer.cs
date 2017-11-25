@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.container1 = new HomePage.CustomControls.Container();
             this.metroMenuStrip1 = new HomePage.CustomControls.MetroMenuStrip();
             this.SettingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kullanıcıEkleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.müşteriEkleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.container1 = new HomePage.CustomControls.Container();
             this.metroMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,14 +47,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // container1
-            // 
-            this.container1.AutoSize = true;
-            this.container1.Location = new System.Drawing.Point(92, 154);
-            this.container1.Name = "container1";
-            this.container1.Size = new System.Drawing.Size(324, 150);
-            this.container1.TabIndex = 2;
-            // 
             // metroMenuStrip1
             // 
             this.metroMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F);
@@ -60,22 +54,46 @@
             this.SettingsMenuItem});
             this.metroMenuStrip1.Location = new System.Drawing.Point(20, 60);
             this.metroMenuStrip1.Name = "metroMenuStrip1";
-            this.metroMenuStrip1.Size = new System.Drawing.Size(716, 28);
+            this.metroMenuStrip1.Size = new System.Drawing.Size(758, 28);
             this.metroMenuStrip1.TabIndex = 3;
             this.metroMenuStrip1.Text = "metroMenuStrip1";
             // 
             // SettingsMenuItem
             // 
+            this.SettingsMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.kullanıcıEkleToolStripMenuItem,
+            this.müşteriEkleToolStripMenuItem});
             this.SettingsMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.SettingsMenuItem.Name = "SettingsMenuItem";
             this.SettingsMenuItem.Size = new System.Drawing.Size(68, 24);
             this.SettingsMenuItem.Text = "Ayarlar";
             // 
+            // kullanıcıEkleToolStripMenuItem
+            // 
+            this.kullanıcıEkleToolStripMenuItem.Name = "kullanıcıEkleToolStripMenuItem";
+            this.kullanıcıEkleToolStripMenuItem.Size = new System.Drawing.Size(165, 24);
+            this.kullanıcıEkleToolStripMenuItem.Text = "Kullanıcı Ekle";
+            this.kullanıcıEkleToolStripMenuItem.Click += new System.EventHandler(this.kullanıcıEkleToolStripMenuItem_Click);
+            // 
+            // müşteriEkleToolStripMenuItem
+            // 
+            this.müşteriEkleToolStripMenuItem.Name = "müşteriEkleToolStripMenuItem";
+            this.müşteriEkleToolStripMenuItem.Size = new System.Drawing.Size(165, 24);
+            this.müşteriEkleToolStripMenuItem.Text = "Müşteri Ekle";
+            this.müşteriEkleToolStripMenuItem.Click += new System.EventHandler(this.müşteriEkleToolStripMenuItem_Click);
+            // 
+            // container1
+            // 
+            this.container1.Location = new System.Drawing.Point(139, 60);
+            this.container1.Name = "container1";
+            this.container1.Size = new System.Drawing.Size(464, 287);
+            this.container1.TabIndex = 4;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(756, 343);
+            this.ClientSize = new System.Drawing.Size(798, 429);
             this.Controls.Add(this.container1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.metroMenuStrip1);
@@ -93,9 +111,11 @@
 
         MetroFramework.Controls.MetroContextMenu menuStrip1;
         private System.Windows.Forms.Button button1;
-        private CustomControls.Container container1;
         private CustomControls.MetroMenuStrip metroMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem SettingsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kullanıcıEkleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem müşteriEkleToolStripMenuItem;
+        private CustomControls.Container container1;
     }
 }
 
