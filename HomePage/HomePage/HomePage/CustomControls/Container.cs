@@ -41,13 +41,11 @@ namespace HomePage.CustomControls
         private object GetValues()
         {
             var myType = _object.GetType();
-            var myObject = Activator.CreateInstance(myType);
+            //var myObject = Activator.CreateInstance(myType);
             foreach (var control in Controls)
             {
                 if (control is LabelAndTextbox)
                 {
-
-
                     var properties = myType.GetProperties();
                     foreach (var property in properties)
                     {
@@ -59,7 +57,7 @@ namespace HomePage.CustomControls
                             {
                                 if (prop.Name == propName)
                                 {
-                                    prop.SetValue(myObject, cont.LatTextBox.Text);
+                                    prop.SetValue(_object, cont.LatTextBox.Text);
                                     break;
                                 }
                             }
@@ -69,7 +67,7 @@ namespace HomePage.CustomControls
                     }
                 }
             }
-            return myObject;
+            return _object;
         }
         void CreateControls()
         {
@@ -96,7 +94,7 @@ namespace HomePage.CustomControls
             InitializeComponent();
            
         }
-        public int _lastY = 0;
+        private int _lastY = 0;
         public void Add(Control userControl)
         {
             userControl.Location = new Point(userControl.Location.X, _lastY);

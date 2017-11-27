@@ -68,6 +68,7 @@ namespace HomePage.Forms
             if (user == null) return;
             MessageBox.Show("Giriş Başarılı");
             MainForm.CurrentUser = user;
+            DialogResult= DialogResult.Yes;
             Close();
         }
     }

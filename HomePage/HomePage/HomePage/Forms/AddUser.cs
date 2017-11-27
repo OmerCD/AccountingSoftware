@@ -14,6 +14,10 @@ namespace HomePage.Forms
 {
     public partial class AddUser : MetroFramework.Forms.MetroForm
     {
+        public string ButtonText
+        {
+            set => container1.ButtonText = value;
+        }
         public AddUser(UserTypes userType)
         {
             InitializeComponent();

@@ -23,13 +23,18 @@ namespace HomePage
         {
             using (var frm = new Login())
             {
-                frm.ShowDialog();
-                if (CurrentUser == null)
+                var result = frm.ShowDialog();
+                if (CurrentUser == null || result!=DialogResult.Yes)
                 {
+                    Close();
                     Application.Exit();
                 }
+                else
+                {
+                    InitializeComponent();
+                }
             }
-            InitializeComponent();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -71,6 +76,7 @@ namespace HomePage
         {
             using (var frm = new AddUser(UserTypes.Personnel))
             {
+                frm.ButtonText = "Ekle";
                 frm.ShowDialog();
             }
         }
@@ -79,6 +85,7 @@ namespace HomePage
         {
             using (var frm = new AddUser(UserTypes.Customer))
             {
+                frm.ButtonText = "Oluştur";
                 frm.ShowDialog();
             }
         }
