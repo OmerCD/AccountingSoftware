@@ -17,6 +17,7 @@ namespace HomePage.Classes
         public string RegexPatternMessage { get; set; }
         public string FieldName { get; set; }
         public bool IsPassword { get; set;}
+        public Type Type { get; set; }
         public CustomAttribute()
         {
             IsPassword = false;

@@ -28,7 +28,7 @@ namespace HomePage.Classes.Database.Cruds
                     var x = cursor.ToList();
                     results.AddRange(x.Select(item => Newtonsoft.Json.JsonConvert.DeserializeObject<Column>(item.ToString())));
                 }
-                results = results.Where(x => x.IsDeleted == false).ToList();
+                results = results.Where(x => x.IsDeleted == 0).ToList();
                 return results;
             }
             catch (Exception)

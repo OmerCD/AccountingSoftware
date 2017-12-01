@@ -10,16 +10,16 @@ namespace HomePage.Classes.Database.Entities
     {
         public string _id { get; set; }
         public DateTime CreationDate { get; protected set; }
-        public bool IsDeleted { get; protected set; }
+        public byte IsDeleted { get; protected set; }
         public DbObject()
         {
             _id = Guid.NewGuid().ToString();
-            IsDeleted = false;
+            IsDeleted = 0;
             CreationDate = DateTime.Now;
         }
         public void Delete()
         {
-            IsDeleted = true;
+            IsDeleted = 1;
         }
     }
 }

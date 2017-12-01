@@ -62,7 +62,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Activities" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -81,12 +80,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\CustomAttribute.cs" />
+    <Compile Include="Classes\Database\Cruds\CalendarCRUD.cs" />
+    <Compile Include="Classes\Database\Cruds\CompanyLoginCRUD.cs" />
+    <Compile Include="Classes\Database\Entities\CompanyLogin.cs" />
     <Compile Include="Classes\Database\Cruds\ColumnCRUD.cs" />
+    <Compile Include="Classes\Database\Cruds\CompanyCRUD.cs" />
     <Compile Include="Classes\Database\Cruds\CRUD.cs" />
     <Compile Include="Classes\Database\Cruds\DocumentCRUD.cs" />
+    <Compile Include="Classes\Database\Cruds\JobCRUD.cs" />
     <Compile Include="Classes\Database\DbFactory.cs" />
+    <Compile Include="Classes\Database\Entities\Calendar.cs" />
+    <Compile Include="Classes\Database\Entities\Company.cs" />
     <Compile Include="Classes\Database\Entities\Customer.cs" />
     <Compile Include="Classes\Database\Entities\DbObject.cs" />
+    <Compile Include="Classes\Database\Entities\Job.cs" />
     <Compile Include="Classes\Database\Entities\Modules\Document.cs" />
     <Compile Include="Classes\Database\Entities\Personnel.cs" />
     <Compile Include="Classes\Database\Entities\User.cs" />
@@ -98,6 +105,18 @@
     </Compile>
     <Compile Include="CustomControls\Container.Designer.cs">
       <DependentUpon>Container.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\DataView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\DataView.Designer.cs">
+      <DependentUpon>DataView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\LabelAndDatePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\LabelAndDatePicker.Designer.cs">
+      <DependentUpon>LabelAndDatePicker.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\LabelAndTextbox.cs">
       <SubType>UserControl</SubType>
@@ -117,11 +136,27 @@
     <Compile Include="CustomControls\MyTextBox.Designer.cs">
       <DependentUpon>MyTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\OperationsPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\OperationsPanel.Designer.cs">
+      <DependentUpon>OperationsPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\DataRow.cs" />
+    <Compile Include="CustomControls\DataRow.Designer.cs">
+      <DependentUpon>DataRow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AddUser.Designer.cs">
+    <Compile Include="Forms\AddUser.designer.cs">
       <DependentUpon>AddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateForm.Designer.cs">
+      <DependentUpon>CreateForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainPage.cs">
       <SubType>Form</SubType>
@@ -147,14 +182,26 @@
     <EmbeddedResource Include="CustomControls\Container.resx">
       <DependentUpon>Container.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\LabelAndDatePicker.resx">
+      <DependentUpon>LabelAndDatePicker.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\LabelAndTextbox.resx">
       <DependentUpon>LabelAndTextbox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\MyTextBox.resx">
       <DependentUpon>MyTextBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\OperationsPanel.resx">
+      <DependentUpon>OperationsPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\DataRow.resx">
+      <DependentUpon>DataRow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddUser.resx">
       <DependentUpon>AddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreateForm.resx">
+      <DependentUpon>CreateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainPage.resx">
       <DependentUpon>MainPage.cs</DependentUpon>

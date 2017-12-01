@@ -62,6 +62,7 @@
             this.LatTextBox.ForeColor = System.Drawing.Color.Silver;
             this.LatTextBox.Location = new System.Drawing.Point(209, 13);
             this.LatTextBox.Name = "LatTextBox";
+            this.LatTextBox.PlaceHolder = null;
             this.LatTextBox.Size = new System.Drawing.Size(169, 20);
             this.LatTextBox.TabIndex = 4;
             this.LatTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;

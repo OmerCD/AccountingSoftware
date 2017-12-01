@@ -10,6 +10,7 @@ namespace HomePage.Classes.Database.Enums
     {
         Administrator,
         Personnel,
+        Intern,
         Customer
     }
     public enum CustomerTypes
@@ -17,5 +18,10 @@ namespace HomePage.Classes.Database.Enums
         Person,
         Company
     }
-
+    public enum CompanyTypes
+    {
+        Anonim,
+        Limited,
+        Personal
+    }
 }

@@ -17,14 +17,7 @@ namespace HomePage
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            try
-            {
-                Application.Run(new MainForm());
-            }
-            catch (ObjectDisposedException e)
-            {
-                
-            }
+            Application.Run(new MainForm());
         }
     }
 }

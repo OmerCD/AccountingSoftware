@@ -14,8 +14,8 @@ namespace HomePage.Forms
 {
     public partial class Login : MetroFramework.Forms.MetroForm
     {
-        char _passChar;
-        string _passwordPlaceHolder;
+        private readonly char _passChar;
+        private readonly string _passwordPlaceHolder;
         public Login()
         {
             InitializeComponent();
@@ -54,10 +54,10 @@ namespace HomePage.Forms
         {
             if (UserNameTextBox.TextLength < 3)
             {
-                MessageBox.Show("Kullanıcı Adı 3 karakterden kısa olamaz","Hata",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
+                MessageBox.Show("Kullanıcı Adı 3 karakterden kısa olamaz", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
-            if (PasswordTextBox.TextLength<6)
+            if (PasswordTextBox.TextLength < 6)
             {
                 MessageBox.Show("Şifre 6 karakterden kısa olamaz", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
@@ -68,7 +68,7 @@ namespace HomePage.Forms
             if (user == null) return;
             MessageBox.Show("Giriş Başarılı");
             MainForm.CurrentUser = user;
-            DialogResult= DialogResult.Yes;
+            DialogResult = DialogResult.Yes;
             Close();
         }
     }

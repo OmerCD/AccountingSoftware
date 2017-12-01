@@ -19,5 +19,6 @@ namespace HomePage.Classes.Database.Entities
         }
 
         public string[] AllowedModules { get; set; }
+      
     }
 }
