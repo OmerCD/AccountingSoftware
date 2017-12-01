@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HomePage.Classes.Database.Entities
 {
-    public class DbObject
+    public abstract class DbObject
     {
         public string _id { get; set; }
         public DateTime CreationDate { get; protected set; }
