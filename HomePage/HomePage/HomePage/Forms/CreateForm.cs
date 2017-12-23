@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,11 +14,18 @@ namespace HomePage.Forms
 {
     public partial class CreateForm : Form
     {
+        private object _entity;
         public CreateForm(object entity)
         {
             InitializeComponent();
-            var task = CtnData.SetObject(entity);
-            //task.ConfigureAwait(true);
+            HandleCreated += CreateForm_HandleCreated;
+            _entity = entity;
+        }
+
+        private void CreateForm_HandleCreated(object sender, EventArgs e)
+        {
+            var task = CtnData.SetObject(_entity);
+            task.ConfigureAwait(true);
             CtnData.ButtonText = "Veri Ekle";
             CtnData.ClickEvent = ButtonClick;
             var size = new Size(CtnData.Size.Width, CtnData.Size.Height);

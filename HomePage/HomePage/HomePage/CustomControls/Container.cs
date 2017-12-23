@@ -185,16 +185,14 @@ namespace HomePage.CustomControls
         private int _lastY = 0;
         public void Add(Control userControl)
         {
-            if (IsHandleCreated)
-            {
-                
+
                 Invoke((MethodInvoker)(() =>
                {
                    userControl.Location = new Point(userControl.Location.X, _lastY);
                    this.Controls.Add(userControl);
                    _lastY += userControl.Size.Height + 10;
                }));
-            }
+            
 
         }
         public void LocateButton()

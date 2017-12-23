@@ -16,10 +16,8 @@ namespace HomePage.Classes.Database.Cruds
 
         public async Task<Dictionary<string, string>> GetCompanyNames() // PersonnelName,_id
         {
-            Dictionary<string, string> companyList = new Dictionary<string, string>();
-            HashSet<string> nameList = new HashSet<string>();
-            nameList.Add("ALL");
-            companyList.Add("ALL", "ALL"); // Tüm Personel için
+            Dictionary<string, string> companyList = new Dictionary<string, string> {{"ALL", "ALL"}}; // Tüm Personel için
+            HashSet<string> nameList = new HashSet<string> {"ALL"};
             foreach (var item in await GetAll(new BsonDocument()))
             {
                 if (nameList.Contains(item.Name) == false)

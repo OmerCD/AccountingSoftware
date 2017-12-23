@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HomePage.Classes.Database.Entities.Modules;
 
 namespace HomePage.Classes.Database
 {
@@ -29,8 +30,8 @@ namespace HomePage.Classes.Database
 
         public static IMongoCollection<BsonDocument> User => _user ?? (_user = Database.GetCollection<BsonDocument>(typeof(Entities.User).Name));
         public static IMongoCollection<BsonDocument> Personnel => _personnel ?? (_personnel = Database.GetCollection<BsonDocument>(typeof(Entities.Personnel).Name));
-        public static IMongoCollection<BsonDocument> Document => _document ?? (_document = Database.GetCollection<BsonDocument>(typeof(Entities.Document).Name));
-        public static IMongoCollection<BsonDocument> Column => _column ?? (_column = Database.GetCollection<BsonDocument>(typeof(Entities.Column).Name));
+        public static IMongoCollection<BsonDocument> Document => _document ?? (_document = Database.GetCollection<BsonDocument>(typeof(Document).Name));
+        public static IMongoCollection<BsonDocument> Column => _column ?? (_column = Database.GetCollection<BsonDocument>(typeof(Column).Name));
         public static IMongoCollection<BsonDocument> Company => _company ?? (_company = Database.GetCollection<BsonDocument>(typeof(Entities.Company).Name));
         public static IMongoCollection<BsonDocument> Job => _job ?? (_job = Database.GetCollection<BsonDocument>(typeof(Entities.Job).Name));
         public static IMongoCollection<BsonDocument> Calendar => _calendar ?? (_calendar = Database.GetCollection<BsonDocument>(typeof(Entities.Calendar).Name));

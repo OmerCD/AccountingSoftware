@@ -69,8 +69,8 @@ namespace HomePage.Classes.Database
 
         public virtual async Task<List<T>> GetAll(BsonDocument filter)
         {
-            try
-            {
+            //try
+            //{
                 var results = new List<T>();
                 using (var cursor = await Table.FindAsync(filter))
                 {
@@ -83,12 +83,12 @@ namespace HomePage.Classes.Database
                 }
                 results = results.Where(x => x.IsDeleted == 0).ToList();
                 return results;
-            }
-            catch (Exception ex)
-            {
+            //}
+            //catch (Exception ex)
+            //{
 
-                return new List<T>();
-            }
+            //    return new List<T>();
+            //}
 
         }
 

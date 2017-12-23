@@ -216,7 +216,8 @@ namespace HomePage
         {
             _lastCrudType = typeof(CompanyCRUD);
             _lastType = typeof(Company);
-            var comps = await DbFactory.CompanyCRUD.GetAll(new MongoDB.Bson.BsonDocument());
+            var comps = await new CRUD<Company>().GetAll(new MongoDB.Bson.BsonDocument());
+            //var comps = await DbFactory.CompanyCRUD.GetAll(new MongoDB.Bson.BsonDocument());
             DVValues.Init<Company>();
             foreach (var item in comps)
             {
