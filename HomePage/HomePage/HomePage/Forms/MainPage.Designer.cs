@@ -37,6 +37,7 @@
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnAdd = new System.Windows.Forms.Button();
             this.DVValues = new HomePage.CustomControls.DataView();
+            this.BtnDocuments = new System.Windows.Forms.Button();
             this.PnlMainOperations.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DVValues)).BeginInit();
@@ -69,11 +70,13 @@
             // PnlMainOperations
             // 
             this.PnlMainOperations.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.PnlMainOperations.Controls.Add(this.BtnDocuments);
             this.PnlMainOperations.Controls.Add(this.BtnJobs);
             this.PnlMainOperations.Controls.Add(this.BtnCompanies);
-            this.PnlMainOperations.Location = new System.Drawing.Point(0, 30);
+            this.PnlMainOperations.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PnlMainOperations.Location = new System.Drawing.Point(0, 0);
             this.PnlMainOperations.Name = "PnlMainOperations";
-            this.PnlMainOperations.Size = new System.Drawing.Size(137, 642);
+            this.PnlMainOperations.Size = new System.Drawing.Size(137, 733);
             this.PnlMainOperations.TabIndex = 0;
             // 
             // panel2
@@ -137,6 +140,17 @@
             this.DVValues.Size = new System.Drawing.Size(744, 357);
             this.DVValues.TabIndex = 1;
             // 
+            // BtnDocuments
+            // 
+            this.BtnDocuments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnDocuments.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.BtnDocuments.Location = new System.Drawing.Point(3, 127);
+            this.BtnDocuments.Name = "BtnDocuments";
+            this.BtnDocuments.Size = new System.Drawing.Size(130, 50);
+            this.BtnDocuments.TabIndex = 1;
+            this.BtnDocuments.Text = "İşler";
+            this.BtnDocuments.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -164,6 +178,7 @@
         private CustomControls.DataView DVValues;
         private System.Windows.Forms.Button BtnDelete;
         private System.Windows.Forms.Button BtnAdd;
+        private System.Windows.Forms.Button BtnDocuments;
     }
 }
 
