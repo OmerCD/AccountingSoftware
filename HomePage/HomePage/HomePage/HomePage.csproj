@@ -112,6 +112,12 @@
     <Compile Include="CustomControls\DataView.Designer.cs">
       <DependentUpon>DataView.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\LabelAndCombobox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\LabelAndCombobox.Designer.cs">
+      <DependentUpon>LabelAndCombobox.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\LabelAndDatePicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -181,6 +187,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CustomControls\Container.resx">
       <DependentUpon>Container.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\LabelAndCombobox.resx">
+      <DependentUpon>LabelAndCombobox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\LabelAndDatePicker.resx">
       <DependentUpon>LabelAndDatePicker.cs</DependentUpon>

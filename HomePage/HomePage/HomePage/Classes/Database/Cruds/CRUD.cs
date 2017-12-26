@@ -31,12 +31,12 @@ namespace HomePage.Classes.Database
             var factoryValue = testProp.GetValue(null);
             Table = (IMongoCollection<BsonDocument>) factoryValue;
         }
-        public async Task<Dictionary<string, string>> GetNameList<T1>() where T1:DbObject,new() // PersonnelName,_id
+        public Dictionary<string, string> GetNameList<T1>() where T1:DbObject,new() // PersonnelName,_id
         {
             Dictionary<string, string> personnelList = new Dictionary<string, string>();
             HashSet<string> nameList = new HashSet<string> {"ALL"};
             personnelList.Add("ALL", "ALL"); // Tüm data için
-            foreach (var item in await new CRUD<T1>().GetAll(new BsonDocument()))
+            foreach (var item in new CRUD<T1>().GetAllMembers(new BsonDocument()))
             {
                 string name = item.GetType().GetProperty("Name")?.GetValue(item).ToString();
                 if (nameList.Contains(name) == false)
@@ -67,6 +67,17 @@ namespace HomePage.Classes.Database
             }
         }
 
+        public virtual List<T> GetAllMembers(BsonDocument filter)
+        {
+            var results = new List<T>();
+            var found = Table.FindSync(filter);
+            while (found.MoveNext())
+            {
+                var batch = found.Current;
+                results.AddRange(batch.Select(item=> BsonSerializer.Deserialize<T>(item)));
+            }
+            return results;
+        }
         public virtual async Task<List<T>> GetAll(BsonDocument filter)
         {
             //try

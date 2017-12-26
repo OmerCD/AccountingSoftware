@@ -19,7 +19,7 @@ namespace HomePage.CustomControls
         {
             InitializeComponent();
             attribute.SetMessages();
-            LatLabel.Text = attribute.FieldName + ":";
+            LatLabel.Text = attribute.FieldName + ':';
             LatTextBox.Text = LatTextBox.PlaceHolder = attribute.PlaceHolderText;
 
             if (attribute.IsPassword == true)
@@ -29,7 +29,7 @@ namespace HomePage.CustomControls
             _attribute = attribute;
             LatTextBox.MaxLength = attribute.MaxLength;
         }
-        private CustomAttribute _attribute;
+        private readonly CustomAttribute _attribute;
         public bool IsValidated()
         {
             bool isOk = true;

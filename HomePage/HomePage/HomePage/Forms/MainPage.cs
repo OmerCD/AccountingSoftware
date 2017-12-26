@@ -268,9 +268,12 @@ namespace HomePage
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            using (CreateForm cf = new CreateForm(Activator.CreateInstance(_lastType)))
+            if (_lastType != null)
             {
-                cf.ShowDialog();
+                using (CreateForm cf = new CreateForm(Activator.CreateInstance(_lastType)))
+                {
+                    cf.ShowDialog();
+                }
             }
         }
     }

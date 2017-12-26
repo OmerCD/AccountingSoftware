@@ -37,18 +37,13 @@ namespace HomePage.Classes.Database
 
         public async Task<Dictionary<string, string>> GetNameList() // PersonnelName,_id
         {
-            Dictionary<string, string> personnelList = new Dictionary<string, string>();
-            HashSet<string> nameList = new HashSet<string>();
-            nameList.Add("ALL");
-            personnelList.Add("ALL", "ALL"); // Tüm Personel için
+            var personnelList = new Dictionary<string, string> {{"ALL", "ALL"}};// Tüm Personel için
+            var nameList = new HashSet<string> {"ALL"};
             foreach (var item in await GetAll(new BsonDocument()))
             {
-                if (item.UserType != Enums.UserTypes.Customer && nameList.Contains(item.Name) == false)
-                {
-                    personnelList.Add(item.Name, item._id);
-                    nameList.Add(item.Name);
-                }
-                
+                if (item.UserType == Enums.UserTypes.Customer || nameList.Contains(item.Name)) continue;
+                personnelList.Add(item.Name, item._id);
+                nameList.Add(item.Name);
             }
 
             return personnelList;

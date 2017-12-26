@@ -120,23 +120,21 @@ namespace HomePage.CustomControls
                     }
                     else if (propertyType.IsSubclassOf(typeof(DbObject)))
                     {
-                        MetroFramework.Controls.MetroComboBox cb = new MetroFramework.Controls.MetroComboBox();
+                        LabelAndCombobox cb = new LabelAndCombobox(attribute);
                         var genericType = typeof(CRUD<>).MakeGenericType(propertyType);
                         var instanceCRUD = Activator.CreateInstance(genericType);
 
                         var method = genericType.GetMethod("GetNameList")?.MakeGenericMethod(propertyType);
-                        var returnValue = (Task)method?.Invoke(instanceCRUD, null);
-                        if (returnValue != null)
-                        {
-                            await returnValue;
-                            var result = (Dictionary<string, string>)returnValue.GetType().GetProperty("Result")?.GetValue(returnValue);
-                            if (result != null)
-                                foreach (var pair in result)
-                                {
-                                    cb.Items.Add(pair.Key);
-                                }
-                        }
+                        var returnValue = method?.Invoke(instanceCRUD, null);
+                        //var result = (Dictionary<string, string>) returnValue?.GetType().GetProperty("Result")?.GetValue(returnValue);
+                        var result = (Dictionary<string, string>) returnValue;
+                        if (result != null)
+                            foreach (var pair in result)
+                            {
+                                cb.Add(pair.Key);
+                            }
                         Add(cb);
+                        cb.SelectBase();
                     }
 
                     else if (propertyType.IsArray)
@@ -145,23 +143,20 @@ namespace HomePage.CustomControls
                         var tempType = Type.GetType(propertyType.Namespace + "." + className);
                         if (tempType != null && tempType.IsSubclassOf(typeof(DbObject)))
                         {
-                            MetroFramework.Controls.MetroComboBox cb = new MetroFramework.Controls.MetroComboBox();
+                            LabelAndCombobox cb = new LabelAndCombobox(attribute);
                             var genericType = typeof(CRUD<>).MakeGenericType(tempType);
                             var instanceCRUD = Activator.CreateInstance(genericType);
 
                             var method = genericType.GetMethod("GetNameList")?.MakeGenericMethod(tempType);
-                            var returnValue = (Task)method?.Invoke(instanceCRUD, null);
-                            if (returnValue != null)
-                            {
-                                await returnValue.ConfigureAwait(false);
-                                var result = (Dictionary<string, string>)returnValue.GetType().GetProperty("Result")?.GetValue(returnValue);
-                                if (result != null)
-                                    foreach (var pair in result)
-                                    {
-                                        cb.Items.Add(pair.Key);
-                                    }
-                            }
+                            var returnValue = method?.Invoke(instanceCRUD, null);
+                            var result = (Dictionary<string, string>) returnValue;
+                            if (result != null)
+                                foreach (var pair in result)
+                                {
+                                    cb.Add(pair.Key);
+                                }
                             Add(cb);
+                            cb.SelectBase();
                         }
                     }
                 }
