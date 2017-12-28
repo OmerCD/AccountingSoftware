@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnCompanies = new System.Windows.Forms.Button();
             this.BtnJobs = new System.Windows.Forms.Button();
             this.PnlMainOperations = new System.Windows.Forms.Panel();
+            this.BtnDocuments = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnAdd = new System.Windows.Forms.Button();
             this.DVValues = new HomePage.CustomControls.DataView();
-            this.BtnDocuments = new System.Windows.Forms.Button();
             this.PnlMainOperations.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DVValues)).BeginInit();
@@ -79,6 +79,18 @@
             this.PnlMainOperations.Size = new System.Drawing.Size(137, 733);
             this.PnlMainOperations.TabIndex = 0;
             // 
+            // BtnDocuments
+            // 
+            this.BtnDocuments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnDocuments.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.BtnDocuments.Location = new System.Drawing.Point(3, 127);
+            this.BtnDocuments.Name = "BtnDocuments";
+            this.BtnDocuments.Size = new System.Drawing.Size(130, 50);
+            this.BtnDocuments.TabIndex = 1;
+            this.BtnDocuments.Text = "Evrak";
+            this.BtnDocuments.UseVisualStyleBackColor = true;
+            this.BtnDocuments.Click += new System.EventHandler(this.BtnDocuments_Click);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.BtnDelete);
@@ -116,40 +128,29 @@
             this.DVValues.AllowUserToDeleteRows = false;
             this.DVValues.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DVValues.BackgroundColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Tomato;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Gold;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DVValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Tomato;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Gold;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DVValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DVValues.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DeepSkyBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Gold;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DVValues.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.DeepSkyBlue;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Gold;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DVValues.DefaultCellStyle = dataGridViewCellStyle4;
             this.DVValues.Location = new System.Drawing.Point(166, 150);
             this.DVValues.MultiSelect = false;
             this.DVValues.Name = "DVValues";
             this.DVValues.ReadOnly = true;
             this.DVValues.Size = new System.Drawing.Size(744, 357);
             this.DVValues.TabIndex = 1;
-            // 
-            // BtnDocuments
-            // 
-            this.BtnDocuments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnDocuments.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnDocuments.Location = new System.Drawing.Point(3, 127);
-            this.BtnDocuments.Name = "BtnDocuments";
-            this.BtnDocuments.Size = new System.Drawing.Size(130, 50);
-            this.BtnDocuments.TabIndex = 1;
-            this.BtnDocuments.Text = "İşler";
-            this.BtnDocuments.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 

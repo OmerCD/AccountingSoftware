@@ -14,11 +14,11 @@ namespace HomePage.Classes.Database.Cruds
         {
         }
 
-        public async Task<Dictionary<string, string>> GetCompanyNames() // PersonnelName,_id
+        public Dictionary<string, string> GetCompanyNames() // PersonnelName,_id
         {
-            Dictionary<string, string> companyList = new Dictionary<string, string> {{"ALL", "ALL"}}; // Tüm Personel için
-            HashSet<string> nameList = new HashSet<string> {"ALL"};
-            foreach (var item in await GetAll(new BsonDocument()))
+            Dictionary<string, string> companyList = new Dictionary<string, string> { { "ALL", "ALL" } }; // Tüm Personel için
+            HashSet<string> nameList = new HashSet<string> { "ALL" };
+            foreach (var item in GetAll(new BsonDocument()))
             {
                 if (nameList.Contains(item.Name) == false)
                 {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HomePage.Classes.Database.Entities.Modules;
+using HomePage.Document;
 
 namespace HomePage.Classes.Database
 {
@@ -16,10 +16,10 @@ namespace HomePage.Classes.Database
         public static IMongoClient Client = new MongoClient();
         private static IMongoDatabase _database;
 
-        public static IMongoDatabase Database => _database ?? (_database = Client.GetDatabase("test1"));
+        public static IMongoDatabase Database => _database ?? (_database = Client.GetDatabase("test2"));
 
         private static IMongoCollection<BsonDocument> _user;
-        private static IMongoCollection<BsonDocument> _document;
+        private static IMongoCollection<BsonDocument> _companyColumnIndex;
         private static IMongoCollection<BsonDocument> _column;
         private static IMongoCollection<BsonDocument> _company;
         private static IMongoCollection<BsonDocument> _job;
@@ -30,7 +30,7 @@ namespace HomePage.Classes.Database
 
         public static IMongoCollection<BsonDocument> User => _user ?? (_user = Database.GetCollection<BsonDocument>(typeof(Entities.User).Name));
         public static IMongoCollection<BsonDocument> Personnel => _personnel ?? (_personnel = Database.GetCollection<BsonDocument>(typeof(Entities.Personnel).Name));
-        public static IMongoCollection<BsonDocument> Document => _document ?? (_document = Database.GetCollection<BsonDocument>(typeof(Document).Name));
+        public static IMongoCollection<BsonDocument> CompanyColumnIndex => _companyColumnIndex ?? (_companyColumnIndex = Database.GetCollection<BsonDocument>(typeof(CompanyColumnIndex).Name));
         public static IMongoCollection<BsonDocument> Column => _column ?? (_column = Database.GetCollection<BsonDocument>(typeof(Column).Name));
         public static IMongoCollection<BsonDocument> Company => _company ?? (_company = Database.GetCollection<BsonDocument>(typeof(Entities.Company).Name));
         public static IMongoCollection<BsonDocument> Job => _job ?? (_job = Database.GetCollection<BsonDocument>(typeof(Entities.Job).Name));
@@ -39,7 +39,7 @@ namespace HomePage.Classes.Database
 
 
         private static UserCRUD _userCRUD;
-        private static DocumentCRUD  _documentCRUD;
+        private static CompanyColumnIndexCRUD _companyColumnIndexCRUD;
         private static ColumnCRUD _columnCRUD;
         private static CompanyCRUD _companyCRUD;
         private static JobCRUD _jobCRUD;
@@ -47,7 +47,7 @@ namespace HomePage.Classes.Database
         private static CompanyLoginCRUD _companyLoginCRUD;
 
         public static UserCRUD UserCRUD => _userCRUD ?? (_userCRUD = new UserCRUD());
-        public static DocumentCRUD DocumentCRUD => _documentCRUD ?? (_documentCRUD = new DocumentCRUD());
+        public static CompanyColumnIndexCRUD CompanyColumnIndexCRUD => _companyColumnIndexCRUD ?? (_companyColumnIndexCRUD = new CompanyColumnIndexCRUD());
         public static ColumnCRUD ColumnCRUD => _columnCRUD ?? (_columnCRUD = new ColumnCRUD());
         public static CompanyCRUD CompanyCRUD => _companyCRUD ?? (_companyCRUD = new CompanyCRUD());
         public static JobCRUD JobCRUD => _jobCRUD ?? (_jobCRUD = new JobCRUD());

@@ -14,15 +14,14 @@ namespace HomePage.Classes.Database.Cruds
         {
             
         }
-        public async Task<Dictionary<string, string>> GetNameList() // PersonnelName,_id
+        public Dictionary<string, string> GetNameList() // PersonnelName,_id
         {
             Dictionary<string, string> personnelList = new Dictionary<string, string>();
-            HashSet<string> nameList = new HashSet<string>();
-            nameList.Add("ALL");
+            HashSet<string> nameList = new HashSet<string> {"ALL"};
             personnelList.Add("ALL", "ALL"); // Tüm Personel için
-            foreach (var item in await DbFactory.CompanyCRUD.GetAll(new BsonDocument()))
+            foreach (var item in DbFactory.CompanyCRUD.GetAll(new BsonDocument()))
             {
-                if ( nameList.Contains(item.Name) == false)
+                if (nameList.Contains(item.Name) == false)
                 {
                     personnelList.Add(item.Name, item._id);
                     nameList.Add(item.Name);

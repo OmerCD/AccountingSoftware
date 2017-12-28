@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace HomePage.Classes.Database
 {
-    public class CRUD<T> : IRepositoryMain<T> where T:DbObject, new()
+    public class CRUD<T> : IRepositoryMain<T> where T : DbObject, new()
     {
         protected IMongoDatabase Database;
         protected IMongoCollection<BsonDocument> Table;
@@ -29,14 +29,15 @@ namespace HomePage.Classes.Database
             var typeName = typeof(T).Name;
             var testProp = typeof(DbFactory).GetProperty(typeName);
             var factoryValue = testProp.GetValue(null);
-            Table = (IMongoCollection<BsonDocument>) factoryValue;
+
+            Table = (IMongoCollection<BsonDocument>)factoryValue;
         }
-        public Dictionary<string, string> GetNameList<T1>() where T1:DbObject,new() // PersonnelName,_id
+        public Dictionary<string, string> GetNameList<T1>() where T1 : DbObject, new() // PersonnelName,_id
         {
             Dictionary<string, string> personnelList = new Dictionary<string, string>();
-            HashSet<string> nameList = new HashSet<string> {"ALL"};
+            HashSet<string> nameList = new HashSet<string> { "ALL" };
             personnelList.Add("ALL", "ALL"); // Tüm data için
-            foreach (var item in new CRUD<T1>().GetAllMembers(new BsonDocument()))
+            foreach (var item in new CRUD<T1>().GetAll(new BsonDocument()))
             {
                 string name = item.GetType().GetProperty("Name")?.GetValue(item).ToString();
                 if (nameList.Contains(name) == false)
@@ -50,68 +51,89 @@ namespace HomePage.Classes.Database
             return personnelList;
         }
 
-        public virtual async Task<bool> Delete(string id)
+        public virtual bool NameCheck(string name)
+        {
+            try
+            {
+                var filter = new BsonDocument { { "Name", name } };
+                var cursor = Table.FindSync(filter);
+                cursor.MoveNext();
+                return cursor.Current.Any();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return true;
+            }
+        }
+        public virtual bool Delete(string id)
         {
             try
             {
                 var filter = new BsonDocument { { "_id", id } };
-              /**/
-                var builder =  Builders<BsonDocument>.Update.Set("IsDeleted", 1);
+                /**/
+                var builder = Builders<BsonDocument>.Update.Set("IsDeleted", 1);
 
-                await Table.UpdateOneAsync(filter, builder);
-                    return true;
+                Table.UpdateOne(filter, builder);
+                return true;
             }
             catch (Exception ex)
             {
                 return false;
             }
         }
-
-        public virtual List<T> GetAllMembers(BsonDocument filter)
+        public virtual List<T> GetAll()
         {
-            var results = new List<T>();
-            var found = Table.FindSync(filter);
-            while (found.MoveNext())
+            try
             {
-                var batch = found.Current;
-                results.AddRange(batch.Select(item=> BsonSerializer.Deserialize<T>(item)));
-            }
-            return results;
-        }
-        public virtual async Task<List<T>> GetAll(BsonDocument filter)
-        {
-            //try
-            //{
+                var filter = new BsonDocument { { "IsDeleted", 0 } };
                 var results = new List<T>();
-                using (var cursor = await Table.FindAsync(filter))
+                var found = Table.FindSync(filter);
+                while (found.MoveNext())
                 {
-                    while (await cursor.MoveNextAsync())
-                    {
-                        var batch = cursor.Current;
-                        results.AddRange(batch.Select(item => BsonSerializer.Deserialize<T>(item)));
-                    }
-                    
+                    var batch = found.Current;
+                    results.AddRange(batch.Select(item => BsonSerializer.Deserialize<T>(item)));
                 }
-                results = results.Where(x => x.IsDeleted == 0).ToList();
                 return results;
-            //}
-            //catch (Exception ex)
-            //{
+            }
+            catch (Exception ex)
+            {
 
-            //    return new List<T>();
-            //}
+                return new List<T>();
+            }
+
+        }
+        public virtual List<T> GetAll(BsonDocument filter)
+        {
+            try
+            {
+                if (filter == null) filter = new BsonDocument { { "IsDeleted", 0 } };
+                var results = new List<T>();
+                var found = Table.FindSync(filter);
+                while (found.MoveNext())
+                {
+                    var batch = found.Current;
+                    results.AddRange(batch.Select(item => BsonSerializer.Deserialize<T>(item)));
+                }
+                return results;
+            }
+            catch (Exception ex)
+            {
+
+                return new List<T>();
+            }
 
         }
 
-        public virtual async Task<T> GetOne(string id)
+        public virtual T GetOne(string id)
         {
             try
             {
                 var filter = new BsonDocument { { "_id", id } };
-                using (var cursor = await Table.FindAsync(filter))
-                {
-                    return JsonConvert.DeserializeObject<T>(cursor.First().ToString());
-                }
+                var cursor = Table.FindSync(filter);
+                cursor.MoveNext();
+                var batch = cursor.Current;
+                return BsonSerializer.Deserialize<T>(batch.FirstOrDefault());
 
             }
             catch (Exception)
@@ -121,12 +143,12 @@ namespace HomePage.Classes.Database
             }
 
         }
-        public  async Task<List<T>> BringBack(BsonDocument filter)
+        public List<T> BringBack(BsonDocument filter)
         {
             try
             {
                 var results = new List<T>();
-                using (var cursor = await Table.FindAsync(filter))
+                using (var cursor = Table.FindSync(filter))
                 {
                     var x = cursor.ToList();
                     results.AddRange(x.Select(item => JsonConvert.DeserializeObject<T>(item.ToString())));
@@ -139,11 +161,11 @@ namespace HomePage.Classes.Database
                 return new List<T>();
             }
         }
-        public async Task<T> GetOneUser(string userName,string password)//todo
+        public async Task<T> GetOneUser(string userName, string password)//todo
         {
             try
             {
-                var filter = new BsonDocument { { "UserName", userName }, {"Password",password } };
+                var filter = new BsonDocument { { "UserName", userName }, { "Password", password } };
                 using (var cursor = await Table.FindAsync(filter))
                 {
                     return JsonConvert.DeserializeObject<T>(cursor.First().ToString());
@@ -157,7 +179,7 @@ namespace HomePage.Classes.Database
             }
 
         }
-        public virtual async Task<bool> Insert(params T[] entities)
+        public virtual bool Insert(params T[] entities)
         {
             try
             {
@@ -165,9 +187,9 @@ namespace HomePage.Classes.Database
                 {
                     var json = Newtonsoft.Json.JsonConvert.SerializeObject(entity);
                     var bsonDocument = BsonDocument.Parse(json);
-                    await Table.InsertOneAsync(bsonDocument);
+                    Table.InsertOne(bsonDocument);
                 }
-               
+
                 return true;
             }
             catch (Exception)
@@ -178,12 +200,14 @@ namespace HomePage.Classes.Database
 
         }
 
-        public virtual async Task<bool> Update(string id, T entity)
+        public virtual bool Update(string id, T entity)
         {
             try
             {
                 var filter = new BsonDocument { { "_id", id } };
-                await Table.UpdateOneAsync(filter, JsonConvert.SerializeObject(entity));
+                var bsonEntity = entity.ToBsonDocument();
+                var update = new BsonDocument { { "$set", bsonEntity } };
+                Table.UpdateOne(filter, update);
                 return true;
             }
             catch (Exception)

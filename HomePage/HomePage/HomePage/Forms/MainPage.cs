@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HomePage.Classes.Database.Enums;
+using HomePage.Forms.ModuleForms;
 
 namespace HomePage
 {
@@ -78,12 +79,12 @@ namespace HomePage
             }
         }
         Dictionary<string, string> PersonnelNameList;
-        private async void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             User user = new User("", "", "", "Mahmut", Classes.Database.Enums.UserTypes.Personnel);
               User user1 = new User("", "", "", "Mahmut1", Classes.Database.Enums.UserTypes.Personnel);
               User user2 = new User("", "", "", "Mahmut2", Classes.Database.Enums.UserTypes.Personnel);
-            bool ok = await DbFactory.UserCRUD.Insert(user, user1, user2);
+            bool ok = DbFactory.UserCRUD.Insert(user, user1, user2);
             /*   PersonnelNameList = await DbFactory.UserCRUD.GetPersonnelName();
                foreach (var item in PersonnelNameList)
                {
@@ -212,11 +213,11 @@ namespace HomePage
         }
         Type _lastCrudType;
         Type _lastType;
-        private async void BtnCompanies_Click(object sender, EventArgs e)
+        private void BtnCompanies_Click(object sender, EventArgs e)
         {
             _lastCrudType = typeof(CompanyCRUD);
             _lastType = typeof(Company);
-            var comps = await new CRUD<Company>().GetAll(new MongoDB.Bson.BsonDocument());
+            var comps = new CRUD<Company>().GetAll(new MongoDB.Bson.BsonDocument());
             //var comps = await DbFactory.CompanyCRUD.GetAll(new MongoDB.Bson.BsonDocument());
             DVValues.Init<Company>();
             foreach (var item in comps)
@@ -227,24 +228,24 @@ namespace HomePage
             Resize();
         }
 
-        private async void BtnJobs_Click(object sender, EventArgs e)
+        private void BtnJobs_Click(object sender, EventArgs e)
         {
             _lastType = typeof(Job);
             _lastCrudType = typeof(JobCRUD);
-          /*   Personnel[] pList = { new Personnel { Name = "Mahmut" } ,new Personnel { Name="Muhsin"} };
-               var j = new Job(pList, DateTime.Now, new Company() {Name="asd" }, "desc", "dae", 5);
-               var j1 = new Job(pList, DateTime.Now, new Company() { Name = "asd" }, "desc2", "da2e", 5);
-            bool done =  await  DbFactory.JobCRUD.Insert(j1, j);
-               MessageBox.Show(done.ToString());*/
+            /*   Personnel[] pList = { new Personnel { Name = "Mahmut" } ,new Personnel { Name="Muhsin"} };
+                 var j = new Job(pList, DateTime.Now, new Company() {Name="asd" }, "desc", "dae", 5);
+                 var j1 = new Job(pList, DateTime.Now, new Company() { Name = "asd" }, "desc2", "da2e", 5);
+              bool done =  await  DbFactory.JobCRUD.Insert(j1, j);
+                 MessageBox.Show(done.ToString());*/
 
-          var jobs = await DbFactory.JobCRUD.GetAll(new MongoDB.Bson.BsonDocument());
-             DVValues.Init<Job>();
+            var jobs = DbFactory.JobCRUD.GetAll(new MongoDB.Bson.BsonDocument());
+            DVValues.Init<Job>();
             foreach (var item in jobs)
             {
                 CustomControls.DataRow r = new CustomControls.DataRow();
-                DVValues.Add(r.CreateRow(item),item._id);
+                DVValues.Add(r.CreateRow(item), item._id);
             }
-            Resize();                          
+            Resize();
         }
 
         private new void Resize()
@@ -274,6 +275,14 @@ namespace HomePage
                 {
                     cf.ShowDialog();
                 }
+            }
+        }
+
+        private void BtnDocuments_Click(object sender, EventArgs e)
+        {
+            using (var frm = new DocumentPage())
+            {
+                frm.ShowDialog();
             }
         }
     }

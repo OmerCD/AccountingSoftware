@@ -24,8 +24,7 @@ namespace HomePage.Forms
 
         private void CreateForm_HandleCreated(object sender, EventArgs e)
         {
-            var task = CtnData.SetObject(_entity);
-            task.ConfigureAwait(true);
+            CtnData.SetObject(_entity);
             CtnData.ButtonText = "Veri Ekle";
             CtnData.ClickEvent = ButtonClick;
             var size = new Size(CtnData.Size.Width, CtnData.Size.Height);

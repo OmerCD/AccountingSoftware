@@ -81,12 +81,12 @@
   <ItemGroup>
     <Compile Include="Classes\CustomAttribute.cs" />
     <Compile Include="Classes\Database\Cruds\CalendarCRUD.cs" />
+    <Compile Include="Classes\Database\Cruds\CompanyColumnIndexCRUD.cs" />
     <Compile Include="Classes\Database\Cruds\CompanyLoginCRUD.cs" />
     <Compile Include="Classes\Database\Entities\CompanyLogin.cs" />
     <Compile Include="Classes\Database\Cruds\ColumnCRUD.cs" />
     <Compile Include="Classes\Database\Cruds\CompanyCRUD.cs" />
     <Compile Include="Classes\Database\Cruds\CRUD.cs" />
-    <Compile Include="Classes\Database\Cruds\DocumentCRUD.cs" />
     <Compile Include="Classes\Database\Cruds\JobCRUD.cs" />
     <Compile Include="Classes\Database\DbFactory.cs" />
     <Compile Include="Classes\Database\Entities\Calendar.cs" />
@@ -105,6 +105,12 @@
     </Compile>
     <Compile Include="CustomControls\Container.Designer.cs">
       <DependentUpon>Container.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\DataListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\DataListView.Designer.cs">
+      <DependentUpon>DataListView.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\DataView.cs">
       <SubType>Component</SubType>
@@ -176,6 +182,18 @@
     <Compile Include="Forms\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ModuleForms\ColumnEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ModuleForms\ColumnEditor.Designer.cs">
+      <DependentUpon>ColumnEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ModuleForms\DocumentPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ModuleForms\DocumentPage.Designer.cs">
+      <DependentUpon>DocumentPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageEx.cs" />
     <Compile Include="MetroStyle.cs" />
     <Compile Include="MetroToolbar.cs">
@@ -218,6 +236,12 @@
     <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ModuleForms\ColumnEditor.resx">
+      <DependentUpon>ColumnEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ModuleForms\DocumentPage.resx">
+      <DependentUpon>DocumentPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -241,9 +265,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\ModuleForms\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

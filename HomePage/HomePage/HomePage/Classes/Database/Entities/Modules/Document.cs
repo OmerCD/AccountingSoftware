@@ -1,6 +1,7 @@
 ﻿using System;
+using HomePage.Classes.Database.Entities;
 
-namespace HomePage.Classes.Database.Entities.Modules
+namespace HomePage.Document
 {
    public class CompanyColumnIndex : DbObject
     {
@@ -8,13 +9,24 @@ namespace HomePage.Classes.Database.Entities.Modules
         public int AnswerIndex { get; set; }
         public string CompanyId { get; set; }
         public string UserId { get; set; }
-        public DateTime LastEdit { get; set; }
+        public DateTime EditDate { get; set; }
 
     }
     public class Column : DbObject
     {
-        public string ColumnName { get; set; }
-        public string[] Answers { get; set; }
+        public Column(int minRank=0)
+        {
+            MinRank = minRank;
+        }
+
+        public Column()
+        {
+        }
+
+        public string[] PossibleAnswers { get; set; }
+        public int MinRank { get; set; }
+        public string Name { get; set; }
     }
+
    
 }

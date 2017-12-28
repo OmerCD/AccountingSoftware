@@ -9,10 +9,10 @@ namespace HomePage.Classes.Database
 {
     public interface IRepositoryMain<T>
     {
-        Task<bool> Insert(params T[] entities);
-        Task<bool> Delete(string id);
-        Task<bool> Update(string id, T entity);
-        Task<List<T>> GetAll(BsonDocument filter);
-        Task<T> GetOne(string id);
+        bool Insert(params T[] entities);
+        bool Delete(string id);
+        bool Update(string id, T entity);
+        List<T> GetAll(BsonDocument filter);
+        T GetOne(string id);
     }
 }

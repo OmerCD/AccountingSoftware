@@ -40,10 +40,10 @@ namespace HomePage.CustomControls
             }
         }
 
-        public async Task SetObject(object obj)
+        public void SetObject(object obj)
         {
             _object = obj;
-            await CreateControls();
+            CreateControls();
         }
         public object Object
         {
@@ -86,7 +86,7 @@ namespace HomePage.CustomControls
             return _object;
         }
 
-        async Task CreateControls()
+        void CreateControls()
         {
             var properties = _object.GetType().GetProperties();
             foreach (var property in properties)
@@ -127,7 +127,7 @@ namespace HomePage.CustomControls
                         var method = genericType.GetMethod("GetNameList")?.MakeGenericMethod(propertyType);
                         var returnValue = method?.Invoke(instanceCRUD, null);
                         //var result = (Dictionary<string, string>) returnValue?.GetType().GetProperty("Result")?.GetValue(returnValue);
-                        var result = (Dictionary<string, string>) returnValue;
+                        var result = (Dictionary<string, string>)returnValue;
                         if (result != null)
                             foreach (var pair in result)
                             {
@@ -149,7 +149,7 @@ namespace HomePage.CustomControls
 
                             var method = genericType.GetMethod("GetNameList")?.MakeGenericMethod(tempType);
                             var returnValue = method?.Invoke(instanceCRUD, null);
-                            var result = (Dictionary<string, string>) returnValue;
+                            var result = (Dictionary<string, string>)returnValue;
                             if (result != null)
                                 foreach (var pair in result)
                                 {
@@ -162,15 +162,15 @@ namespace HomePage.CustomControls
                 }
 
             }
-            Invoke((MethodInvoker) (() =>
-            {
-                ContainerButton.Visible = true;
-                ContainerButton.Text = "Kayıt Ol";
-                ToolTip t = new ToolTip();
-                t.Show("heyyo", ContainerButton, 5000);
-                LocateButton();
-            }));
-            
+            Invoke((MethodInvoker)(() =>
+           {
+               ContainerButton.Visible = true;
+               ContainerButton.Text = "Kayıt Ol";
+               ToolTip t = new ToolTip();
+               t.Show("heyyo", ContainerButton, 5000);
+               LocateButton();
+           }));
+
         }
         public Container()
         {
