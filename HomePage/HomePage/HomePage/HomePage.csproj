@@ -254,18 +254,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -275,7 +276,96 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\F1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\F1transparent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\F1transparentHeader.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\houses.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\housesSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\housesSmall1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\002-power-4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\004-settings-3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document-11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\documentadd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\documentdelete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\houses1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\houses11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\push-pin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calculator.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calculator1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\contract1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\phone-book-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\users1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-33.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\documentupdate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\documentupdate1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\002-power-41.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\004-settings-31.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

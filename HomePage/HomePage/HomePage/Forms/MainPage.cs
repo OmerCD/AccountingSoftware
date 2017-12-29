@@ -15,14 +15,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HomePage.Classes.Database.Enums;
 using HomePage.Forms.ModuleForms;
+using System.Runtime.InteropServices;
 
 namespace HomePage
 {
     public partial class MainForm : Form//MetroFramework.Forms.MetroForm
     {
         public static User CurrentUser;
+
         public MainForm()
         {
+            
+            
             if (CurrentUser == null)
             {
                 CurrentUser = new Personnel("TestUser","1234","Test1 Test2","test@mail.com",UserTypes.Personnel, null);
@@ -38,6 +42,8 @@ namespace HomePage
                 //else
                 //{
                     InitializeComponent();
+                pnlDataGrid.Visible = false;
+                
                 //}
                 //User user = new User("", "", "mahmut1", "Mahmut", Classes.Database.Enums.UserTypes.Personnel);
                 //User user1 = new User("", "", "mahmut2", "Mahmut1", Classes.Database.Enums.UserTypes.Personnel);
@@ -84,6 +90,16 @@ namespace HomePage
 
         }
         Dictionary<string, string> PersonnelNameList;
+#region Move Form
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd,
+                         int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+#endregion
         private void button1_Click(object sender, EventArgs e)
         {
             //User user = new User("", "", "", "Mahmut", Classes.Database.Enums.UserTypes.Personnel);
@@ -289,6 +305,31 @@ namespace HomePage
             {
                 frm.ShowDialog();
             }
+        }
+
+        private void panel2_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && e.Clicks == 1)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+       
+            Application.Exit();
+        }
+
+
+        private void panel2_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else this.WindowState = FormWindowState.Normal;
         }
     }
 }
