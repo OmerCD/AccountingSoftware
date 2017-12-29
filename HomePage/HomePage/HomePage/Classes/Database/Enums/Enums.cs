@@ -24,4 +24,11 @@ namespace HomePage.Classes.Database.Enums
         Limited,
         Personal
     }
+
+    public enum FormGoal
+    {
+        Add,
+        Update,
+        Delete
+    }
 }

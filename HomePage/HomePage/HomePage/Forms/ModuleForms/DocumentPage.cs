@@ -21,6 +21,7 @@ namespace HomePage.Forms.ModuleForms
         public DocumentPage()
         {
             InitializeComponent();
+            _companyCrud= new CRUD<Company>();
             _columnCrud= new CRUD<Column>();
         }
 
@@ -33,11 +34,18 @@ namespace HomePage.Forms.ModuleForms
             for (int i = 1; i < columns.Count+1; i++)
             {
                 DgvDocuments.Columns[i].Name = columns[i-1].Name;
-                var comboBox = new DataGridViewComboBoxCell();
-                for (int j = 0; j < companies.Count; j++)
+            }
+            for (int i = 0; i < companies.Count; i++)
+            {
+                DataGridViewRow row = (DataGridViewRow)DgvDocuments.Rows[0].Clone();
+                row.Cells[0].Value = companies[i].Name;
+                for (int j = 1; j < columns.Count; j++)
                 {
-                    
+                    DataGridViewComboBoxCell comboBox =
+                        new DataGridViewComboBoxCell {DataSource = columns[j].PossibleAnswers};
+                    row.Cells[j] = comboBox;
                 }
+                DgvDocuments.Rows.Add(row);
             }
         }
     }

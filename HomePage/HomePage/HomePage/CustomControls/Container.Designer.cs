@@ -42,6 +42,7 @@
             this.ContainerButton.Text = "button1";
             this.ContainerButton.UseVisualStyleBackColor = true;
             this.ContainerButton.Visible = false;
+            this.ContainerButton.Click += new System.EventHandler(this.ContainerButton_Click);
             // 
             // Container
             // 

@@ -21,32 +21,21 @@ namespace HomePage.CustomControls
 
         public string ButtonText
         {
-            set { ContainerButton.Text = value; }
+            set => ContainerButton.Text = value;
         }
 
         public delegate void ButtonClickEvent(object sender, EventArgs e);
         public ButtonClickEvent ClickEvent { get; set; }
-        object _crud;
-        public object CRUD
-        {
-            get
-            {
-                return _crud;
-            }
-            set
-            {
-                _crud = value;
+        public object CRUD { get; set; }
 
-            }
-        }
 
-        public void SetObject(object obj)
-        {
-            _object = obj;
-            CreateControls();
-        }
         public object Object
         {
+            set
+            {
+                _object = value;
+                CreateControls();
+            }
             get
             {
                 _object = GetValues();

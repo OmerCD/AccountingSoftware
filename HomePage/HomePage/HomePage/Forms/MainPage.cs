@@ -271,7 +271,7 @@ namespace HomePage
         {
             if (_lastType != null)
             {
-                using (CreateForm cf = new CreateForm(Activator.CreateInstance(_lastType)))
+                using (CreateForm cf = new CreateForm(Activator.CreateInstance(_lastType),FormGoal.Add))
                 {
                     cf.ShowDialog();
                 }
