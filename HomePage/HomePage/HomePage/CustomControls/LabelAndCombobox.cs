@@ -11,12 +11,18 @@ using HomePage.Classes;
 
 namespace HomePage.CustomControls
 {
-    public partial class LabelAndCombobox : UserControl
+    public partial class LabelAndCombobox : UserControl,IMainCustomControl
     {
+        public List<string> RealValues { get; set; }
+
+        public ComboBox ComboBox => LacComboBox;
+
         public LabelAndCombobox(CustomAttribute attribute,params object[] items)
         {
             InitializeComponent();
             LacLabel.Text = attribute.FieldName + ':';
+            RealValues = new List<string>();
+
             if (items.Length > 0)
             {
                 LacComboBox.Items.AddRange(items);
@@ -24,8 +30,12 @@ namespace HomePage.CustomControls
             }
         }
 
-        public void Add(object item)
+        public int SelectedIndex => LacComboBox.SelectedIndex;
+        public string GetSelectedId => RealValues[LacComboBox.SelectedIndex];
+        public string this[int index] => RealValues[index];
+        public void Add(object item,string id)
         {
+            RealValues.Add(id);
             LacComboBox.Items.Add(item);
         }
 
@@ -33,5 +43,7 @@ namespace HomePage.CustomControls
         {
             LacComboBox.SelectedIndex = 0;
         }
+
+        public object Value => LacComboBox.Items[LacComboBox.SelectedIndex].ToString();
     }
 }

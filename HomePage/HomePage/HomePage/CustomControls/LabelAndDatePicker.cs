@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 
 namespace HomePage.CustomControls
 {
-    public partial class LabelAndDatePicker : UserControl
+    public partial class LabelAndDatePicker : UserControl,IMainCustomControl
     {
         public LabelAndDatePicker(CustomAttribute attribute)
         {
@@ -31,5 +31,6 @@ namespace HomePage.CustomControls
         }
 
 
+        public object Value => LadDtp.Value.ToLongDateString();
     }
 }

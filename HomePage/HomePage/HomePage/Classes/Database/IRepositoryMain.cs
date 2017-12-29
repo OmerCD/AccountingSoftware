@@ -9,7 +9,8 @@ namespace HomePage.Classes.Database
 {
     public interface IRepositoryMain<T>
     {
-        bool Insert(params T[] entities);
+        bool Insert(T entity);
+        bool InsertMany(params T[] entities);
         bool Delete(string id);
         bool Update(string id, T entity);
         List<T> GetAll(BsonDocument filter);

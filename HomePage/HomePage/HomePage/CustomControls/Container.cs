@@ -18,6 +18,7 @@ namespace HomePage.CustomControls
     public partial class Container : UserControl
     {
         private object _object;
+        private Dictionary<string, IMainCustomControl> _valueControls = new Dictionary<string, IMainCustomControl>();
 
         public string ButtonText
         {
@@ -45,37 +46,44 @@ namespace HomePage.CustomControls
 
         private object GetValues()
         {
-            var myType = _object.GetType();
-            //var myObject = Activator.CreateInstance(myType);
-            foreach (var control in Controls)
+            var props = _object.GetType().GetProperties();
+            foreach (var prop in props)
             {
-                if (control is LabelAndTextbox)
+                if (prop.CustomAttributes.Any())
                 {
-                    var properties = myType.GetProperties();
-                    foreach (var property in properties)
+                    var value = _valueControls[prop.Name].Value;
+                    var propType = prop.PropertyType;
+                    if (propType.IsSubclassOf(typeof(DbObject)))
                     {
-                        var cont = (control as LabelAndTextbox);
-                        var propName = cont.LatLabel.Name;
-                        if (propName == property.Name)
-                        {
-                            foreach (var prop in myType.GetProperties())
-                            {
-                                if (prop.Name == propName)
-                                {
-                                    prop.SetValue(_object, cont.LatTextBox.Text);
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-
+                        var foreignObject = GetField(prop,
+                            ((LabelAndCombobox) _valueControls[prop.Name]).GetSelectedId);
+                        prop.SetValue(_object, foreignObject);
+                    }
+                    else if (propType.IsEnum)
+                    {
+                        var cBox = (LabelAndCombobox) _valueControls[prop.Name];
+                        prop.SetValue(_object,cBox.SelectedIndex);
+                    }
+                    else
+                    {
+                        prop.SetValue(_object, value);
                     }
                 }
             }
             return _object;
         }
 
-        void CreateControls()
+        private object GetField(PropertyInfo prop, string getSelectedId)
+        {
+            var type = prop.PropertyType;
+            var genericType = typeof(CRUD<>).MakeGenericType(type);
+            var genericCRUD = Activator.CreateInstance(genericType);
+            var methodInfo = genericType.GetMethod("GetOne");
+            var result = methodInfo.Invoke(genericCRUD, new object[] {getSelectedId});
+            return result;
+        }
+
+        private void CreateControls()
         {
             var properties = _object.GetType().GetProperties();
             foreach (var property in properties)
@@ -89,23 +97,28 @@ namespace HomePage.CustomControls
                     if (propertyType == typeof(string))
                     {
                         LabelAndTextbox lat = new LabelAndTextbox(attribute);
-                        Add(lat);
+                        Add(lat, property.Name);
                     }
                     else if (propertyType == typeof(DateTime))
                     {
                         LabelAndDatePicker lad = new LabelAndDatePicker(attribute);
-                        Add(lad);
+                        Add(lad, property.Name);
                     }
                     else if (propertyType.IsEnum == true)
                     {
-                        MetroFramework.Controls.MetroComboBox cb =
-                            new MetroFramework.Controls.MetroComboBox { DataSource = (Enum.GetValues(propertyType)) };
-                        Add(cb);
+                        var enumValues = Enum.GetValues(propertyType);
+                        List<string> values= new List<string>();
+                        foreach (var enumValue in enumValues)
+                        {
+                            values.Add(enumValue.ToString());
+                        }
+                        LabelAndCombobox cb = new LabelAndCombobox(attribute, values.ToArray());
+                        Add(cb, property.Name);
                     }
                     else if (propertyType == typeof(bool))
                     {
-                        CheckBox cb = new CheckBox { Text = attribute.FieldName };
-                        Add(cb);
+                        LabelAndCheckBox cb = new LabelAndCheckBox(attribute.FieldName);
+                        Add(cb, property.Name);
                     }
                     else if (propertyType.IsSubclassOf(typeof(DbObject)))
                     {
@@ -120,9 +133,9 @@ namespace HomePage.CustomControls
                         if (result != null)
                             foreach (var pair in result)
                             {
-                                cb.Add(pair.Key);
+                                cb.Add(pair.Key,pair.Value);
                             }
-                        Add(cb);
+                        Add(cb, property.Name);
                         cb.SelectBase();
                     }
 
@@ -142,9 +155,9 @@ namespace HomePage.CustomControls
                             if (result != null)
                                 foreach (var pair in result)
                                 {
-                                    cb.Add(pair.Key);
+                                    cb.Add(pair.Key,pair.Value);
                                 }
-                            Add(cb);
+                            Add(cb, property.Name);
                             cb.SelectBase();
                         }
                     }
@@ -167,17 +180,12 @@ namespace HomePage.CustomControls
 
         }
         private int _lastY = 0;
-        public void Add(Control userControl)
+        public void Add(Control userControl, string propertyName)
         {
-
-                Invoke((MethodInvoker)(() =>
-               {
-                   userControl.Location = new Point(userControl.Location.X, _lastY);
-                   this.Controls.Add(userControl);
-                   _lastY += userControl.Size.Height + 10;
-               }));
-            
-
+            _valueControls.Add(propertyName, (IMainCustomControl)userControl);
+            userControl.Location = new Point(userControl.Location.X, _lastY);
+            this.Controls.Add(userControl);
+            _lastY += userControl.Size.Height + 10;
         }
         public void LocateButton()
         {

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HomePage.Document;
 using HomePage.Classes.Database;
+using HomePage.Classes.Database.Cruds;
 using HomePage.Classes.Database.Entities;
 
 namespace HomePage.Forms.ModuleForms
@@ -17,35 +18,72 @@ namespace HomePage.Forms.ModuleForms
     {
         private CRUD<Column> _columnCrud;
         private CRUD<Company> _companyCrud;
-        private CRUD<CompanyColumnIndex> _companyColumnIndexCrud;
+        private CompanyColumnIndexCRUD _companyColumnIndexCrud;
         public DocumentPage()
         {
             InitializeComponent();
-            _companyCrud= new CRUD<Company>();
-            _columnCrud= new CRUD<Column>();
+            _companyCrud = new CRUD<Company>();
+            _columnCrud = new CRUD<Column>();
+            _companyColumnIndexCrud = new CompanyColumnIndexCRUD();
         }
 
+        private void ApplyChanges()
+        {
+            for (int i = 0; i < DgvDocuments.Rows.Count; i++)
+            {
+                
+            }
+        }
         private void DocumentPage_Load(object sender, EventArgs e)
         {
+            RefreshDataGridView();
+        }
+
+        private void RefreshDataGridView()
+        {
+            int extraColumnCount = 2;
             var columns = _columnCrud.GetAll();
             var companies = _companyCrud.GetAll();
-            DgvDocuments.ColumnCount = columns.Count+1;
-            DgvDocuments.Columns[0].Name = "Şirketler";
-            for (int i = 1; i < columns.Count+1; i++)
+            DgvDocuments.ColumnCount = columns.Count + extraColumnCount;
+            DgvDocuments.Columns[0].Name = "Id";
+            DgvDocuments.Columns[0].Visible = false;
+            DgvDocuments.Columns[1].Name = "Şirketler";
+            DgvDocuments.Columns[1].ReadOnly = true;
+            for (var i = extraColumnCount; i < columns.Count + extraColumnCount; i++)
             {
-                DgvDocuments.Columns[i].Name = columns[i-1].Name;
+                DgvDocuments.Columns[i].Name = columns[i - extraColumnCount].Name;
             }
-            for (int i = 0; i < companies.Count; i++)
+            DgvDocuments.Rows.Add();
+            foreach (var company in companies)
             {
                 DataGridViewRow row = (DataGridViewRow)DgvDocuments.Rows[0].Clone();
-                row.Cells[0].Value = companies[i].Name;
-                for (int j = 1; j < columns.Count; j++)
+                row.Cells[0].Value = company._id;
+                row.Cells[1].Value = company.Name;
+                var indecies = _companyColumnIndexCrud.GetCompanyAnswerIndexes(company._id);
+
+                for (var j = extraColumnCount; j < columns.Count + extraColumnCount; j++)
                 {
-                    DataGridViewComboBoxCell comboBox =
-                        new DataGridViewComboBoxCell {DataSource = columns[j].PossibleAnswers};
+                    var column = columns[j - extraColumnCount];
+                    var comboBox = new DataGridViewComboBoxCell { DataSource = column.PossibleAnswers };
+                    if (indecies.ContainsKey(column._id))
+                        comboBox.Value = column.PossibleAnswers[indecies[column._id]];
                     row.Cells[j] = comboBox;
                 }
                 DgvDocuments.Rows.Add(row);
+            }
+            DgvDocuments.Rows.RemoveAt(0);
+        }
+
+        private void btnApplyChanges_Click(object sender, EventArgs e)
+        {
+            ApplyChanges();
+        }
+
+        private void BtnColumnEditor_Click(object sender, EventArgs e)
+        {
+            using (var frm = new ColumnEditor())
+            {
+                frm.ShowDialog();
             }
         }
     }

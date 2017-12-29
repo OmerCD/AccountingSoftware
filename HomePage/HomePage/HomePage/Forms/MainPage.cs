@@ -23,6 +23,10 @@ namespace HomePage
         public static User CurrentUser;
         public MainForm()
         {
+            if (CurrentUser == null)
+            {
+                CurrentUser = new Personnel("TestUser","1234","Test1 Test2","test@mail.com",UserTypes.Personnel, null);
+            }
             using (var frm = new Login())
             {
                 //var result = frm.ShowDialog();
@@ -77,14 +81,15 @@ namespace HomePage
                 //};
                 //DbFactory.CompanyCRUD.Insert(cmp, cmp2, cmp3);
             }
+
         }
         Dictionary<string, string> PersonnelNameList;
         private void button1_Click(object sender, EventArgs e)
         {
-            User user = new User("", "", "", "Mahmut", Classes.Database.Enums.UserTypes.Personnel);
-              User user1 = new User("", "", "", "Mahmut1", Classes.Database.Enums.UserTypes.Personnel);
-              User user2 = new User("", "", "", "Mahmut2", Classes.Database.Enums.UserTypes.Personnel);
-            bool ok = DbFactory.UserCRUD.Insert(user, user1, user2);
+            //User user = new User("", "", "", "Mahmut", Classes.Database.Enums.UserTypes.Personnel);
+            //  User user1 = new User("", "", "", "Mahmut1", Classes.Database.Enums.UserTypes.Personnel);
+            //  User user2 = new User("", "", "", "Mahmut2", Classes.Database.Enums.UserTypes.Personnel);
+            //bool ok = DbFactory.UserCRUD.Insert(user, user1, user2);
             /*   PersonnelNameList = await DbFactory.UserCRUD.GetPersonnelName();
                foreach (var item in PersonnelNameList)
                {
@@ -232,11 +237,11 @@ namespace HomePage
         {
             _lastType = typeof(Job);
             _lastCrudType = typeof(JobCRUD);
-            /*   Personnel[] pList = { new Personnel { Name = "Mahmut" } ,new Personnel { Name="Muhsin"} };
-                 var j = new Job(pList, DateTime.Now, new Company() {Name="asd" }, "desc", "dae", 5);
-                 var j1 = new Job(pList, DateTime.Now, new Company() { Name = "asd" }, "desc2", "da2e", 5);
-              bool done =  await  DbFactory.JobCRUD.Insert(j1, j);
-                 MessageBox.Show(done.ToString());*/
+            //Personnel[] pList = { new Personnel { Name = "Mahmut" }, new Personnel { Name = "Muhsin" } };
+            //var j = new Job(pList, DateTime.Now, new Company() { Name = "asd" }, "desc", "dae", 5);
+            //var j1 = new Job(pList, DateTime.Now, new Company() { Name = "asd" }, "desc2", "da2e", 5);
+            //bool done = DbFactory.JobCRUD.InsertMany(j1, j);
+            //MessageBox.Show(done.ToString());
 
             var jobs = DbFactory.JobCRUD.GetAll(new MongoDB.Bson.BsonDocument());
             DVValues.Init<Job>();

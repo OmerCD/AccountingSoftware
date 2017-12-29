@@ -28,51 +28,42 @@ namespace HomePage.CustomControls
             //row.CreateCells(_dataGridView);
             foreach (var property in properties)
             {
-
-
-
-
                 var propertyType = property.PropertyType;
                 var attributes = property.GetCustomAttributes(true);
                 var value = property.GetValue(entity);
+               
                 if (attributes.Length > 0)
                 {
-                    CustomAttribute attribute = (CustomAttribute)attributes[0];
-
-                    if (propertyType == typeof(String))
+                    if (value == null)
                     {
-                        var cell = new DataGridViewTextBoxCell();
-                        if (value == null)
-                        {
-                            cell.Value = "---";
-                        }
-                        else
-                            cell.Value = value.ToString();
+                        var cell = new DataGridViewTextBoxCell {Value = "---"};
+                        row.Cells.Add(cell);
+                        continue;
+                    }
+
+                    if (propertyType == typeof(string))
+                    {
+                        var cell = new DataGridViewTextBoxCell {Value = value.ToString()};
                         row.Cells.Add(cell);
                     }
                     else if (propertyType == typeof(DateTime))
                     {
-                        var cell = new DataGridViewTextBoxCell();
-                        if (value == null)
-                        {
-                            cell.Value = "---";
-                        }
-                        else
-                            cell.Value = ((DateTime)value).ToShortDateString();
+                        var cell = new DataGridViewTextBoxCell {Value = ((DateTime) value).ToShortDateString()};
                         row.Cells.Add(cell);
                     }
-                    else if (propertyType.IsEnum == true)
+                    else if (propertyType.IsEnum)
                     {
-                        var cell = new DataGridViewComboBoxCell();
-                        cell.DataSource = (Enum.GetValues(propertyType));
-                        cell.FlatStyle = FlatStyle.Flat;
-                        cell.Value = value;
+                        var cell = new DataGridViewComboBoxCell
+                        {
+                            DataSource = (Enum.GetValues(propertyType)),
+                            FlatStyle = FlatStyle.Flat,
+                            Value = value
+                        };
                         row.Cells.Add(cell);
                     }
                     else if (propertyType == typeof(bool))
                     {
-                        var cell = new DataGridViewCheckBoxCell();
-                        cell.Value = (bool)value;
+                        var cell = new DataGridViewCheckBoxCell {Value = (bool) value};
                         row.Cells.Add(cell);
                     }
                     else if (propertyType.IsSubclassOf(typeof(DbObject)))
@@ -80,14 +71,7 @@ namespace HomePage.CustomControls
                         var cell = new DataGridViewTextBoxCell();
                         var nameProperty = propertyType.GetProperty("Name");
                         var x = nameProperty.GetValue(value);
-                        if (x != null)
-                        {
-                            cell.Value = x;
-                        }
-                        else
-                        {
-                            cell.Value = "---";
-                        }
+                        cell.Value = x ?? "---";
                         row.Cells.Add(cell);
                     }
                     else if (propertyType.IsArray )
@@ -96,7 +80,7 @@ namespace HomePage.CustomControls
                         var tempType = Type.GetType(propertyType.Namespace+"."+className);
                         if (tempType.IsSubclassOf(typeof(DbObject)))
                         {
-                            var What = Activator.CreateInstance(typeof(List<>).MakeGenericType(tempType));
+                            Activator.CreateInstance(typeof(List<>).MakeGenericType(tempType));
                             IList collection = (IList)value;
                             string names = "";
                             foreach (var item in collection)

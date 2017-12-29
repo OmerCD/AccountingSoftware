@@ -5,10 +5,10 @@ namespace HomePage.Document
 {
    public class CompanyColumnIndex : DbObject
     {
-        public string ColumnId { get; set; }
+        public Column Column { get; set; }
         public int AnswerIndex { get; set; }
-        public string CompanyId { get; set; }
-        public string UserId { get; set; }
+        public Company Company { get; set; }
+        public User User { get; set; }
         public DateTime EditDate { get; set; }
 
     }

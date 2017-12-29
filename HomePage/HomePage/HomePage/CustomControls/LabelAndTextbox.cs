@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 
 namespace HomePage.CustomControls
 {
-    public partial class LabelAndTextbox : UserControl
+    public partial class LabelAndTextbox : UserControl,IMainCustomControl
     {
 
         public LabelAndTextbox(CustomAttribute attribute)
@@ -22,7 +22,7 @@ namespace HomePage.CustomControls
             LatLabel.Text = attribute.FieldName + ':';
             LatTextBox.Text = LatTextBox.PlaceHolder = attribute.PlaceHolderText;
 
-            if (attribute.IsPassword == true)
+            if (attribute.IsPassword)
             {
                 LatTextBox.PasswordChar = '*';
             }
@@ -64,5 +64,6 @@ namespace HomePage.CustomControls
         }
 
 
+        public object Value => LatTextBox.Text;
     }
 }

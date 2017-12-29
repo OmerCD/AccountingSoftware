@@ -39,7 +39,7 @@ namespace HomePage.Classes.Database
             personnelList.Add("ALL", "ALL"); // Tüm data için
             foreach (var item in new CRUD<T1>().GetAll(new BsonDocument()))
             {
-                string name = item.GetType().GetProperty("Name")?.GetValue(item).ToString();
+                string name = item.GetType().GetProperty("Name")?.GetValue(item)?.ToString() ?? "";
                 if (nameList.Contains(name) == false)
                 {
                     personnelList.Add(name, item._id);
@@ -179,16 +179,28 @@ namespace HomePage.Classes.Database
             }
 
         }
-        public virtual bool Insert(params T[] entities)
+        public virtual bool Insert(T entity)
         {
             try
             {
-                foreach (var entity in entities)
-                {
-                    var json = Newtonsoft.Json.JsonConvert.SerializeObject(entity);
-                    var bsonDocument = BsonDocument.Parse(json);
-                    Table.InsertOne(bsonDocument);
-                }
+                Table.InsertOne(entity.ToBsonDocument());
+
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+
+        }
+        public virtual bool InsertMany(params T[] entities)
+        {
+            try
+            {
+                    Table.InsertMany(entities.Select(x=>x.ToBsonDocument()));
+                
 
                 return true;
             }

@@ -118,6 +118,12 @@
     <Compile Include="CustomControls\DataView.Designer.cs">
       <DependentUpon>DataView.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\LabelAndCheckBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\LabelAndCheckBox.Designer.cs">
+      <DependentUpon>LabelAndCheckBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\LabelAndCombobox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -136,6 +142,7 @@
     <Compile Include="CustomControls\LabelAndTextbox.Designer.cs">
       <DependentUpon>LabelAndTextbox.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\IMainCustomControl.cs" />
     <Compile Include="CustomControls\MetroMenuStrip.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -205,6 +212,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CustomControls\Container.resx">
       <DependentUpon>Container.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\LabelAndCheckBox.resx">
+      <DependentUpon>LabelAndCheckBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\LabelAndCombobox.resx">
       <DependentUpon>LabelAndCombobox.cs</DependentUpon>

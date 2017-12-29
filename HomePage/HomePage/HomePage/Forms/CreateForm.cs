@@ -52,7 +52,7 @@ namespace HomePage.Forms
             var genericCRUD = Activator.CreateInstance(genericType);
             var method = genericType.GetMethod("Insert");
             var objectC = CtnData.Object;
-           method.Invoke(genericCRUD, new[] { CtnData.Object });
+           method.Invoke(genericCRUD, new[]{objectC});
         }
         private void ButtonClickUpdate(object sender, EventArgs e)
         {

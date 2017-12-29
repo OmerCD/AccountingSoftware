@@ -15,7 +15,11 @@ namespace HomePage.Classes.Database.Cruds
         {
 
         }
-
+        /// <summary>
+        /// Get information about Company and its Answers to the columns if they exists
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <returns>A Dictionary contains ColumnId as Key and Answer Index as value</returns>
         public Dictionary<string, int> GetCompanyAnswerIndexes(string companyId) // todo not tested
         {
             var filter = new BsonDocument { { "_id", companyId }, { "IsDeleted", 0 } };
@@ -24,9 +28,9 @@ namespace HomePage.Classes.Database.Cruds
             var cCIndexes = cCIndexesCursor.Current;
             var indexes = new Dictionary<string,int>();
             var companyColumnIndices = cCIndexes as CompanyColumnIndex[] ?? cCIndexes.ToArray();
-            for (int i = 0; i < companyColumnIndices.Count(); i++)
+            foreach (CompanyColumnIndex index in companyColumnIndices)
             {
-                indexes.Add(companyColumnIndices[i].ColumnId,companyColumnIndices[i].AnswerIndex);
+                indexes.Add(index.Column._id,index.AnswerIndex);
             }
             return indexes;
         }
