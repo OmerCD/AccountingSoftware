@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.UserNameTextBox = new HomePage.CustomControls.MyTextBox();
             this.LoginButton = new System.Windows.Forms.Button();
@@ -115,6 +116,7 @@
             this.Controls.Add(this.UserNameTextBox);
             this.Controls.Add(this.LoginButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Login";
             this.Text = "Giriş";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Login_MouseDown);
