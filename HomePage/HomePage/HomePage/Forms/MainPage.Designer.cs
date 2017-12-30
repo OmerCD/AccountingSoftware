@@ -1,6 +1,6 @@
 ﻿namespace HomePage
 {
-    partial class MainForm
+    partial class MainPage
     {
         /// <summary>
         /// Required designer variable.
@@ -34,15 +34,15 @@
             this.DVValues = new HomePage.CustomControls.DataView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblUpdate = new System.Windows.Forms.Label();
+            this.BtnUpdate = new System.Windows.Forms.Button();
             this.lblSil = new System.Windows.Forms.Label();
             this.lblEkle = new System.Windows.Forms.Label();
-            this.pnlDataGrid = new System.Windows.Forms.Panel();
-            this.PnlMainOperations = new System.Windows.Forms.Panel();
-            this.BtnUpdate = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnAdd = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
+            this.pnlDataGrid = new System.Windows.Forms.Panel();
+            this.PnlMainOperations = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BtnDocuments = new System.Windows.Forms.Button();
@@ -124,6 +124,20 @@
             this.lblUpdate.TabIndex = 8;
             this.lblUpdate.Text = "Güncelle";
             // 
+            // BtnUpdate
+            // 
+            this.BtnUpdate.BackgroundImage = global::HomePage.Properties.Resources.documentupdate;
+            this.BtnUpdate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BtnUpdate.FlatAppearance.BorderSize = 0;
+            this.BtnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnUpdate.Font = new System.Drawing.Font("Adobe Gothic Std B", 11.25F, System.Drawing.FontStyle.Bold);
+            this.BtnUpdate.Location = new System.Drawing.Point(171, 7);
+            this.BtnUpdate.Name = "BtnUpdate";
+            this.BtnUpdate.Size = new System.Drawing.Size(78, 60);
+            this.BtnUpdate.TabIndex = 7;
+            this.BtnUpdate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnUpdate.UseVisualStyleBackColor = true;
+            // 
             // lblSil
             // 
             this.lblSil.AutoSize = true;
@@ -143,43 +157,6 @@
             this.lblEkle.Size = new System.Drawing.Size(37, 18);
             this.lblEkle.TabIndex = 5;
             this.lblEkle.Text = "Ekle";
-            // 
-            // pnlDataGrid
-            // 
-            this.pnlDataGrid.Controls.Add(this.DVValues);
-            this.pnlDataGrid.Location = new System.Drawing.Point(118, 116);
-            this.pnlDataGrid.Name = "pnlDataGrid";
-            this.pnlDataGrid.Size = new System.Drawing.Size(735, 450);
-            this.pnlDataGrid.TabIndex = 6;
-            // 
-            // PnlMainOperations
-            // 
-            this.PnlMainOperations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
-            this.PnlMainOperations.Controls.Add(this.button1);
-            this.PnlMainOperations.Controls.Add(this.pictureBox1);
-            this.PnlMainOperations.Controls.Add(this.BtnDocuments);
-            this.PnlMainOperations.Controls.Add(this.BtnJobs);
-            this.PnlMainOperations.Controls.Add(this.BtnCompanies);
-            this.PnlMainOperations.Dock = System.Windows.Forms.DockStyle.Left;
-            this.PnlMainOperations.Font = new System.Drawing.Font("Adobe Gurmukhi", 13.25F);
-            this.PnlMainOperations.Location = new System.Drawing.Point(0, 0);
-            this.PnlMainOperations.Name = "PnlMainOperations";
-            this.PnlMainOperations.Size = new System.Drawing.Size(114, 733);
-            this.PnlMainOperations.TabIndex = 0;
-            // 
-            // BtnUpdate
-            // 
-            this.BtnUpdate.BackgroundImage = global::HomePage.Properties.Resources.documentupdate;
-            this.BtnUpdate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.BtnUpdate.FlatAppearance.BorderSize = 0;
-            this.BtnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnUpdate.Font = new System.Drawing.Font("Adobe Gothic Std B", 11.25F, System.Drawing.FontStyle.Bold);
-            this.BtnUpdate.Location = new System.Drawing.Point(171, 7);
-            this.BtnUpdate.Name = "BtnUpdate";
-            this.BtnUpdate.Size = new System.Drawing.Size(78, 60);
-            this.BtnUpdate.TabIndex = 7;
-            this.BtnUpdate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.BtnUpdate.UseVisualStyleBackColor = true;
             // 
             // btnExit
             // 
@@ -245,6 +222,29 @@
             this.btnSettings.Size = new System.Drawing.Size(35, 37);
             this.btnSettings.TabIndex = 4;
             this.btnSettings.UseVisualStyleBackColor = true;
+            // 
+            // pnlDataGrid
+            // 
+            this.pnlDataGrid.Controls.Add(this.DVValues);
+            this.pnlDataGrid.Location = new System.Drawing.Point(118, 116);
+            this.pnlDataGrid.Name = "pnlDataGrid";
+            this.pnlDataGrid.Size = new System.Drawing.Size(735, 450);
+            this.pnlDataGrid.TabIndex = 6;
+            // 
+            // PnlMainOperations
+            // 
+            this.PnlMainOperations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
+            this.PnlMainOperations.Controls.Add(this.button1);
+            this.PnlMainOperations.Controls.Add(this.pictureBox1);
+            this.PnlMainOperations.Controls.Add(this.BtnDocuments);
+            this.PnlMainOperations.Controls.Add(this.BtnJobs);
+            this.PnlMainOperations.Controls.Add(this.BtnCompanies);
+            this.PnlMainOperations.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PnlMainOperations.Font = new System.Drawing.Font("Adobe Gurmukhi", 13.25F);
+            this.PnlMainOperations.Location = new System.Drawing.Point(0, 0);
+            this.PnlMainOperations.Name = "PnlMainOperations";
+            this.PnlMainOperations.Size = new System.Drawing.Size(114, 733);
+            this.PnlMainOperations.TabIndex = 0;
             // 
             // button1
             // 
@@ -333,7 +333,7 @@
             this.BtnCompanies.Name = "BtnCompanies";
             this.BtnCompanies.Size = new System.Drawing.Size(109, 30);
             this.BtnCompanies.TabIndex = 0;
-            this.BtnCompanies.Text = "  Firmalar";
+            this.BtnCompanies.Text = "   Firmalar";
             this.BtnCompanies.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnCompanies.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnCompanies.UseVisualStyleBackColor = true;

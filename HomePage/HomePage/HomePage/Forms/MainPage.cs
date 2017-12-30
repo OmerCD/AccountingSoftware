@@ -19,11 +19,11 @@ using System.Runtime.InteropServices;
 
 namespace HomePage
 {
-    public partial class MainForm : Form//MetroFramework.Forms.MetroForm
+    public partial class MainPage : Form//MetroFramework.Forms.MetroForm
     {
         public static User CurrentUser;
 
-        public MainForm()
+        public MainPage()
         {
             
             

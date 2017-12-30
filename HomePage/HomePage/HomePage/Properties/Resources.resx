@@ -118,32 +118,41 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="houses111" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\houses111.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="documentupdate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\documentupdate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="documentadd" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\documentadd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="004-settings-3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\004-settings-31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="F1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\F1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="documentupdate1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\documentupdate1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="contract1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\contract1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="documentdelete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\documentdelete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="F1transparentHeader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\F1transparentHeader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="houses111" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\houses111.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="004-settings-3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\004-settings-31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="F1login" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\F1login.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="houses" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\houses.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="contract11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\contract11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="users2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\users2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="F1transparent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\F1transparent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="documentupdate1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\documentupdate1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="document1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\document1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="calculator" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\calculator.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,23 +160,17 @@
   <data name="housesSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\housesSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="contract1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\contract1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="calculator11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\calculator11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="users" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\users.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="contract11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\contract11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="houses1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\houses1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="F1transparentHeader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\F1transparentHeader.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="document1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\document1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="calculator1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\calculator1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="F1transparent" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\F1transparent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="housesSmall1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\housesSmall1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,14 +178,11 @@
   <data name="users1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\users1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="add1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\add1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="documentupdate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\documentupdate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="calculator11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\calculator11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="users" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\users.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="F1login1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\F1login1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="houses11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\houses11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,10 +190,19 @@
   <data name="002-power-4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\002-power-41.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="calculator1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\calculator1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="add1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="document" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\document.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="users2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\users2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="F1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\F1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="F1LoginBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\F1LoginBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
