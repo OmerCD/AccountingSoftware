@@ -113,6 +113,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(910, 91);
             this.panel1.TabIndex = 5;
+            this.panel1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDoubleClick);
             // 
             // lblUpdate
             // 
@@ -339,7 +340,7 @@
             this.BtnCompanies.UseVisualStyleBackColor = true;
             this.BtnCompanies.Click += new System.EventHandler(this.BtnCompanies_Click);
             // 
-            // MainForm
+            // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -350,7 +351,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.PnlMainOperations);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "MainForm";
+            this.Name = "MainPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ana Sayfa";
             ((System.ComponentModel.ISupportInitialize)(this.DVValues)).EndInit();

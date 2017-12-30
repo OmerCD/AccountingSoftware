@@ -331,5 +331,14 @@ namespace HomePage
             }
             else this.WindowState = FormWindowState.Normal;
         }
+
+        private void panel1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else this.WindowState = FormWindowState.Normal;
+        }
     }
 }
