@@ -21,7 +21,7 @@ namespace HomePage
 {
     public partial class MainPage : Form//MetroFramework.Forms.MetroForm
     {
-        public static User CurrentUser;
+        public static Personnel CurrentUser;
 
         public MainPage()
         {

@@ -103,6 +103,10 @@ namespace HomePage.Classes.Database
             }
 
         }
+        public void ClearColection()
+        {
+            Database.DropCollection(typeof(T).Name);
+        }
         public virtual List<T> GetAll(BsonDocument filter)
         {
             try
