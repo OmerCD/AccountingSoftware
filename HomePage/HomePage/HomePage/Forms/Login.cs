@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HomePage.Classes.Database.Entities;
 
 namespace HomePage.Forms
 {
@@ -29,11 +30,26 @@ namespace HomePage.Forms
 
         private readonly char _passChar;
         private readonly string _passwordPlaceHolder;
+
+        private void InsertAdmin()
+        {
+            var userCRUD = DbFactory.UserCRUD;
+            if (userCRUD.CheckAuthentication("admin", "admin123")==null)
+            {
+                var personnel = new Personnel
+                {
+                    UserName = "admin",
+                    Password = "admin123"
+                };
+                userCRUD.Insert(personnel);
+            }
+            
+        }
         public Login()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-            
+            InsertAdmin();
             _passChar = PasswordTextBox.PasswordChar;
             UserNameTextBox.PlaceHolder = UserNameTextBox.Text;
             _passwordPlaceHolder = PasswordTextBox.Text;
@@ -68,33 +84,28 @@ namespace HomePage.Forms
         private void LoginButton_Click(object sender, EventArgs e)
         {
             #region Asıl Login
-            //if (UserNameTextBox.TextLength < 3)
-            //{
-            //    MessageBox.Show("Kullanıcı Adı 3 karakterden kısa olamaz", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            //    return;
-            //}
-            //if (PasswordTextBox.TextLength < 6)
-            //{
-            //    MessageBox.Show("Şifre 6 karakterden kısa olamaz", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            //    return;
-            //}
-            //var userName = UserNameTextBox.Text;
-            //var password = PasswordTextBox.Text;
-            //var user = await DbFactory.UserCRUD.CheckAuthentication(userName, password);
-            //if (user == null) return;
-            //MessageBox.Show("Giriş Başarılı");
-            //MainForm.CurrentUser = user;
-            //DialogResult = DialogResult.Yes;
+            if (UserNameTextBox.TextLength < 3)
+            {
+                MessageBox.Show("Kullanıcı Adı 3 karakterden kısa olamaz", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+            if (PasswordTextBox.TextLength < 6)
+            {
+                MessageBox.Show("Şifre 6 karakterden kısa olamaz", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+            var userName = UserNameTextBox.Text;
+            var password = PasswordTextBox.Text;
+            var user = DbFactory.UserCRUD.CheckAuthentication(userName, password);
+            if (user == null)
+            {
+                MessageBox.Show("Hatalı Giriş Bilgisi","Hata",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show("Giriş Başarılı");
+            MainPage.CurrentUser = user;
+            DialogResult = DialogResult.Yes;
             #endregion
-
-            
-            var mf = new MainPage();
-            this.Hide();
-            mf.ShowDialog();
-            this.Close();
-            
-            
-            
         }
 
         private void UserNameTextBox_Enter(object sender, EventArgs e)

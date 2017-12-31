@@ -104,7 +104,7 @@ namespace HomePage.CustomControls
                         LabelAndDatePicker lad = new LabelAndDatePicker(attribute);
                         Add(lad, property.Name);
                     }
-                    else if (propertyType.IsEnum == true)
+                    else if (propertyType.IsEnum)
                     {
                         var enumValues = Enum.GetValues(propertyType);
                         List<string> values= new List<string>();
@@ -128,7 +128,6 @@ namespace HomePage.CustomControls
 
                         var method = genericType.GetMethod("GetNameList")?.MakeGenericMethod(propertyType);
                         var returnValue = method?.Invoke(instanceCRUD, null);
-                        //var result = (Dictionary<string, string>) returnValue?.GetType().GetProperty("Result")?.GetValue(returnValue);
                         var result = (Dictionary<string, string>)returnValue;
                         if (result != null)
                             foreach (var pair in result)

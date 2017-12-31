@@ -13,7 +13,7 @@ namespace HomePage.Classes.Database.Entities
         [Custom(MinLength = 4,MaxLength =32,FieldName ="Kullanıcı Adı")]
         public string UserName { get; set; }
         [Custom(MinLength = 6, MaxLength = 14,IsPassword =true,FieldName ="Şifre")]
-        public string Password {  get; protected set; }
+        public string Password {  get; set; }
         [Custom(MinLength = 2, MaxLength = 40, FieldName = "İsim Soyisim")]
         public string Name { get; set; }
         [Custom(MinLength = 3, MaxLength = 64,PlaceHolderText ="isim@domain.com", FieldName = "E-Posta",RegexPattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")]

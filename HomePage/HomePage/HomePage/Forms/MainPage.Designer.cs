@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
             this.panel2 = new System.Windows.Forms.Panel();
             this.DVValues = new HomePage.CustomControls.DataView();
@@ -42,7 +42,6 @@
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnAdd = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
-            this.pnlDataGrid = new System.Windows.Forms.Panel();
             this.PnlMainOperations = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -51,7 +50,6 @@
             this.BtnCompanies = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DVValues)).BeginInit();
             this.panel1.SuspendLayout();
-            this.pnlDataGrid.SuspendLayout();
             this.PnlMainOperations.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -71,31 +69,33 @@
             // 
             this.DVValues.AllowUserToAddRows = false;
             this.DVValues.AllowUserToDeleteRows = false;
+            this.DVValues.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DVValues.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DVValues.BackgroundColor = System.Drawing.Color.DarkGray;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Tomato;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Gold;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DVValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Tomato;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Gold;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DVValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DVValues.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.DeepSkyBlue;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Gold;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DVValues.DefaultCellStyle = dataGridViewCellStyle4;
-            this.DVValues.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DVValues.Location = new System.Drawing.Point(0, 0);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DeepSkyBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Gold;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DVValues.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DVValues.Location = new System.Drawing.Point(120, 117);
             this.DVValues.MultiSelect = false;
             this.DVValues.Name = "DVValues";
             this.DVValues.ReadOnly = true;
-            this.DVValues.Size = new System.Drawing.Size(735, 450);
+            this.DVValues.Size = new System.Drawing.Size(712, 604);
             this.DVValues.TabIndex = 1;
             // 
             // panel1
@@ -128,17 +128,18 @@
             // 
             // BtnUpdate
             // 
-            this.BtnUpdate.BackgroundImage = global::HomePage.Properties.Resources.documentupdate;
+            this.BtnUpdate.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnUpdate.BackgroundImage")));
             this.BtnUpdate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.BtnUpdate.FlatAppearance.BorderSize = 0;
             this.BtnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnUpdate.Font = new System.Drawing.Font("Adobe Gothic Std B", 11.25F, System.Drawing.FontStyle.Bold);
+            this.BtnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.BtnUpdate.Location = new System.Drawing.Point(171, 7);
             this.BtnUpdate.Name = "BtnUpdate";
             this.BtnUpdate.Size = new System.Drawing.Size(78, 60);
             this.BtnUpdate.TabIndex = 7;
             this.BtnUpdate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnUpdate.UseVisualStyleBackColor = true;
+            this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // lblSil
             // 
@@ -163,13 +164,13 @@
             // btnExit
             // 
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.BackgroundImage = global::HomePage.Properties.Resources._002_power_4;
+            this.btnExit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnExit.BackgroundImage")));
             this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnExit.FlatAppearance.BorderSize = 0;
             this.btnExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Font = new System.Drawing.Font("Adobe Gothic Std B", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnExit.ForeColor = System.Drawing.SystemColors.Control;
             this.btnExit.Location = new System.Drawing.Point(863, 6);
             this.btnExit.Name = "btnExit";
@@ -180,11 +181,11 @@
             // 
             // BtnDelete
             // 
-            this.BtnDelete.BackgroundImage = global::HomePage.Properties.Resources.documentdelete;
+            this.BtnDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnDelete.BackgroundImage")));
             this.BtnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.BtnDelete.FlatAppearance.BorderSize = 0;
             this.BtnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnDelete.Font = new System.Drawing.Font("Adobe Gothic Std B", 11.25F, System.Drawing.FontStyle.Bold);
+            this.BtnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.BtnDelete.Location = new System.Drawing.Point(87, 7);
             this.BtnDelete.Name = "BtnDelete";
             this.BtnDelete.Size = new System.Drawing.Size(78, 60);
@@ -195,11 +196,11 @@
             // 
             // BtnAdd
             // 
-            this.BtnAdd.BackgroundImage = global::HomePage.Properties.Resources.documentadd;
+            this.BtnAdd.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnAdd.BackgroundImage")));
             this.BtnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.BtnAdd.FlatAppearance.BorderSize = 0;
             this.BtnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAdd.Font = new System.Drawing.Font("Adobe Gothic Std B", 11.25F, System.Drawing.FontStyle.Bold);
+            this.BtnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.BtnAdd.Location = new System.Drawing.Point(3, 7);
             this.BtnAdd.Name = "BtnAdd";
             this.BtnAdd.Size = new System.Drawing.Size(78, 60);
@@ -211,27 +212,19 @@
             // btnSettings
             // 
             this.btnSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSettings.BackgroundImage = global::HomePage.Properties.Resources._004_settings_3;
+            this.btnSettings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSettings.BackgroundImage")));
             this.btnSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSettings.FlatAppearance.BorderSize = 0;
             this.btnSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Font = new System.Drawing.Font("Adobe Gothic Std B", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnSettings.ForeColor = System.Drawing.SystemColors.Control;
             this.btnSettings.Location = new System.Drawing.Point(822, 6);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(35, 37);
             this.btnSettings.TabIndex = 4;
             this.btnSettings.UseVisualStyleBackColor = true;
-            // 
-            // pnlDataGrid
-            // 
-            this.pnlDataGrid.Controls.Add(this.DVValues);
-            this.pnlDataGrid.Location = new System.Drawing.Point(118, 116);
-            this.pnlDataGrid.Name = "pnlDataGrid";
-            this.pnlDataGrid.Size = new System.Drawing.Size(735, 450);
-            this.pnlDataGrid.TabIndex = 6;
             // 
             // PnlMainOperations
             // 
@@ -242,7 +235,7 @@
             this.PnlMainOperations.Controls.Add(this.BtnJobs);
             this.PnlMainOperations.Controls.Add(this.BtnCompanies);
             this.PnlMainOperations.Dock = System.Windows.Forms.DockStyle.Left;
-            this.PnlMainOperations.Font = new System.Drawing.Font("Adobe Gurmukhi", 13.25F);
+            this.PnlMainOperations.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
             this.PnlMainOperations.Location = new System.Drawing.Point(0, 0);
             this.PnlMainOperations.Name = "PnlMainOperations";
             this.PnlMainOperations.Size = new System.Drawing.Size(114, 733);
@@ -257,7 +250,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Bahnschrift", 11.25F);
             this.button1.ForeColor = System.Drawing.SystemColors.Control;
-            this.button1.Image = global::HomePage.Properties.Resources.users2;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.Location = new System.Drawing.Point(3, 210);
             this.button1.Name = "button1";
@@ -270,7 +263,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox1.Image = global::HomePage.Properties.Resources.F1transparentHeader;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(114, 109);
@@ -287,7 +280,7 @@
             this.BtnDocuments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnDocuments.Font = new System.Drawing.Font("Bahnschrift", 11.25F);
             this.BtnDocuments.ForeColor = System.Drawing.SystemColors.Control;
-            this.BtnDocuments.Image = global::HomePage.Properties.Resources.contract11;
+            this.BtnDocuments.Image = ((System.Drawing.Image)(resources.GetObject("BtnDocuments.Image")));
             this.BtnDocuments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnDocuments.Location = new System.Drawing.Point(3, 179);
             this.BtnDocuments.Name = "BtnDocuments";
@@ -307,7 +300,7 @@
             this.BtnJobs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnJobs.Font = new System.Drawing.Font("Bahnschrift", 11.25F);
             this.BtnJobs.ForeColor = System.Drawing.SystemColors.Control;
-            this.BtnJobs.Image = global::HomePage.Properties.Resources.calculator11;
+            this.BtnJobs.Image = ((System.Drawing.Image)(resources.GetObject("BtnJobs.Image")));
             this.BtnJobs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnJobs.Location = new System.Drawing.Point(3, 148);
             this.BtnJobs.Name = "BtnJobs";
@@ -329,7 +322,7 @@
             this.BtnCompanies.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCompanies.Font = new System.Drawing.Font("Bahnschrift", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCompanies.ForeColor = System.Drawing.SystemColors.Control;
-            this.BtnCompanies.Image = global::HomePage.Properties.Resources.houses111;
+            this.BtnCompanies.Image = ((System.Drawing.Image)(resources.GetObject("BtnCompanies.Image")));
             this.BtnCompanies.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnCompanies.Location = new System.Drawing.Point(3, 117);
             this.BtnCompanies.Name = "BtnCompanies";
@@ -347,7 +340,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1024, 733);
-            this.Controls.Add(this.pnlDataGrid);
+            this.Controls.Add(this.DVValues);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.PnlMainOperations);
@@ -359,7 +352,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.DVValues)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.pnlDataGrid.ResumeLayout(false);
             this.PnlMainOperations.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -376,7 +368,6 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel pnlDataGrid;
         private System.Windows.Forms.Label lblSil;
         private System.Windows.Forms.Label lblEkle;
         private System.Windows.Forms.Button BtnUpdate;

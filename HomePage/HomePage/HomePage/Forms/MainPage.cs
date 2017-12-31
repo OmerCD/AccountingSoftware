@@ -33,18 +33,18 @@ namespace HomePage
             }
             using (var frm = new Login())
             {
-                //var result = frm.ShowDialog();
-                //if (CurrentUser == null || result != DialogResult.Yes)
-                //{
-                //    Close();
-                //    Application.Exit();
-                //}
-                //else
-                //{
+                var result = frm.ShowDialog();
+                if (CurrentUser == null || result != DialogResult.Yes)
+                {
+                    Close();
+                    Application.Exit();
+                }
+                else
+                {
                     InitializeComponent();
-                pnlDataGrid.Visible = false;
-                
-                //}
+                    //pnlDataGrid.Visible = false;
+
+                }
                 //User user = new User("", "", "mahmut1", "Mahmut", Classes.Database.Enums.UserTypes.Personnel);
                 //User user1 = new User("", "", "mahmut2", "Mahmut1", Classes.Database.Enums.UserTypes.Personnel);
                 //User user2 = new User("", "", "mahmut3", "Mahmut2", Classes.Database.Enums.UserTypes.Personnel);
@@ -283,7 +283,7 @@ namespace HomePage
             if (string.IsNullOrEmpty(DVValues.SelectedId) == false)
             {
                var t = _lastCrudType.GetMethod("Delete")?.Invoke(Activator.CreateInstance(_lastCrudType),new[] { DVValues.SelectedId });
-                MessageBox.Show(t.ToString());
+                MessageBox.Show(t?.ToString());
             }
            
         }
@@ -318,27 +318,30 @@ namespace HomePage
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-       
             Application.Exit();
         }
 
 
         private void panel2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (this.WindowState == FormWindowState.Normal)
-            {
-                this.WindowState = FormWindowState.Maximized;
-            }
-            else this.WindowState = FormWindowState.Normal;
+            WindowState = WindowState == FormWindowState.Normal ? FormWindowState.Maximized : FormWindowState.Normal;
         }
 
         private void panel1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (this.WindowState == FormWindowState.Normal)
+            WindowState = WindowState == FormWindowState.Normal ? FormWindowState.Maximized : FormWindowState.Normal;
+        }
+
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            if (DVValues.SelectedCells.Count>0)
             {
-                this.WindowState = FormWindowState.Maximized;
+                var entity= _lastCrudType.GetMethod("GetOne")?.Invoke(Activator.CreateInstance(_lastCrudType), new[] { DVValues.SelectedId });
+                using (var frm = new CreateForm(entity,FormGoal.Update))
+                {
+                    frm.ShowDialog();
+                }
             }
-            else this.WindowState = FormWindowState.Normal;
         }
     }
 }

@@ -30,7 +30,7 @@ namespace HomePage.Forms.ModuleForms
 
         private void ApplyChanges()
         {
-            Company FindCompany(List<Company> companyList,string id)
+            Company FindCompany(IEnumerable<Company> companyList,string id)
             {
                 return companyList.FirstOrDefault(company => company._id == id);
             }

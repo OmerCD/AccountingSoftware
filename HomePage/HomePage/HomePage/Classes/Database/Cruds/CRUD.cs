@@ -14,13 +14,13 @@ namespace HomePage.Classes.Database
 {
     public class CRUD<T> : IRepositoryMain<T> where T : DbObject, new()
     {
-        protected IMongoDatabase Database;
+        private readonly IMongoDatabase _database;
         protected IMongoCollection<BsonDocument> Table;
 
 
         public CRUD(IMongoCollection<BsonDocument> tableInstance)
         {
-            Database = DbFactory.Database;
+            _database = DbFactory.Database;
             Table = tableInstance;
         }
 
@@ -32,23 +32,23 @@ namespace HomePage.Classes.Database
 
             Table = (IMongoCollection<BsonDocument>)factoryValue;
         }
-        public Dictionary<string, string> GetNameList<T1>() where T1 : DbObject, new() // PersonnelName,_id
+        public Dictionary<string, string> GetNameList<T1>() where T1 : DbObject, new()
         {
-            Dictionary<string, string> personnelList = new Dictionary<string, string>();
+            Dictionary<string, string> list = new Dictionary<string, string>();
             HashSet<string> nameList = new HashSet<string> { "ALL" };
-            personnelList.Add("ALL", "ALL"); // Tüm data için
+            list.Add("ALL", "ALL"); // Tüm data için
             foreach (var item in new CRUD<T1>().GetAll(new BsonDocument()))
             {
                 string name = item.GetType().GetProperty("Name")?.GetValue(item)?.ToString() ?? "";
                 if (nameList.Contains(name) == false)
                 {
-                    personnelList.Add(name, item._id);
+                    list.Add(name, item._id);
                     nameList.Add(name);
                 }
 
             }
 
-            return personnelList;
+            return list;
         }
 
         public virtual bool NameCheck(string name)
@@ -105,7 +105,7 @@ namespace HomePage.Classes.Database
         }
         public void ClearColection()
         {
-            Database.DropCollection(typeof(T).Name);
+            _database.DropCollection(typeof(T).Name);
         }
         public virtual List<T> GetAll(BsonDocument filter)
         {

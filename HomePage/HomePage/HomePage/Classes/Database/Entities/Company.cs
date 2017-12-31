@@ -37,7 +37,7 @@ namespace HomePage.Classes.Database.Entities
         public string TicaretSicilNo { get; set; }
         [Custom(FieldName ="Tc Kimlik Numarası")]
         public string TcNo { get; set; } // Eğer Şahıs Şirketi ise
-        [Custom(FieldName ="CompanyType")]
+        [Custom(FieldName ="Şirket Türü")]
         public CompanyTypes CompanyType { get; set; }
         public string[] TaxTypes { get; set; } // ????????
 

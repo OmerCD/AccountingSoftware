@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Bson.Serialization;
 
 namespace HomePage.Classes.Database
 {
@@ -16,16 +17,19 @@ namespace HomePage.Classes.Database
         {
             Table = DbFactory.User;
         }
-        public async Task<User> CheckAuthentication(string userName, string password)
+        public Personnel CheckAuthentication(string userName, string password)
         {
             try
             {
-                var filter = new MongoDB.Bson.BsonDocument { { "UserName", userName }, { "Password", password } };
-                using (IAsyncCursor<BsonDocument> cursor = await Table.FindAsync(filter))
+                var filter = new MongoDB.Bson.BsonDocument { { "UserName", userName }, { "Password", password },{"IsDeleted",0} };
+                var cursor = Table.FindSync(filter);
+                cursor.MoveNext();
+                var batch = cursor.Current;
+                if (batch==null)
                 {
-                System.Windows.Forms.MessageBox.Show(cursor.ToString());
-                return JsonConvert.DeserializeObject<User>(cursor.First().ToString());
+                    return null;
                 }
+                return BsonSerializer.Deserialize<Personnel>(batch.FirstOrDefault());
             }
             catch (Exception)
             {

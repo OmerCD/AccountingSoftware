@@ -40,7 +40,7 @@ namespace HomePage.CustomControls
              
             }
         }
-        public void Init<T>() where T : Classes.Database.Entities.DbObject, new()
+        public void Init<T>() where T : DbObject, new()
         {
             _ids = new List<string>();
             this.Columns.Clear();
