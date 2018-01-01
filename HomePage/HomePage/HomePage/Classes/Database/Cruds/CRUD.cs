@@ -8,7 +8,6 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace HomePage.Classes.Database
 {
@@ -32,14 +31,15 @@ namespace HomePage.Classes.Database
 
             Table = (IMongoCollection<BsonDocument>)factoryValue;
         }
-        public Dictionary<string, string> GetNameList<T1>() where T1 : DbObject, new()
+        // ReSharper disable once UnusedMember.Global
+        public Dictionary<string, string> GetNameList()
         {
             Dictionary<string, string> list = new Dictionary<string, string>();
             HashSet<string> nameList = new HashSet<string> { "ALL" };
             list.Add("ALL", "ALL"); // Tüm data için
-            foreach (var item in new CRUD<T1>().GetAll(new BsonDocument()))
+            foreach (dynamic item in new CRUD<T>().GetAll(new BsonDocument()))
             {
-                string name = item.GetType().GetProperty("Name")?.GetValue(item)?.ToString() ?? "";
+                string name = item.Name ?? "";
                 if (nameList.Contains(name) == false)
                 {
                     list.Add(name, item._id);
@@ -165,24 +165,7 @@ namespace HomePage.Classes.Database
                 return new List<T>();
             }
         }
-        public async Task<T> GetOneUser(string userName, string password)//todo
-        {
-            try
-            {
-                var filter = new BsonDocument { { "UserName", userName }, { "Password", password } };
-                using (var cursor = await Table.FindAsync(filter))
-                {
-                    return JsonConvert.DeserializeObject<T>(cursor.First().ToString());
-                }
 
-            }
-            catch (Exception)
-            {
-
-                return new T { _id = null };
-            }
-
-        }
         public virtual bool Insert(T entity)
         {
             try
@@ -196,15 +179,13 @@ namespace HomePage.Classes.Database
             {
                 return false;
             }
-
-
         }
         public virtual bool InsertMany(params T[] entities)
         {
             try
             {
-                    Table.InsertMany(entities.Select(x=>x.ToBsonDocument()));
-                
+                Table.InsertMany(entities.Select(x => x.ToBsonDocument()));
+
 
                 return true;
             }

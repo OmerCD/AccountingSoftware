@@ -49,10 +49,13 @@ namespace HomePage.Forms
         {
             var type = _entity.GetType();
             var genericType = typeof(CRUD<>).MakeGenericType(type);
+            //dynamic genericCRUD = Activator.CreateInstance(genericType);
+            //genericCRUD.Insert(CtnData.Object);
+
             var genericCRUD = Activator.CreateInstance(genericType);
             var method = genericType.GetMethod("Insert");
             var objectC = CtnData.Object;
-           method.Invoke(genericCRUD, new[]{objectC});
+            method.Invoke(genericCRUD, new[] { objectC });
         }
         private void ButtonClickUpdate(object sender, EventArgs e)
         {

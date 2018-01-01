@@ -124,11 +124,9 @@ namespace HomePage.CustomControls
                     {
                         LabelAndCombobox cb = new LabelAndCombobox(attribute);
                         var genericType = typeof(CRUD<>).MakeGenericType(propertyType);
-                        var instanceCRUD = Activator.CreateInstance(genericType);
+                        dynamic instanceCRUD = Activator.CreateInstance(genericType);
 
-                        var method = genericType.GetMethod("GetNameList")?.MakeGenericMethod(propertyType);
-                        var returnValue = method?.Invoke(instanceCRUD, null);
-                        var result = (Dictionary<string, string>)returnValue;
+                        Dictionary<string, string> result = instanceCRUD.GetNameList();
                         if (result != null)
                             foreach (var pair in result)
                             {
@@ -146,11 +144,8 @@ namespace HomePage.CustomControls
                         {
                             LabelAndCombobox cb = new LabelAndCombobox(attribute);
                             var genericType = typeof(CRUD<>).MakeGenericType(tempType);
-                            var instanceCRUD = Activator.CreateInstance(genericType);
-
-                            var method = genericType.GetMethod("GetNameList")?.MakeGenericMethod(tempType);
-                            var returnValue = method?.Invoke(instanceCRUD, null);
-                            var result = (Dictionary<string, string>)returnValue;
+                            dynamic instanceCRUD = Activator.CreateInstance(genericType);
+                            Dictionary < string, string> result = instanceCRUD.GetNameList();
                             if (result != null)
                                 foreach (var pair in result)
                                 {

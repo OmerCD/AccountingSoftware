@@ -31,20 +31,20 @@ namespace HomePage
             {
                 CurrentUser = new Personnel("TestUser","1234","Test1 Test2","test@mail.com",UserTypes.Personnel, null);
             }
-            using (var frm = new Login())
-            {
-                var result = frm.ShowDialog();
-                if (CurrentUser == null || result != DialogResult.Yes)
-                {
-                    Close();
-                    Application.Exit();
-                }
-                else
-                {
+            //using (var frm = new Login())
+            //{
+            //    var result = frm.ShowDialog();
+            //    if (CurrentUser == null || result != DialogResult.Yes)
+            //    {
+            //        Close();
+            //        Application.Exit();
+            //    }
+            //    else
+            //    {
                     InitializeComponent();
                     //pnlDataGrid.Visible = false;
 
-                }
+                //}
                 //User user = new User("", "", "mahmut1", "Mahmut", Classes.Database.Enums.UserTypes.Personnel);
                 //User user1 = new User("", "", "mahmut2", "Mahmut1", Classes.Database.Enums.UserTypes.Personnel);
                 //User user2 = new User("", "", "mahmut3", "Mahmut2", Classes.Database.Enums.UserTypes.Personnel);
@@ -86,7 +86,7 @@ namespace HomePage
                 //    TicaretSicilNo = "454545465"
                 //};
                 //DbFactory.CompanyCRUD.Insert(cmp, cmp2, cmp3);
-            }
+            //}
 
         }
         Dictionary<string, string> PersonnelNameList;
