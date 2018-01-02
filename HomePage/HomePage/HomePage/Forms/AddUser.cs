@@ -25,7 +25,7 @@ namespace HomePage.Forms
             {
                 case UserTypes.Customer:
                     container1.Object=new Customer(); break;
-                case UserTypes.Personnel: container1.Object=new Personnel(); break;
+                case UserTypes.Personnel: container1.Object=new User(); break;
             }
             container1.ClickEvent = ClickEvent;
         }

@@ -2,6 +2,7 @@
 {
     public interface IMainCustomControl
     {
+        bool IsValidated();
         object Value { get; }
     }
 }

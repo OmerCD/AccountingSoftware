@@ -8,7 +8,7 @@ namespace HomePage.Document
         public Column Column { get; set; }
         public int AnswerIndex { get; set; }
         public Company Company { get; set; }
-        public Personnel User { get; set; }
+        public User User { get; set; }
         public DateTime EditDate { get; set; }
 
     }

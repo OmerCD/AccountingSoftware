@@ -56,13 +56,13 @@ namespace HomePage.CustomControls
                     if (propType.IsSubclassOf(typeof(DbObject)))
                     {
                         var foreignObject = GetField(prop,
-                            ((LabelAndCombobox) _valueControls[prop.Name]).GetSelectedId);
+                            ((LabelAndCombobox)_valueControls[prop.Name]).GetSelectedId);
                         prop.SetValue(_object, foreignObject);
                     }
                     else if (propType.IsEnum)
                     {
-                        var cBox = (LabelAndCombobox) _valueControls[prop.Name];
-                        prop.SetValue(_object,cBox.SelectedIndex);
+                        var cBox = (LabelAndCombobox)_valueControls[prop.Name];
+                        prop.SetValue(_object, cBox.SelectedIndex);
                     }
                     else
                     {
@@ -76,11 +76,9 @@ namespace HomePage.CustomControls
         private object GetField(PropertyInfo prop, string getSelectedId)
         {
             var type = prop.PropertyType;
-            var genericType = typeof(CRUD<>).MakeGenericType(type);
-            var genericCRUD = Activator.CreateInstance(genericType);
-            var methodInfo = genericType.GetMethod("GetOne");
-            var result = methodInfo.Invoke(genericCRUD, new object[] {getSelectedId});
-            return result;
+
+            var genericCRUD = MainPage.GetCRUD(type);
+            return genericCRUD.GetOne(getSelectedId);
         }
 
         private void CreateControls()
@@ -96,44 +94,71 @@ namespace HomePage.CustomControls
 
                     if (propertyType == typeof(string))
                     {
-                        LabelAndTextbox lat = new LabelAndTextbox(attribute);
+                        var value = property.GetValue(_object);
+                        bool fill = value!=null;
+                        string text = value?.ToString();
+                        if (!fill && !string.IsNullOrEmpty(attribute.PlaceHolderText))
+                        {
+                            text = attribute.PlaceHolderText;
+                        }
+                        var lat =
+                            new LabelAndTextbox(attribute,fill)
+                            {
+                                LatTextBox = { Text =  text}
+                            };
                         Add(lat, property.Name);
                     }
                     else if (propertyType == typeof(DateTime))
                     {
-                        LabelAndDatePicker lad = new LabelAndDatePicker(attribute);
+                        LabelAndDatePicker lad =
+                            new LabelAndDatePicker(attribute) { Value = (DateTime)property.GetValue(_object) };
                         Add(lad, property.Name);
                     }
                     else if (propertyType.IsEnum)
                     {
                         var enumValues = Enum.GetValues(propertyType);
-                        List<string> values= new List<string>();
-                        foreach (var enumValue in enumValues)
-                        {
-                            values.Add(enumValue.ToString());
-                        }
-                        LabelAndCombobox cb = new LabelAndCombobox(attribute, values.ToArray());
+                        LabelAndCombobox cb = new LabelAndCombobox(attribute, (from object enumValue in enumValues select enumValue).ToArray());
+                        int enumIndex = (int)property.GetValue(_object);
+                        cb.ComboBox.SelectedIndex = enumIndex;
                         Add(cb, property.Name);
                     }
                     else if (propertyType == typeof(bool))
                     {
                         LabelAndCheckBox cb = new LabelAndCheckBox(attribute.FieldName);
+                        bool tick = (bool)property.GetValue(_object);
+                        cb.LacCheckBox.Checked = tick;
                         Add(cb, property.Name);
                     }
                     else if (propertyType.IsSubclassOf(typeof(DbObject)))
                     {
                         LabelAndCombobox cb = new LabelAndCombobox(attribute);
-                        var genericType = typeof(CRUD<>).MakeGenericType(propertyType);
-                        dynamic instanceCRUD = Activator.CreateInstance(genericType);
+                        dynamic instanceCRUD = MainPage.GetCRUD(propertyType);
 
                         Dictionary<string, string> result = instanceCRUD.GetNameList();
+                        int index = 0;
+
                         if (result != null)
+                        {
+                            dynamic valueOfProperty = property.GetValue(_object);
+                            string name = valueOfProperty.Name;
+                            bool nameChecked = false;
                             foreach (var pair in result)
                             {
-                                cb.Add(pair.Key,pair.Value);
+                                if (nameChecked == false && name != pair.Key)
+                                {
+                                    index++;
+
+                                }
+                                else
+                                {
+                                    nameChecked = true;
+                                }
+                                cb.Add(pair.Key, pair.Value);
                             }
+                            cb.ComboBox.SelectedIndex = index;
+                        }
                         Add(cb, property.Name);
-                        cb.SelectBase();
+                        cb.ComboBox.SelectedIndex = index;
                     }
 
                     else if (propertyType.IsArray)
@@ -145,27 +170,37 @@ namespace HomePage.CustomControls
                             LabelAndCombobox cb = new LabelAndCombobox(attribute);
                             var genericType = typeof(CRUD<>).MakeGenericType(tempType);
                             dynamic instanceCRUD = Activator.CreateInstance(genericType);
-                            Dictionary < string, string> result = instanceCRUD.GetNameList();
+                            Dictionary<string, string> result = instanceCRUD.GetNameList();
+                            int index = 0;
                             if (result != null)
+                            {
+                                dynamic valueOfProperty = property.GetValue(_object); // todo: Control to show arrays
+                                string name = valueOfProperty?.Name ?? "";
+                                bool nameChecked = false;
                                 foreach (var pair in result)
                                 {
-                                    cb.Add(pair.Key,pair.Value);
+                                    if (nameChecked == false && name != pair.Key)
+                                    {
+                                        index++;
+
+                                    }
+                                    else
+                                    {
+                                        nameChecked = true;
+                                    }
+                                    cb.Add(pair.Key, pair.Value);
                                 }
+                                if (name == "") cb.SelectBase();
+                                else cb.ComboBox.SelectedIndex = index;
+                            }
                             Add(cb, property.Name);
-                            cb.SelectBase();
                         }
                     }
                 }
 
             }
-            Invoke((MethodInvoker)(() =>
-           {
-               ContainerButton.Visible = true;
-               ContainerButton.Text = "Kayıt Ol";
-               ToolTip t = new ToolTip();
-               t.Show("heyyo", ContainerButton, 5000);
-               LocateButton();
-           }));
+            ContainerButton.Visible = true;
+            LocateButton();
 
         }
         public Container()
@@ -173,25 +208,37 @@ namespace HomePage.CustomControls
             InitializeComponent();
 
         }
-        private int _lastY = 0;
-        public void Add(Control userControl, string propertyName)
+        private int _lastY;
+
+        private void Add(Control userControl, string propertyName)
         {
             _valueControls.Add(propertyName, (IMainCustomControl)userControl);
             userControl.Location = new Point(userControl.Location.X, _lastY);
             this.Controls.Add(userControl);
             _lastY += userControl.Size.Height + 10;
         }
-        public void LocateButton()
+
+        private void LocateButton()
         {
             this.Size = new Size(this.Width + 120, this.Height + ContainerButton.Height + 120);
             this.ContainerButton.Location = new Point(this.ContainerButton.Location.X - 40, this._lastY - 70);
-
-
         }
 
         private void ContainerButton_Click(object sender, EventArgs e)
         {
-            ClickEvent(sender, e);
+            bool error = false;
+            foreach (var controlPair in _valueControls)
+            {
+                var control = controlPair.Value;
+                if (!control.IsValidated())
+                {
+                    error = true;
+                }
+            }
+            if (!error)
+            {
+                ClickEvent(sender, e);
+            }
         }
     }
 }

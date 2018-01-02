@@ -44,6 +44,11 @@ namespace HomePage.CustomControls
             LacComboBox.SelectedIndex = 0;
         }
 
+        public bool IsValidated()
+        {
+            return true;
+        }
+
         public object Value => LacComboBox.Items[LacComboBox.SelectedIndex].ToString();
     }
 }

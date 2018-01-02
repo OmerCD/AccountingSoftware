@@ -95,7 +95,6 @@
     <Compile Include="Classes\Database\Entities\DbObject.cs" />
     <Compile Include="Classes\Database\Entities\Job.cs" />
     <Compile Include="Classes\Database\Entities\Modules\Document.cs" />
-    <Compile Include="Classes\Database\Entities\Personnel.cs" />
     <Compile Include="Classes\Database\Entities\User.cs" />
     <Compile Include="Classes\Database\Enums\Enums.cs" />
     <Compile Include="Classes\Database\IRepositoryMain.cs" />

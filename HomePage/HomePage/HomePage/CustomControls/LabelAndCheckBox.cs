@@ -19,6 +19,11 @@ namespace HomePage.CustomControls
             LacCheckBox.Text = "";
         }
 
+        public bool IsValidated()
+        {
+            return true;
+        }
+
         public object Value => LacCheckBox.Checked.ToString();
     }
 }

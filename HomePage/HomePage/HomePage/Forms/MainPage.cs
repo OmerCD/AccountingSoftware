@@ -21,15 +21,13 @@ namespace HomePage
 {
     public partial class MainPage : Form//MetroFramework.Forms.MetroForm
     {
-        public static Personnel CurrentUser;
+        public static User CurrentUser;
 
         public MainPage()
         {
-            
-            
             if (CurrentUser == null)
             {
-                CurrentUser = new Personnel("TestUser","1234","Test1 Test2","test@mail.com",UserTypes.Personnel, null);
+                CurrentUser = new User("TestUser", "1234", "Test1 Test2", "test@mail.com", UserTypes.Administrator, null);
             }
             //using (var frm = new Login())
             //{
@@ -41,7 +39,11 @@ namespace HomePage
             //    }
             //    else
             //    {
-                    InitializeComponent();
+            InitializeComponent();
+            if (CurrentUser.UserType == UserTypes.Administrator)
+            {
+                BtnUsers.Visible = true;
+            }
                     //pnlDataGrid.Visible = false;
 
                 //}
@@ -86,11 +88,11 @@ namespace HomePage
                 //    TicaretSicilNo = "454545465"
                 //};
                 //DbFactory.CompanyCRUD.Insert(cmp, cmp2, cmp3);
-            //}
+                //}
 
         }
         Dictionary<string, string> PersonnelNameList;
-#region Move Form
+        #region Move Form
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
@@ -99,202 +101,48 @@ namespace HomePage
                          int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
-#endregion
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //User user = new User("", "", "", "Mahmut", Classes.Database.Enums.UserTypes.Personnel);
-            //  User user1 = new User("", "", "", "Mahmut1", Classes.Database.Enums.UserTypes.Personnel);
-            //  User user2 = new User("", "", "", "Mahmut2", Classes.Database.Enums.UserTypes.Personnel);
-            //bool ok = DbFactory.UserCRUD.Insert(user, user1, user2);
-            /*   PersonnelNameList = await DbFactory.UserCRUD.GetPersonnelName();
-               foreach (var item in PersonnelNameList)
-               {
-                   comboBox1.Items.Add(item.Key);
-               }
-   ;
-             CreateFoo<Company>();*/
+        #endregion
 
-
-
-
-        }
-
-        void CreateFoo<T>() where T : class
-        {/*
-            var properties = typeof(T).GetProperties();
-            foreach (var property in properties)
-            {
-                var propertyType = property.PropertyType;
-                var attributes = property.GetCustomAttributes(true);
-                if (attributes.Length > 0)
-                {
-                    
-                    if (propertyType == typeof(String))
-                    {
-                        LabelAndTextbox lat = new LabelAndTextbox(attributes[0] as CustomAttribute);
-                        lat.LatLabel.Name = property.Name;
-                        container1.Add(lat);
-                    }
-                    else if (propertyType == typeof(Enum))
-                    {
-                        MetroFramework.Controls.MetroComboBox cb = new MetroFramework.Controls.MetroComboBox();
-                        cb.DataSource = Enum.GetValues(property.GetType());
-                        container1.Add(cb);
-                    }
-                    else if (propertyType == typeof(bool))
-                    {
-                        CheckBox cb = new CheckBox();
-                        cb.Text = property.Name;
-                        cb.Checked = (bool)property.GetValue(property);
-                    }
-
-                }
-                if (propertyType.IsEnum == true)
-                {
-                    MetroFramework.Controls.MetroComboBox cb = new MetroFramework.Controls.MetroComboBox();
-                    cb.DataSource = Enum.GetValues(propertyType);
-                    container1.Add(cb);
-                }else if (propertyType == typeof(bool))
-                {
-                    CheckBox cb = new CheckBox();
-                    cb.Text = property.Name;
-                    container1.Add(cb);
-                }
-
-
-            }
-            container1.ContainerButton.Visible = true;
-            container1.ContainerButton.Text = "Kayıt Ol";
-            container1.ContainerButton.Click += ContainerButton_Click;
-            container1.LocateButton();*/
-        }
-        object GetValues<T>() where T : DbObject, new()
-        {
-            return null;
-            /*
-            var myType = typeof(T);
-            var myObject = Activator.CreateInstance(myType);
-            foreach (var control in container1.Controls)
-            {
-                if (control is LabelAndTextbox)
-                {
-
-
-                    var properties = typeof(T).GetProperties();
-                    foreach (var property in properties)
-                    {
-                        var cont = (control as LabelAndTextbox);
-                        var propName = cont.LatLabel.Name;
-                        if (propName == property.Name)
-                        {
-                            foreach (var prop in myType.GetProperties())
-                            {
-                                if (prop.Name == propName)
-                                {
-                                    prop.SetValue(myObject, cont.LatTextBox.Text);
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-
-                    }
-                }
-            }
-            return myObject;*/
-        }
-        private void ContainerButton_Click(object sender, EventArgs e)
-        {/*
-            bool isOk = true;
-            foreach (var item in container1.Controls)
-            {
-                if (item is LabelAndTextbox)
-                {
-                    var lat = (item as LabelAndTextbox);
-                    if (lat.IsValidated() == false)
-                    {
-                        isOk = false;
-                    }
-                }
-            }
-
-            if (isOk == true)
-            {
-                var crud = new UserCRUD();
-                //oldUser
-                User user = (User)GetValues<User>();
-                //user._id = oldUser._id
-                crud.Insert(user);
-                MessageBox.Show("Welcome");
-            }*/
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
         Type _lastCrudType;
         Type _lastType;
         private void BtnCompanies_Click(object sender, EventArgs e)
         {
             _lastCrudType = typeof(CompanyCRUD);
             _lastType = typeof(Company);
-            var comps = new CRUD<Company>().GetAll(new MongoDB.Bson.BsonDocument());
-            //var comps = await DbFactory.CompanyCRUD.GetAll(new MongoDB.Bson.BsonDocument());
-            DVValues.Init<Company>();
-            foreach (var item in comps)
-            {
-                CustomControls.DataRow r = new CustomControls.DataRow();
-                DVValues.Add(r.CreateRow(item), item._id);
-            }
-            Resize();
+            RefreshDataGridView<Company>();
         }
 
         private void BtnJobs_Click(object sender, EventArgs e)
         {
             _lastType = typeof(Job);
             _lastCrudType = typeof(JobCRUD);
-            //Personnel[] pList = { new Personnel { Name = "Mahmut" }, new Personnel { Name = "Muhsin" } };
-            //var j = new Job(pList, DateTime.Now, new Company() { Name = "asd" }, "desc", "dae", 5);
-            //var j1 = new Job(pList, DateTime.Now, new Company() { Name = "asd" }, "desc2", "da2e", 5);
-            //bool done = DbFactory.JobCRUD.InsertMany(j1, j);
-            //MessageBox.Show(done.ToString());
 
-            var jobs = DbFactory.JobCRUD.GetAll(new MongoDB.Bson.BsonDocument());
-            DVValues.Init<Job>();
-            foreach (var item in jobs)
-            {
-                CustomControls.DataRow r = new CustomControls.DataRow();
-                DVValues.Add(r.CreateRow(item), item._id);
-            }
-            Resize();
+            RefreshDataGridView<Job>();
         }
-
-        private new void Resize()
-        {
-            var width = DVValues.Columns.GetColumnsWidth(DataGridViewElementStates.None) + DVValues.RowHeadersWidth + 2;
-
-            var height = DVValues.Rows.GetRowsHeight(DataGridViewElementStates.None) + DVValues.ColumnHeadersHeight + 2;
-            DVValues.Size = new Size(width, height);
-
-        }
-
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(DVValues.SelectedId) == false)
             {
-               var t = _lastCrudType.GetMethod("Delete")?.Invoke(Activator.CreateInstance(_lastCrudType),new[] { DVValues.SelectedId });
-                MessageBox.Show(t?.ToString());
+                if (MessageBox.Show("Emin misiniz?", "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) ==
+                    DialogResult.Yes)
+                {
+                    _lastCrudType.GetMethod("Delete")
+                        ?.Invoke(Activator.CreateInstance(_lastCrudType), new[] {DVValues.SelectedId});
+                    RefreshDataGridView();
+                }
+
             }
-           
+
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             if (_lastType != null)
             {
-                using (CreateForm cf = new CreateForm(Activator.CreateInstance(_lastType),FormGoal.Add))
+                using (CreateForm cf = new CreateForm((DbObject)Activator.CreateInstance(_lastType), FormGoal.Add))
                 {
                     cf.ShowDialog();
+                    RefreshDataGridView();
                 }
             }
         }
@@ -334,13 +182,52 @@ namespace HomePage
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
-            if (DVValues.SelectedCells.Count>0)
+            if (DVValues.SelectedCells.Count > 0)
             {
-                var entity= _lastCrudType.GetMethod("GetOne")?.Invoke(Activator.CreateInstance(_lastCrudType), new[] { DVValues.SelectedId });
-                using (var frm = new CreateForm(entity,FormGoal.Update))
+
+                dynamic genericCRUD = GetCRUD(_lastType);
+                var entity = genericCRUD.GetOne(DVValues.SelectedId);
+
+                //var entity = _lastCrudType.GetMethod("GetOne")?.Invoke(Activator.CreateInstance(_lastCrudType), new[] { DVValues.SelectedId });
+                using (var frm = new CreateForm((DbObject)entity, FormGoal.Update))
                 {
                     frm.ShowDialog();
+                    RefreshDataGridView();
                 }
+            }
+        }
+
+        public static dynamic GetCRUD(Type type)
+        { 
+            return Activator.CreateInstance(typeof(CRUD<>).MakeGenericType(type));
+        }
+        private void BtnUsers_Click(object sender, EventArgs e)
+        {
+            _lastCrudType = typeof(CRUD<User>);
+            _lastType = typeof(User);
+            RefreshDataGridView<User>();
+        }
+
+        private void RefreshDataGridView<T>() where T:DbObject, new()
+        {
+            dynamic comps = new CRUD<T>();
+            var list = comps.GetAll();
+            DVValues.Init<User>();
+            foreach (var item in list)
+            {
+                CustomControls.DataRow r = new CustomControls.DataRow();
+                DVValues.Add(r.CreateRow(item), item._id);
+            }
+        }
+        private void RefreshDataGridView()
+        {
+            dynamic comps = Activator.CreateInstance(typeof(CRUD<>).MakeGenericType(_lastType));
+            var list = comps.GetAll();
+            DVValues.Init<User>();
+            foreach (var item in list)
+            {
+                CustomControls.DataRow r = new CustomControls.DataRow();
+                DVValues.Add(r.CreateRow(item), item._id);
             }
         }
     }

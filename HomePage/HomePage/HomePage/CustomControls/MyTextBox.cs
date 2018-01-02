@@ -17,20 +17,27 @@ namespace HomePage.CustomControls
         {
             InitializeComponent();
         }
-       public bool _isPlaceHolder = true;
+       public bool IsPlaceHolder = true;
         public  void MyTextBox_Enter(object sender, EventArgs e)
         {
-            if (_isPlaceHolder == true)
+            if (IsPlaceHolder)
             {
-                (sender as TextBox).Text = "";
-                (sender as TextBox).ForeColor = Color.Black;
-                (sender as TextBox).TextAlign = HorizontalAlignment.Left;
-                _isPlaceHolder = false;
+                Text = "";
+                ForeColor = Color.Black;
+                TextAlign = HorizontalAlignment.Left;
+                IsPlaceHolder = false;
             }
             
 
         }
 
+        public void Filled()
+        {
+            IsPlaceHolder = false;
+            ForeColor = Color.Black;
+            TextAlign = HorizontalAlignment.Left;
+            IsPlaceHolder = false;
+        }
         public void MyTextBox_Leave(object sender, EventArgs e)
         {
             if (this.TextLength == 0 && string.IsNullOrEmpty(PlaceHolder) == false)
@@ -38,7 +45,7 @@ namespace HomePage.CustomControls
                 this.Text = PlaceHolder;
                 this.ForeColor = Color.Silver;
                 this.TextAlign = HorizontalAlignment.Center;
-                this._isPlaceHolder = true; 
+                this.IsPlaceHolder = true; 
             }
         
          }

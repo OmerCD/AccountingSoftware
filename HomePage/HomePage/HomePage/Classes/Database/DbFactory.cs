@@ -29,7 +29,6 @@ namespace HomePage.Classes.Database
 
 
         public static IMongoCollection<BsonDocument> User => _user ?? (_user = Database.GetCollection<BsonDocument>(typeof(Entities.User).Name));
-        public static IMongoCollection<BsonDocument> Personnel => _personnel ?? (_personnel = Database.GetCollection<BsonDocument>(typeof(Entities.Personnel).Name));
         public static IMongoCollection<BsonDocument> CompanyColumnIndex => _companyColumnIndex ?? (_companyColumnIndex = Database.GetCollection<BsonDocument>(typeof(CompanyColumnIndex).Name));
         public static IMongoCollection<BsonDocument> Column => _column ?? (_column = Database.GetCollection<BsonDocument>(typeof(Column).Name));
         public static IMongoCollection<BsonDocument> Company => _company ?? (_company = Database.GetCollection<BsonDocument>(typeof(Entities.Company).Name));

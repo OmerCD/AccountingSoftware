@@ -17,19 +17,15 @@ namespace HomePage.Classes.Database
         {
             Table = DbFactory.User;
         }
-        public Personnel CheckAuthentication(string userName, string password)
+        public User CheckAuthentication(string userName, string password)
         {
             try
             {
-                var filter = new MongoDB.Bson.BsonDocument { { "UserName", userName }, { "Password", password },{"IsDeleted",0} };
+                var filter = new BsonDocument { { "UserName", userName }, { "Password", password },{"IsDeleted",0} };
                 var cursor = Table.FindSync(filter);
                 cursor.MoveNext();
                 var batch = cursor.Current;
-                if (batch==null)
-                {
-                    return null;
-                }
-                return BsonSerializer.Deserialize<Personnel>(batch.FirstOrDefault());
+                return batch==null ? null : BsonSerializer.Deserialize<User>(batch.FirstOrDefault());
             }
             catch (Exception)
             {
@@ -37,20 +33,6 @@ namespace HomePage.Classes.Database
                 return null;
             }
 
-        }
-
-        public Dictionary<string, string> GetNameList() // PersonnelName,_id
-        {
-            var personnelList = new Dictionary<string, string> { { "ALL", "ALL" } };// Tüm Personel için
-            var nameList = new HashSet<string> { "ALL" };
-            foreach (var item in GetAll(new BsonDocument()))
-            {
-                if (item.UserType == Enums.UserTypes.Customer || nameList.Contains(item.Name)) continue;
-                personnelList.Add(item.Name, item._id);
-                nameList.Add(item.Name);
-            }
-
-            return personnelList;
         }
     }
 }

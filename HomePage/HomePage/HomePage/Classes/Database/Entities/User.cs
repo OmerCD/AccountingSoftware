@@ -20,17 +20,23 @@ namespace HomePage.Classes.Database.Entities
         public string Email { get; set; }
         [Custom(MinLength = 10, MaxLength = 10, PlaceHolderText = "5XXXXXXXXX", FieldName = "Telefon Numarası",RegexPattern = @"^[0-9]{9}")]
         public string PhoneNumber { get; set; }
+        [Custom(FieldName = "Kullanıcı Tipi")]
         public UserTypes UserType { get; set; }
         public int Rank { get; set; } //Admin 0 kendininkilerden büyüklerin işlerini görebilecek
-        public User() { }
+        public string[] AllowedModules { get; set; }
 
-        public User(string userName, string password, string fullName, string email, UserTypes userType): base()
+        public User()
+        {
+        }
+
+        public User(string userName, string password, string fullName, string email, UserTypes userType, string[] allowedModules): base()
         {
             UserName = userName;
             Password = password;
             Name = fullName;
             Email = email;
             UserType = userType;
+            AllowedModules = allowedModules;
         }
    
 

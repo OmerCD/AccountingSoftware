@@ -36,7 +36,7 @@ namespace HomePage.Forms
             var userCRUD = DbFactory.UserCRUD;
             if (userCRUD.CheckAuthentication("admin", "admin123")==null)
             {
-                var personnel = new Personnel
+                var personnel = new User
                 {
                     UserName = "admin",
                     Password = "admin123"

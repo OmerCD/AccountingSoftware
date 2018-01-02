@@ -68,7 +68,7 @@
 
         #endregion
 
-        public System.Windows.Forms.Label LacLabel;
-        private System.Windows.Forms.CheckBox LacCheckBox;
+        private System.Windows.Forms.Label LacLabel;
+        public System.Windows.Forms.CheckBox LacCheckBox;
     }
 }

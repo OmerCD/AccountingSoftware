@@ -31,6 +31,27 @@ namespace HomePage.CustomControls
         }
 
 
-        public object Value => LadDtp.Value.ToLongDateString();
+        public DateTime Value
+        {
+            get => LadDtp.Value;
+            set
+            {
+                if (value<LadDtp.MinDate)
+                {
+                    LadDtp.Value = LadDtp.MinDate;
+                }
+                else if (value > LadDtp.MaxDate)
+                {
+                    LadDtp.Value = LadDtp.MaxDate;
+                }
+                else
+                {
+                    LadDtp.Value = value;
+                }
+
+            }
+        }
+
+        object IMainCustomControl.Value => LadDtp.Value.ToLongDateString();
     }
 }

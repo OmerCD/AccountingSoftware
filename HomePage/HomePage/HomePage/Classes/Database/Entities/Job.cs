@@ -14,7 +14,7 @@ namespace HomePage.Classes.Database.Entities
 
         }
 
-        public Job(Personnel[] personnel, DateTime deadLine, Company company, string description, string documentAddress,int lastWarningDays)
+        public Job(User[] personnel, DateTime deadLine, Company company, string description, string documentAddress,int lastWarningDays)
         {
             Personnel = personnel;
             DeadLine = deadLine;
@@ -35,7 +35,7 @@ namespace HomePage.Classes.Database.Entities
         }
 
         [Custom(FieldName ="Personel Adı")]
-        public Personnel[] Personnel { get; set; } // if null it means all personnel is atented to this Job
+        public User[] Personnel { get; set; } // if null it means all personnel is atented to this Job
         [Custom(FieldName ="Bitiş Tarihi")]
         public DateTime DeadLine { get; set; }
         [Custom(FieldName = "Firma Adı")]

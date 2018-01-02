@@ -12,15 +12,17 @@ using System.Text.RegularExpressions;
 
 namespace HomePage.CustomControls
 {
-    public partial class LabelAndTextbox : UserControl,IMainCustomControl
+    public partial class LabelAndTextbox : UserControl, IMainCustomControl
     {
 
-        public LabelAndTextbox(CustomAttribute attribute)
+        public LabelAndTextbox(CustomAttribute attribute, bool isFilled)
         {
             InitializeComponent();
             attribute.SetMessages();
             LatLabel.Text = attribute.FieldName + ':';
             LatTextBox.Text = LatTextBox.PlaceHolder = attribute.PlaceHolderText;
+            if (isFilled)
+                LatTextBox.Filled();
 
             if (attribute.IsPassword)
             {
@@ -33,6 +35,10 @@ namespace HomePage.CustomControls
         public bool IsValidated()
         {
             bool isOk = true;
+            if (_attribute.Nullable && LatTextBox.TextLength==0)
+            {
+                return true;
+            }
             if (LatTextBox.TextLength < _attribute.MinLength)
             {
                 LatErrorLabel.Text = _attribute.MinLengthMessage;
