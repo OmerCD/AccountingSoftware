@@ -38,11 +38,14 @@
             this.LatLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.LatLabel.AutoSize = true;
-            this.LatLabel.Location = new System.Drawing.Point(3, 16);
+            this.LatLabel.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.LatLabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.LatLabel.Location = new System.Drawing.Point(3, 12);
             this.LatLabel.Name = "LatLabel";
-            this.LatLabel.Size = new System.Drawing.Size(35, 13);
+            this.LatLabel.Size = new System.Drawing.Size(45, 20);
             this.LatLabel.TabIndex = 0;
             this.LatLabel.Text = "label1";
+            this.LatLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // LatErrorLabel
             // 
@@ -71,6 +74,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Controls.Add(this.LatTextBox);
             this.Controls.Add(this.LatErrorLabel);
             this.Controls.Add(this.LatLabel);

@@ -34,8 +34,8 @@ namespace HomePage.Classes.Database
         // ReSharper disable once UnusedMember.Global
         public Dictionary<string, string> GetNameList()
         {
-            Dictionary<string, string> list = new Dictionary<string, string>();
-            HashSet<string> nameList = new HashSet<string> { "ALL" };
+            var list = new Dictionary<string, string>();
+            var nameList = new HashSet<string> { "ALL" };
             list.Add("ALL", "ALL"); // Tüm data için
             foreach (dynamic item in new CRUD<T>().GetAll(new BsonDocument()))
             {

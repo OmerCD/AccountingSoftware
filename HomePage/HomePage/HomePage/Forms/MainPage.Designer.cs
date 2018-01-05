@@ -72,6 +72,7 @@
             this.DVValues.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.DVValues.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DVValues.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DVValues.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -95,7 +96,7 @@
             this.DVValues.MultiSelect = false;
             this.DVValues.Name = "DVValues";
             this.DVValues.ReadOnly = true;
-            this.DVValues.Size = new System.Drawing.Size(712, 604);
+            this.DVValues.Size = new System.Drawing.Size(892, 604);
             this.DVValues.TabIndex = 1;
             // 
             // panel1

@@ -25,29 +25,29 @@ namespace HomePage
 
         public MainPage()
         {
-            //if (CurrentUser == null)
-            //{
-            //    CurrentUser = new User("TestUser", "1234", "Test1 Test2", "test@mail.com", UserTypes.Administrator, null);
-            //}
-            using (var frm = new Login())
+            if (CurrentUser == null)
             {
-                var result = frm.ShowDialog();
-                if (CurrentUser == null || result != DialogResult.Yes)
-                {
-                    Close();
-                    Application.Exit();
-                }
-                else
-                {
-                    InitializeComponent();
-                    if (CurrentUser.UserType == UserTypes.Administrator)
-                    {
-                        BtnUsers.Visible = true;
-                    }
-                    //pnlDataGrid.Visible = false;
-
-                }
+                CurrentUser = new User("TestUser", "1234", "Test1 Test2", "test@mail.com", UserTypes.Administrator, null);
             }
+            //using (var frm = new Login())
+            //{
+            //    var result = frm.ShowDialog();
+            //    if (CurrentUser == null || result != DialogResult.Yes)
+            //    {
+            //        Close();
+            //        Application.Exit();
+            //    }
+            //    else
+            //{
+            InitializeComponent();
+            if (CurrentUser.UserType == UserTypes.Administrator)
+            {
+                BtnUsers.Visible = true;
+            }
+            //pnlDataGrid.Visible = false;
+
+            //}
+            //}
 
         }
         Dictionary<string, string> PersonnelNameList;

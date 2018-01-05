@@ -22,7 +22,7 @@ namespace HomePage.Classes.Database.Entities
         public string PhoneNumber { get; set; }
         [Custom(FieldName = "Kullanıcı Tipi")]
         public UserTypes UserType { get; set; }
-        public int Rank { get; set; } //Admin 0 kendininkilerden büyüklerin işlerini görebilecek
+        public int Rank { get; set; } //Admin 0, kendininkilerden büyüklerin işlerini görebilecek
         public string[] AllowedModules { get; set; }
 
         public User()

@@ -77,5 +77,10 @@ namespace HomePage.Forms
                 Close();
             }
         }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
