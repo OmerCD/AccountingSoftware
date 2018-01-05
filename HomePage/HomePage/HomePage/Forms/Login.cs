@@ -33,8 +33,12 @@ namespace HomePage.Forms
 
         private void InsertAdmin()
         {
+            var settingsCRUD = new CRUD<GeneralSettings>(DbFactory.GeneralSettings);
+
             var userCRUD = DbFactory.UserCRUD;
-            if (userCRUD.CheckAuthentication("admin", "admin123")==null)
+
+            var adminCreated = settingsCRUD.GetOne("AdminCreated", true)._id != null;
+            if (!adminCreated)
             {
                 var personnel = new User
                 {
@@ -42,6 +46,7 @@ namespace HomePage.Forms
                     Password = "admin123"
                 };
                 userCRUD.Insert(personnel);
+                settingsCRUD.Insert(new GeneralSettings {AdminCreated = true});
             }
             
         }

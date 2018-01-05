@@ -25,70 +25,29 @@ namespace HomePage
 
         public MainPage()
         {
-            if (CurrentUser == null)
-            {
-                CurrentUser = new User("TestUser", "1234", "Test1 Test2", "test@mail.com", UserTypes.Administrator, null);
-            }
-            //using (var frm = new Login())
+            //if (CurrentUser == null)
             //{
-            //    var result = frm.ShowDialog();
-            //    if (CurrentUser == null || result != DialogResult.Yes)
-            //    {
-            //        Close();
-            //        Application.Exit();
-            //    }
-            //    else
-            //    {
-            InitializeComponent();
-            if (CurrentUser.UserType == UserTypes.Administrator)
+            //    CurrentUser = new User("TestUser", "1234", "Test1 Test2", "test@mail.com", UserTypes.Administrator, null);
+            //}
+            using (var frm = new Login())
             {
-                BtnUsers.Visible = true;
-            }
+                var result = frm.ShowDialog();
+                if (CurrentUser == null || result != DialogResult.Yes)
+                {
+                    Close();
+                    Application.Exit();
+                }
+                else
+                {
+                    InitializeComponent();
+                    if (CurrentUser.UserType == UserTypes.Administrator)
+                    {
+                        BtnUsers.Visible = true;
+                    }
                     //pnlDataGrid.Visible = false;
 
-                //}
-                //User user = new User("", "", "mahmut1", "Mahmut", Classes.Database.Enums.UserTypes.Personnel);
-                //User user1 = new User("", "", "mahmut2", "Mahmut1", Classes.Database.Enums.UserTypes.Personnel);
-                //User user2 = new User("", "", "mahmut3", "Mahmut2", Classes.Database.Enums.UserTypes.Personnel);
-                //DbFactory.UserCRUD.Insert(user, user1, user2);
-                //Company cmp = new Company
-                //{
-                //    Name = "Company1",
-                //    Address = "TestAddress",
-                //    CompanyType = CompanyTypes.Limited,
-                //    Contacs = null,
-                //    TaxNo = "4556446",
-                //    TaxOffice = null,
-                //    TaxTypes = new []{"TestTax","TestTax2"},
-                //    TcNo = null,
-                //    TicaretSicilNo = "454545465"
-                //};
-                //Company cmp2 = new Company
-                //{
-                //    Name = "Company2",
-                //    Address = "TestAddress",
-                //    CompanyType = CompanyTypes.Limited,
-                //    Contacs = null,
-                //    TaxNo = "4556446",
-                //    TaxOffice = null,
-                //    TaxTypes = new[] { "TestTax", "TestTax2" },
-                //    TcNo = null,
-                //    TicaretSicilNo = "454545465"
-                //};
-                //Company cmp3 = new Company
-                //{
-                //    Name = "Company3",
-                //    Address = "TestAddress",
-                //    CompanyType = CompanyTypes.Limited,
-                //    Contacs = null,
-                //    TaxNo = "4556446",
-                //    TaxOffice = null,
-                //    TaxTypes = new[] { "TestTax", "TestTax2" },
-                //    TcNo = null,
-                //    TicaretSicilNo = "454545465"
-                //};
-                //DbFactory.CompanyCRUD.Insert(cmp, cmp2, cmp3);
-                //}
+                }
+            }
 
         }
         Dictionary<string, string> PersonnelNameList;
@@ -127,7 +86,7 @@ namespace HomePage
                     DialogResult.Yes)
                 {
                     _lastCrudType.GetMethod("Delete")
-                        ?.Invoke(Activator.CreateInstance(_lastCrudType), new[] {DVValues.SelectedId});
+                        ?.Invoke(Activator.CreateInstance(_lastCrudType), new[] { DVValues.SelectedId });
                     RefreshDataGridView();
                 }
 
@@ -198,7 +157,7 @@ namespace HomePage
         }
 
         public static dynamic GetCRUD(Type type)
-        { 
+        {
             return Activator.CreateInstance(typeof(CRUD<>).MakeGenericType(type));
         }
         private void BtnUsers_Click(object sender, EventArgs e)
@@ -208,7 +167,7 @@ namespace HomePage
             RefreshDataGridView<User>();
         }
 
-        private void RefreshDataGridView<T>() where T:DbObject, new()
+        private void RefreshDataGridView<T>() where T : DbObject, new()
         {
             dynamic comps = new CRUD<T>();
             var list = comps.GetAll();

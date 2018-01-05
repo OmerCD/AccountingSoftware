@@ -13,7 +13,7 @@ namespace HomePage.Classes.Database
     public class DbFactory
     {
         //public static IMongoClient Client = new MongoClient("mongodb://mustafarumeli:2dDfShKEX9rbc6e2eHxedLaouu8glHyZE9Ghz5PauBTfBkhpIWhvZuwxsgal1bnhQ2ZIQdIgjxDSrfT6XjS9YA==@mustafarumeli.documents.azure.com:10255/?ssl=true&replicaSet=globaldb");
-        public static IMongoClient Client = new MongoClient();
+        private static readonly IMongoClient Client = new MongoClient();
         private static IMongoDatabase _database;
 
         public static IMongoDatabase Database => _database ?? (_database = Client.GetDatabase("test2"));
@@ -26,8 +26,9 @@ namespace HomePage.Classes.Database
         private static IMongoCollection<BsonDocument> _calendar;
         private static IMongoCollection<BsonDocument> _companyLogin;
         private static IMongoCollection<BsonDocument> _personnel;
+        private static IMongoCollection<BsonDocument> _generalSettings;
 
-
+        public static IMongoCollection<BsonDocument> GeneralSettings => _generalSettings ?? (_generalSettings = Database.GetCollection<BsonDocument>(typeof(Entities.GeneralSettings).Name));
         public static IMongoCollection<BsonDocument> User => _user ?? (_user = Database.GetCollection<BsonDocument>(typeof(Entities.User).Name));
         public static IMongoCollection<BsonDocument> CompanyColumnIndex => _companyColumnIndex ?? (_companyColumnIndex = Database.GetCollection<BsonDocument>(typeof(CompanyColumnIndex).Name));
         public static IMongoCollection<BsonDocument> Column => _column ?? (_column = Database.GetCollection<BsonDocument>(typeof(Column).Name));

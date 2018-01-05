@@ -90,13 +90,13 @@ namespace HomePage.CustomControls
                 var propertyType = property.PropertyType;
                 if (attributes.Length > 0)
                 {
-                    CustomAttribute attribute = (CustomAttribute)attributes[0];
+                    var attribute = (CustomAttribute)attributes[0];
 
                     if (propertyType == typeof(string))
                     {
                         var value = property.GetValue(_object);
-                        bool fill = value!=null;
-                        string text = value?.ToString();
+                        var fill = value!=null;
+                        var text = value?.ToString();
                         if (!fill && !string.IsNullOrEmpty(attribute.PlaceHolderText))
                         {
                             text = attribute.PlaceHolderText;
@@ -110,38 +110,38 @@ namespace HomePage.CustomControls
                     }
                     else if (propertyType == typeof(DateTime))
                     {
-                        LabelAndDatePicker lad =
+                        var lad =
                             new LabelAndDatePicker(attribute) { Value = (DateTime)property.GetValue(_object) };
                         Add(lad, property.Name);
                     }
                     else if (propertyType.IsEnum)
                     {
                         var enumValues = Enum.GetValues(propertyType);
-                        LabelAndCombobox cb = new LabelAndCombobox(attribute, (from object enumValue in enumValues select enumValue).ToArray());
-                        int enumIndex = (int)property.GetValue(_object);
+                        var cb = new LabelAndCombobox(attribute, (from object enumValue in enumValues select enumValue).ToArray());
+                        var enumIndex = (int)property.GetValue(_object);
                         cb.ComboBox.SelectedIndex = enumIndex;
                         Add(cb, property.Name);
                     }
                     else if (propertyType == typeof(bool))
                     {
-                        LabelAndCheckBox cb = new LabelAndCheckBox(attribute.FieldName);
-                        bool tick = (bool)property.GetValue(_object);
+                        var cb = new LabelAndCheckBox(attribute.FieldName);
+                        var tick = (bool)property.GetValue(_object);
                         cb.LacCheckBox.Checked = tick;
                         Add(cb, property.Name);
                     }
                     else if (propertyType.IsSubclassOf(typeof(DbObject)))
                     {
-                        LabelAndCombobox cb = new LabelAndCombobox(attribute);
-                        dynamic instanceCRUD = MainPage.GetCRUD(propertyType);
+                        var cb = new LabelAndCombobox(attribute);
+                        var instanceCRUD = MainPage.GetCRUD(propertyType);
 
                         Dictionary<string, string> result = instanceCRUD.GetNameList();
-                        int index = 0;
+                        var index = 0;
 
                         if (result != null)
                         {
                             dynamic valueOfProperty = property.GetValue(_object);
                             string name = valueOfProperty.Name;
-                            bool nameChecked = false;
+                            var nameChecked = false;
                             foreach (var pair in result)
                             {
                                 if (nameChecked == false && name != pair.Key)
@@ -167,16 +167,16 @@ namespace HomePage.CustomControls
                         var tempType = Type.GetType(propertyType.Namespace + "." + className);
                         if (tempType != null && tempType.IsSubclassOf(typeof(DbObject)))
                         {
-                            LabelAndCombobox cb = new LabelAndCombobox(attribute);
+                            var cb = new LabelAndCombobox(attribute);
                             var genericType = typeof(CRUD<>).MakeGenericType(tempType);
                             dynamic instanceCRUD = Activator.CreateInstance(genericType);
                             Dictionary<string, string> result = instanceCRUD.GetNameList();
-                            int index = 0;
+                            var index = 0;
                             if (result != null)
                             {
                                 dynamic valueOfProperty = property.GetValue(_object); // todo: Control to show arrays
                                 string name = valueOfProperty?.Name ?? "";
-                                bool nameChecked = false;
+                                var nameChecked = false;
                                 foreach (var pair in result)
                                 {
                                     if (nameChecked == false && name != pair.Key)
@@ -226,7 +226,7 @@ namespace HomePage.CustomControls
 
         private void ContainerButton_Click(object sender, EventArgs e)
         {
-            bool error = false;
+            var error = false;
             foreach (var controlPair in _valueControls)
             {
                 var control = controlPair.Value;

@@ -107,6 +107,9 @@ namespace HomePage.Classes.Database
         {
             _database.DropCollection(typeof(T).Name);
         }
+
+        public long Count => Table.Count(new BsonDocument {{"IsDeleted", 0}});
+
         public virtual List<T> GetAll(BsonDocument filter)
         {
             try
@@ -129,6 +132,8 @@ namespace HomePage.Classes.Database
 
         }
 
+        #region GetOne
+
         public virtual T GetOne(string id)
         {
             try
@@ -147,6 +152,62 @@ namespace HomePage.Classes.Database
             }
 
         }
+        public virtual T GetOne(string columnName,string value)
+        {
+            try
+            {
+                var filter = new BsonDocument { { columnName, value } };
+                var cursor = Table.FindSync(filter);
+                cursor.MoveNext();
+                var batch = cursor.Current;
+                return BsonSerializer.Deserialize<T>(batch.FirstOrDefault());
+
+            }
+            catch (Exception)
+            {
+
+                return new T { _id = null };
+            }
+
+        }
+        public virtual T GetOne(string columnName, int value)
+        {
+            try
+            {
+                var filter = new BsonDocument { { columnName, value } };
+                var cursor = Table.FindSync(filter);
+                cursor.MoveNext();
+                var batch = cursor.Current;
+                return BsonSerializer.Deserialize<T>(batch.FirstOrDefault());
+
+            }
+            catch (Exception)
+            {
+
+                return new T { _id = null };
+            }
+
+        }
+        public virtual T GetOne(string columnName, bool value)
+        {
+            try
+            {
+                var filter = new BsonDocument { { columnName, value } };
+                var cursor = Table.FindSync(filter);
+                cursor.MoveNext();
+                var batch = cursor.Current;
+                return BsonSerializer.Deserialize<T>(batch.FirstOrDefault());
+
+            }
+            catch (Exception)
+            {
+
+                return new T { _id = null };
+            }
+
+        }
+
+        #endregion
         public List<T> BringBack(BsonDocument filter)
         {
             try
@@ -155,7 +216,7 @@ namespace HomePage.Classes.Database
                 using (var cursor = Table.FindSync(filter))
                 {
                     var x = cursor.ToList();
-                    results.AddRange(x.Select(item => JsonConvert.DeserializeObject<T>(item.ToString())));
+                    results.AddRange(x.Select(item =>BsonSerializer.Deserialize<T>(item)));
                 }
                 return results;
             }
