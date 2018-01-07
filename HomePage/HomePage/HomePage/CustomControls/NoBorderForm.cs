@@ -10,21 +10,25 @@ namespace HomePage.CustomControls
 {
     public class NoBorderForm:Form
     {
-        public NoBorderForm()
+        protected NoBorderForm()
         {
             this.FormBorderStyle = FormBorderStyle.None;
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.ResizeRedraw, true);
         }
-        private const int cGrip = 32;      // Grip size
-        private const int cCaption = 48;   // Caption bar height;
+        private const int cGrip = 16;      // Grip size
+        protected int cCaption = 32;   // Caption bar height;
 
         protected override void OnPaint(PaintEventArgs e)
         {
             Rectangle rc = new Rectangle(this.ClientSize.Width - cGrip, this.ClientSize.Height - cGrip, cGrip, cGrip);
             ControlPaint.DrawSizeGrip(e.Graphics, this.BackColor, rc);
             rc = new Rectangle(0, 0, this.ClientSize.Width, cCaption);
-            e.Graphics.FillRectangle(Brushes.DimGray, rc);
+            e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(31, 104, 166)), rc);
+
+            Pen myBrush = new Pen(Color.FromArgb(31, 104, 166));
+            Graphics formGraphics = CreateGraphics();
+            formGraphics.DrawRectangle(myBrush,new Rectangle(ClientRectangle.X+5,ClientRectangle.Y+5,ClientRectangle.Width-10,ClientRectangle.Height-10));
         }
 
         protected override void WndProc(ref Message m)

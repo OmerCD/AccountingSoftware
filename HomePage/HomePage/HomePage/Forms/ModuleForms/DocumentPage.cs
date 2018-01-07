@@ -118,7 +118,7 @@ namespace HomePage.Forms.ModuleForms
                 for (var j = EXTRA_COLUMN_COUNT; j < columns.Count + EXTRA_COLUMN_COUNT; j++)
                 {
                     var column = columns[j - EXTRA_COLUMN_COUNT];
-                    var comboBox = new DataGridViewComboBoxCell { DataSource = column.PossibleAnswers };
+                    var comboBox = new DataGridViewComboBoxCell { DataSource = column.PossibleAnswers,FlatStyle = FlatStyle.Flat};
                     var tupleIndex = CheckIfTupleExists(indecies, column._id);
                     if (tupleIndex!=-1)
                         comboBox.Value = column.PossibleAnswers[indecies[tupleIndex].Item2];

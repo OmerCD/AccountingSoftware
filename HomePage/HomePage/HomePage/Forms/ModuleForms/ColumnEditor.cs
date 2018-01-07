@@ -3,17 +3,19 @@ using System.Collections;
 using System.Linq;
 using System.Windows.Forms;
 using HomePage.Classes.Database.Cruds;
+using HomePage.CustomControls;
 using HomePage.Document;
 
 namespace HomePage.Forms.ModuleForms
 {
-    public partial class ColumnEditor : Form
+    public partial class ColumnEditor : NoBorderForm
     {
         private readonly ColumnCRUD _columnCrud;
         public ColumnEditor()
         {
             InitializeComponent();
             _columnCrud = new ColumnCRUD();
+            cCaption = 18;
         }
 
         private void RefreshColumnList()
@@ -22,7 +24,7 @@ namespace HomePage.Forms.ModuleForms
             var columns = _columnCrud.GetAll(null);
             foreach (var column in columns)
             {
-                var answers = column.PossibleAnswers.Aggregate("", (current, answer) => current + (answer + '|'));
+                var answers = column.PossibleAnswers.Aggregate("", (current, answer) => current + (answer + ','));
                 var row = new ListViewItem(new[] { column.Name, answers });
                 LvColumns.AddRow(row, column._id);
             }
@@ -30,11 +32,6 @@ namespace HomePage.Forms.ModuleForms
         private void ColumnEditor_Load(object sender, EventArgs e)
         {
             RefreshColumnList();
-        }
-
-        private void LbAnswers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
         private void LvColumns_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -140,6 +137,11 @@ namespace HomePage.Forms.ModuleForms
             {
                 //todo
             }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

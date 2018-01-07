@@ -86,7 +86,7 @@
             this.DVValues.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightSlateGray;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Titillium Web", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Gold;
@@ -366,7 +366,6 @@
 
         #endregion
 
-        MetroFramework.Controls.MetroContextMenu menuStrip1;
         private System.Windows.Forms.Panel PanelTopBar;
         private CustomControls.DataView DVValues;
         private System.Windows.Forms.Button BtnDelete;

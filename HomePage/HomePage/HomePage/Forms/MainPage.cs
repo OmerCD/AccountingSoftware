@@ -3,7 +3,6 @@ using HomePage.Classes.Database.Cruds;
 using HomePage.Classes.Database.Entities;
 using HomePage.Forms;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using HomePage.Classes.Database.Enums;
 using HomePage.Forms.ModuleForms;
@@ -71,20 +70,20 @@ namespace HomePage
             }
         }
 
-        Dictionary<string, string> PersonnelNameList;
         #region Move Form
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
 
-        [DllImportAttribute("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd,
+        private const int WM_NCLBUTTONDOWN = 0xA1;
+        private const int HT_CAPTION = 0x2;
+
+        [DllImport("user32.dll")]
+        private static extern int SendMessage(IntPtr hWnd,
                          int Msg, int wParam, int lParam);
-        [DllImportAttribute("user32.dll")]
-        public static extern bool ReleaseCapture();
+        [DllImport("user32.dll")]
+        private static extern bool ReleaseCapture();
         #endregion
 
-        Type _lastCrudType;
-        Type _lastType;
+        private Type _lastCrudType;
+        private Type _lastType;
         private void BtnCompanies_Click(object sender, EventArgs e)
         {
             _lastCrudType = typeof(CompanyCRUD);
@@ -119,7 +118,7 @@ namespace HomePage
         {
             if (_lastType != null)
             {
-                using (CreateForm cf = new CreateForm((DbObject)Activator.CreateInstance(_lastType), FormGoal.Add))
+                using (var cf = new CreateForm((DbObject)Activator.CreateInstance(_lastType), FormGoal.Add))
                 {
                     cf.ShowDialog();
                     RefreshDataGridView();

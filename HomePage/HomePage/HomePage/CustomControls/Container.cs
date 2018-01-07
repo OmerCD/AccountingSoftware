@@ -13,7 +13,7 @@ namespace HomePage.CustomControls
     public partial class Container : UserControl
     {
         private object _object;
-        private Dictionary<string, IMainCustomControl> _valueControls = new Dictionary<string, IMainCustomControl>();
+        private readonly Dictionary<string, IMainCustomControl> _valueControls = new Dictionary<string, IMainCustomControl>();
 
         public string ButtonText
         {
