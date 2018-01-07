@@ -157,7 +157,6 @@ namespace HomePage.Forms
                 {
                     SaveInfo();
                 }
-                MessageBox.Show("Giriş Başarılı");
                 MainPage.CurrentUser = user;
                 DialogResult = DialogResult.Yes;
             }

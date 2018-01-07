@@ -8,12 +8,15 @@ using System.Windows.Forms;
 using HomePage.Classes.Database.Enums;
 using HomePage.Forms.ModuleForms;
 using System.Runtime.InteropServices;
+using HomePage.CustomControls.ContextMenu;
 
 namespace HomePage
 {
     public partial class MainPage : Form
     {
         public static User CurrentUser;
+
+        private readonly PoperContainer _poperContextSettings;
 
         public MainPage()
         {
@@ -32,16 +35,42 @@ namespace HomePage
                 else
                 {
                     InitializeComponent();
-            if (CurrentUser.UserType == UserTypes.Administrator)
-            {
-                BtnUsers.Visible = true;
-            }
+                    if (CurrentUser.UserType == UserTypes.Administrator)
+                    {
+                        BtnUsers.Visible = true;
+                    }
+                    var menuContextSettings = new SettingsContextMenu();
+                    _poperContextSettings= new PoperContainer(menuContextSettings);
+
+                    menuContextSettings.BtnLogOut.Click += BtnLogOut_Click;
                     //pnlDataGrid.Visible = false;
 
                 }
             }
-
         }
+
+        private void BtnLogOut_Click(object sender, EventArgs e)
+        {
+            CurrentUser = null;
+            BtnUsers.Visible = false;
+            using (var frm = new Login())
+            {
+                var result = frm.ShowDialog();
+                if (CurrentUser == null || result != DialogResult.Yes)
+                {
+                    Close();
+                    Application.Exit();
+                }
+                else
+                {
+                    if (CurrentUser.UserType == UserTypes.Administrator)
+                    {
+                        BtnUsers.Visible = true;
+                    }
+                }
+            }
+        }
+
         Dictionary<string, string> PersonnelNameList;
         #region Move Form
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -188,6 +217,11 @@ namespace HomePage
         private void BtnUsers_MouseEnter(object sender, EventArgs e)
         {
             BtnUsers.Text = BtnUsers.Text.TrimEnd();
+        }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            _poperContextSettings.Show(btnSettings);
         }
     }
 }

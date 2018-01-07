@@ -107,6 +107,24 @@
     <Compile Include="CustomControls\Container.Designer.cs">
       <DependentUpon>Container.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\ContextMenu\PopedContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ContextMenu\PopedContainer.Designer.cs">
+      <DependentUpon>PopedContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ContextMenu\PoperContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ContextMenu\PoperContainer.Designer.cs">
+      <DependentUpon>PoperContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ContextMenu\Design\SettingsContextMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ContextMenu\Design\SettingsContextMenu.Designer.cs">
+      <DependentUpon>SettingsContextMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\DataListView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -155,6 +173,9 @@
     </Compile>
     <Compile Include="CustomControls\MyTextBox.Designer.cs">
       <DependentUpon>MyTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\NoBorderForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="CustomControls\OperationsPanel.cs">
       <SubType>UserControl</SubType>
@@ -220,6 +241,9 @@
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="CustomControls\Container.resx">
       <DependentUpon>Container.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\ContextMenu\Design\SettingsContextMenu.resx">
+      <DependentUpon>SettingsContextMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\LabelAndCheckBox.resx">
       <DependentUpon>LabelAndCheckBox.cs</DependentUpon>
@@ -401,6 +425,7 @@
   <ItemGroup>
     <None Include="Resources\Double Ring %282%29.gif" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

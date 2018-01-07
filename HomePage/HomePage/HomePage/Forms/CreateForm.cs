@@ -4,10 +4,11 @@ using System.Windows.Forms;
 using HomePage.Classes.Database;
 using HomePage.Classes.Database.Entities;
 using HomePage.Classes.Database.Enums;
+using HomePage.CustomControls;
 
 namespace HomePage.Forms
 {
-    public partial class CreateForm : Form
+    public partial class CreateForm : NoBorderForm
     {
         private DbObject _entity;
         private FormGoal _goal;

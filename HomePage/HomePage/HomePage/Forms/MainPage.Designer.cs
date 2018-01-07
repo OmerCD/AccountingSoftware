@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.PanelTopBar = new System.Windows.Forms.Panel();
             this.DVValues = new HomePage.CustomControls.DataView();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.PanelTop = new System.Windows.Forms.Panel();
             this.lblUpdate = new System.Windows.Forms.Label();
             this.BtnUpdate = new System.Windows.Forms.Button();
             this.lblSil = new System.Windows.Forms.Label();
@@ -49,21 +49,21 @@
             this.BtnJobs = new System.Windows.Forms.Button();
             this.BtnCompanies = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DVValues)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.PanelTop.SuspendLayout();
             this.PnlMainOperations.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel2
+            // PanelTopBar
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(114, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(910, 18);
-            this.panel2.TabIndex = 2;
-            this.panel2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseDoubleClick);
-            this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseDown);
+            this.PanelTopBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
+            this.PanelTopBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelTopBar.Location = new System.Drawing.Point(114, 0);
+            this.PanelTopBar.Name = "PanelTopBar";
+            this.PanelTopBar.Size = new System.Drawing.Size(910, 18);
+            this.PanelTopBar.TabIndex = 2;
+            this.PanelTopBar.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseDoubleClick);
+            this.PanelTopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseDown);
             // 
             // DVValues
             // 
@@ -75,23 +75,23 @@
             this.DVValues.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DVValues.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DVValues.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.Tomato;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Gold;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DVValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Tomato;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Gold;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DVValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DVValues.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.LightSlateGray;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Gold;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DVValues.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightSlateGray;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Gold;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DVValues.DefaultCellStyle = dataGridViewCellStyle2;
             this.DVValues.Location = new System.Drawing.Point(120, 117);
             this.DVValues.MultiSelect = false;
             this.DVValues.Name = "DVValues";
@@ -99,23 +99,23 @@
             this.DVValues.Size = new System.Drawing.Size(892, 604);
             this.DVValues.TabIndex = 1;
             // 
-            // panel1
+            // PanelTop
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.lblUpdate);
-            this.panel1.Controls.Add(this.BtnUpdate);
-            this.panel1.Controls.Add(this.lblSil);
-            this.panel1.Controls.Add(this.lblEkle);
-            this.panel1.Controls.Add(this.btnExit);
-            this.panel1.Controls.Add(this.BtnDelete);
-            this.panel1.Controls.Add(this.BtnAdd);
-            this.panel1.Controls.Add(this.btnSettings);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(114, 18);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(910, 91);
-            this.panel1.TabIndex = 5;
-            this.panel1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDoubleClick);
+            this.PanelTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelTop.Controls.Add(this.lblUpdate);
+            this.PanelTop.Controls.Add(this.BtnUpdate);
+            this.PanelTop.Controls.Add(this.lblSil);
+            this.PanelTop.Controls.Add(this.lblEkle);
+            this.PanelTop.Controls.Add(this.btnExit);
+            this.PanelTop.Controls.Add(this.BtnDelete);
+            this.PanelTop.Controls.Add(this.BtnAdd);
+            this.PanelTop.Controls.Add(this.btnSettings);
+            this.PanelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelTop.Location = new System.Drawing.Point(114, 18);
+            this.PanelTop.Name = "PanelTop";
+            this.PanelTop.Size = new System.Drawing.Size(910, 91);
+            this.PanelTop.TabIndex = 5;
+            this.PanelTop.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDoubleClick);
             // 
             // lblUpdate
             // 
@@ -226,6 +226,7 @@
             this.btnSettings.Size = new System.Drawing.Size(35, 37);
             this.btnSettings.TabIndex = 4;
             this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // PnlMainOperations
             // 
@@ -346,8 +347,8 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1024, 733);
             this.Controls.Add(this.DVValues);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.PanelTop);
+            this.Controls.Add(this.PanelTopBar);
             this.Controls.Add(this.PnlMainOperations);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -355,8 +356,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ana Sayfa";
             ((System.ComponentModel.ISupportInitialize)(this.DVValues)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.PanelTop.ResumeLayout(false);
+            this.PanelTop.PerformLayout();
             this.PnlMainOperations.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -366,13 +367,13 @@
         #endregion
 
         MetroFramework.Controls.MetroContextMenu menuStrip1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel PanelTopBar;
         private CustomControls.DataView DVValues;
         private System.Windows.Forms.Button BtnDelete;
         private System.Windows.Forms.Button BtnAdd;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnSettings;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel PanelTop;
         private System.Windows.Forms.Label lblSil;
         private System.Windows.Forms.Label lblEkle;
         private System.Windows.Forms.Button BtnUpdate;
