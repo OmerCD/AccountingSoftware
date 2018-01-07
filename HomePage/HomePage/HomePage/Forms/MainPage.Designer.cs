@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
             this.panel2 = new System.Windows.Forms.Panel();
             this.DVValues = new HomePage.CustomControls.DataView();
@@ -75,23 +75,23 @@
             this.DVValues.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DVValues.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DVValues.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Tomato;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Gold;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DVValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.Tomato;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Gold;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DVValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.DVValues.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightSlateGray;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Gold;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DVValues.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.LightSlateGray;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Gold;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DVValues.DefaultCellStyle = dataGridViewCellStyle20;
             this.DVValues.Location = new System.Drawing.Point(120, 117);
             this.DVValues.MultiSelect = false;
             this.DVValues.Name = "DVValues";
@@ -255,13 +255,14 @@
             this.BtnUsers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnUsers.Location = new System.Drawing.Point(3, 210);
             this.BtnUsers.Name = "BtnUsers";
-            this.BtnUsers.Size = new System.Drawing.Size(109, 30);
+            this.BtnUsers.Size = new System.Drawing.Size(108, 30);
             this.BtnUsers.TabIndex = 6;
-            this.BtnUsers.Text = "Kişiler";
-            this.BtnUsers.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnUsers.Text = "Kişiler ";
+            this.BtnUsers.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.BtnUsers.UseVisualStyleBackColor = true;
             this.BtnUsers.Visible = false;
             this.BtnUsers.Click += new System.EventHandler(this.BtnUsers_Click);
+            this.BtnUsers.MouseEnter += new System.EventHandler(this.BtnUsers_MouseEnter);
             // 
             // pictureBox1
             // 
@@ -290,7 +291,7 @@
             this.BtnDocuments.Size = new System.Drawing.Size(109, 30);
             this.BtnDocuments.TabIndex = 1;
             this.BtnDocuments.Text = "Evrak";
-            this.BtnDocuments.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnDocuments.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.BtnDocuments.UseVisualStyleBackColor = true;
             this.BtnDocuments.Click += new System.EventHandler(this.BtnDocuments_Click);
             // 
@@ -311,7 +312,7 @@
             this.BtnJobs.Size = new System.Drawing.Size(109, 30);
             this.BtnJobs.TabIndex = 0;
             this.BtnJobs.Text = "              İşler";
-            this.BtnJobs.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnJobs.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.BtnJobs.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnJobs.UseVisualStyleBackColor = true;
             this.BtnJobs.Click += new System.EventHandler(this.BtnJobs_Click);
@@ -333,7 +334,7 @@
             this.BtnCompanies.Size = new System.Drawing.Size(109, 30);
             this.BtnCompanies.TabIndex = 0;
             this.BtnCompanies.Text = "   Firmalar";
-            this.BtnCompanies.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnCompanies.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.BtnCompanies.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnCompanies.UseVisualStyleBackColor = true;
             this.BtnCompanies.Click += new System.EventHandler(this.BtnCompanies_Click);

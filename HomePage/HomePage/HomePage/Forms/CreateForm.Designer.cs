@@ -41,15 +41,15 @@
             this.CtnData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.CtnData.ClickEvent = null;
             this.CtnData.CRUD = null;
-            this.CtnData.Location = new System.Drawing.Point(0, 2);
+            this.CtnData.Location = new System.Drawing.Point(0, 37);
             this.CtnData.Name = "CtnData";
-            this.CtnData.Size = new System.Drawing.Size(345, 437);
+            this.CtnData.Size = new System.Drawing.Size(345, 402);
             this.CtnData.TabIndex = 0;
             // 
             // btnExit
             // 
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnExit.BackgroundImage")));
             this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnExit.FlatAppearance.BorderSize = 0;
@@ -58,7 +58,7 @@
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnExit.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnExit.Location = new System.Drawing.Point(297, 12);
+            this.btnExit.Location = new System.Drawing.Point(305, 0);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(35, 37);
             this.btnExit.TabIndex = 4;
@@ -69,6 +69,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(344, 441);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.CtnData);

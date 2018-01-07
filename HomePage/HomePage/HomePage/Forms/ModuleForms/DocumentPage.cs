@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using HomePage.Document;
 using HomePage.Classes.Database;
 using HomePage.Classes.Database.Cruds;
 using HomePage.Classes.Database.Entities;
+using HomePage.Classes.Database.Enums;
 
 namespace HomePage.Forms.ModuleForms
 {
     public partial class DocumentPage : Form
     {
-        private const int EXTRA_COLUMN_COUNT = 2;
+        private const int EXTRA_COLUMN_COUNT = 4;
         private CRUD<Column> _columnCrud;
         private CRUD<Company> _companyCrud;
         private CompanyColumnIndexCRUD _companyColumnIndexCrud;
@@ -65,6 +61,14 @@ namespace HomePage.Forms.ModuleForms
                     }
                 }
             }
+            InsertLog($"{MainPage.CurrentUser.Name} adlı kişi Dökumanları değiştirdi");
+        }
+
+        void InsertLog(string actionText)
+        {
+            var log = new Log(actionText,this.GetType().Name);
+            var logCRUD = new CRUD<Log>();
+            logCRUD.Insert(log);
         }
         private void DocumentPage_Load(object sender, EventArgs e)
         {
@@ -91,6 +95,15 @@ namespace HomePage.Forms.ModuleForms
             DgvDocuments.Columns[0].Visible = false;
             DgvDocuments.Columns[1].Name = "Şirketler";
             DgvDocuments.Columns[1].ReadOnly = true;
+            DgvDocuments.Columns[2].Name = "Son Düzenleyen";
+            DgvDocuments.Columns[2].ReadOnly = true;
+            if (MainPage.CurrentUser.UserType != UserTypes.Administrator)
+                DgvDocuments.Columns[2].Visible = false;
+            DgvDocuments.Columns[3].Name = "Son Düzenleme Tarihi";
+            DgvDocuments.Columns[3].ReadOnly = true;
+            //todo Assign right variables to the columns
+            DgvDocuments.Columns[2].Visible = false;
+            DgvDocuments.Columns[3].Visible = false;
             for (var i = EXTRA_COLUMN_COUNT; i < columns.Count + EXTRA_COLUMN_COUNT; i++)
             {
                 DgvDocuments.Columns[i].Name = columns[i - EXTRA_COLUMN_COUNT].Name;
@@ -102,7 +115,6 @@ namespace HomePage.Forms.ModuleForms
                 row.Cells[0].Value = company._id;
                 row.Cells[1].Value = company.Name;
                 var indecies = _companyColumnIndexCrud.GetCompanyAnswerIndexes(company);
-
                 for (var j = EXTRA_COLUMN_COUNT; j < columns.Count + EXTRA_COLUMN_COUNT; j++)
                 {
                     var column = columns[j - EXTRA_COLUMN_COUNT];

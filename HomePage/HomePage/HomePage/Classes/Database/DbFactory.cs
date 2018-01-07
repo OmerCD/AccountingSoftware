@@ -2,9 +2,6 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using HomePage.Document;
 
@@ -12,11 +9,24 @@ namespace HomePage.Classes.Database
 {
     public class DbFactory
     {
+        public static async Task<bool> SetConnection(string serverIP)
+        {
+            _client = new MongoClient($"mongodb://{serverIP}:27017");
+            try
+            {
+                await Database.RunCommandAsync((Command<BsonDocument>)"{ping:1}");
+            }
+            catch (TimeoutException)
+            {
+                return false;
+            }
+            return true;
+        }
         //public static IMongoClient Client = new MongoClient("mongodb://mustafarumeli:2dDfShKEX9rbc6e2eHxedLaouu8glHyZE9Ghz5PauBTfBkhpIWhvZuwxsgal1bnhQ2ZIQdIgjxDSrfT6XjS9YA==@mustafarumeli.documents.azure.com:10255/?ssl=true&replicaSet=globaldb");
-        private static readonly IMongoClient Client = new MongoClient();
+        private static IMongoClient _client;
         private static IMongoDatabase _database;
 
-        public static IMongoDatabase Database => _database ?? (_database = Client.GetDatabase("test2"));
+        public static IMongoDatabase Database => _database ?? (_database = _client.GetDatabase("test2"));
 
         private static IMongoCollection<BsonDocument> _user;
         private static IMongoCollection<BsonDocument> _companyColumnIndex;
@@ -27,6 +37,7 @@ namespace HomePage.Classes.Database
         private static IMongoCollection<BsonDocument> _companyLogin;
         private static IMongoCollection<BsonDocument> _personnel;
         private static IMongoCollection<BsonDocument> _generalSettings;
+        private static IMongoCollection<BsonDocument> _log;
 
         public static IMongoCollection<BsonDocument> GeneralSettings => _generalSettings ?? (_generalSettings = Database.GetCollection<BsonDocument>(typeof(Entities.GeneralSettings).Name));
         public static IMongoCollection<BsonDocument> User => _user ?? (_user = Database.GetCollection<BsonDocument>(typeof(Entities.User).Name));
@@ -36,6 +47,7 @@ namespace HomePage.Classes.Database
         public static IMongoCollection<BsonDocument> Job => _job ?? (_job = Database.GetCollection<BsonDocument>(typeof(Entities.Job).Name));
         public static IMongoCollection<BsonDocument> Calendar => _calendar ?? (_calendar = Database.GetCollection<BsonDocument>(typeof(Entities.Calendar).Name));
         public static IMongoCollection<BsonDocument> CompanyLogin => _companyLogin ?? (_companyLogin = Database.GetCollection<BsonDocument>(typeof(Entities.CompanyLogin).Name));
+        public static IMongoCollection<BsonDocument> Log => _log ?? (_log = Database.GetCollection<BsonDocument>(typeof(Entities.Log).Name));
 
 
         private static UserCRUD _userCRUD;

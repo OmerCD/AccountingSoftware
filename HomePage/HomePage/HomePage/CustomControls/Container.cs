@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using HomePage.Classes;
-using System.Collections;
 using System.Reflection;
 using HomePage.Classes.Database.Entities;
 using HomePage.Classes.Database;
@@ -213,7 +208,7 @@ namespace HomePage.CustomControls
         private void Add(Control userControl, string propertyName)
         {
             _valueControls.Add(propertyName, (IMainCustomControl)userControl);
-            userControl.Location = new Point(userControl.Location.X, _lastY);
+            userControl.Location = new Point(userControl.Location.X+30, _lastY);
             this.Controls.Add(userControl);
             _lastY += userControl.Size.Height + 10;
         }

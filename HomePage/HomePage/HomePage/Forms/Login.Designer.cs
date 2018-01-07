@@ -34,6 +34,8 @@
             this.LoginButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnExit = new System.Windows.Forms.Button();
+            this.ServerIPTextBox = new HomePage.CustomControls.MyTextBox();
+            this.CbRememberInfo = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,7 +44,7 @@
             this.PasswordTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(29)))), ((int)(((byte)(30)))));
             this.PasswordTextBox.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.PasswordTextBox.ForeColor = System.Drawing.Color.Silver;
-            this.PasswordTextBox.Location = new System.Drawing.Point(12, 236);
+            this.PasswordTextBox.Location = new System.Drawing.Point(12, 301);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.Size = new System.Drawing.Size(254, 32);
             this.PasswordTextBox.TabIndex = 2;
@@ -56,14 +58,15 @@
             this.UserNameTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(29)))), ((int)(((byte)(30)))));
             this.UserNameTextBox.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.UserNameTextBox.ForeColor = System.Drawing.Color.Silver;
-            this.UserNameTextBox.Location = new System.Drawing.Point(12, 198);
+            this.UserNameTextBox.Location = new System.Drawing.Point(12, 263);
             this.UserNameTextBox.Name = "UserNameTextBox";
             this.UserNameTextBox.PlaceHolder = null;
             this.UserNameTextBox.Size = new System.Drawing.Size(254, 32);
             this.UserNameTextBox.TabIndex = 1;
             this.UserNameTextBox.Text = "Kullanıcı Adı";
             this.UserNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.UserNameTextBox.Enter += new System.EventHandler(this.UserNameTextBox_Enter);
+            this.UserNameTextBox.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.UserNameTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // LoginButton
             // 
@@ -72,7 +75,7 @@
             this.LoginButton.FlatAppearance.BorderSize = 0;
             this.LoginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LoginButton.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.LoginButton.Location = new System.Drawing.Point(79, 274);
+            this.LoginButton.Location = new System.Drawing.Point(79, 382);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(120, 30);
             this.LoginButton.TabIndex = 3;
@@ -103,13 +106,42 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // ServerIPTextBox
+            // 
+            this.ServerIPTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(29)))), ((int)(((byte)(30)))));
+            this.ServerIPTextBox.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.ServerIPTextBox.ForeColor = System.Drawing.Color.Silver;
+            this.ServerIPTextBox.Location = new System.Drawing.Point(12, 198);
+            this.ServerIPTextBox.Name = "ServerIPTextBox";
+            this.ServerIPTextBox.PlaceHolder = null;
+            this.ServerIPTextBox.Size = new System.Drawing.Size(254, 32);
+            this.ServerIPTextBox.TabIndex = 6;
+            this.ServerIPTextBox.Text = "Server IP";
+            this.ServerIPTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ServerIPTextBox.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.ServerIPTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
+            // 
+            // CbRememberInfo
+            // 
+            this.CbRememberInfo.AutoSize = true;
+            this.CbRememberInfo.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.CbRememberInfo.ForeColor = System.Drawing.Color.White;
+            this.CbRememberInfo.Location = new System.Drawing.Point(12, 352);
+            this.CbRememberInfo.Name = "CbRememberInfo";
+            this.CbRememberInfo.Size = new System.Drawing.Size(115, 24);
+            this.CbRememberInfo.TabIndex = 7;
+            this.CbRememberInfo.Text = "Bilgileri Hatırla";
+            this.CbRememberInfo.UseVisualStyleBackColor = true;
+            // 
             // Login
             // 
             this.AcceptButton = this.LoginButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
-            this.ClientSize = new System.Drawing.Size(278, 330);
+            this.ClientSize = new System.Drawing.Size(278, 424);
+            this.Controls.Add(this.CbRememberInfo);
+            this.Controls.Add(this.ServerIPTextBox);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.PasswordTextBox);
@@ -133,5 +165,7 @@
         private System.Windows.Forms.TextBox PasswordTextBox;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnExit;
+        private CustomControls.MyTextBox ServerIPTextBox;
+        private System.Windows.Forms.CheckBox CbRememberInfo;
     }
 }

@@ -1,9 +1,4 @@
 ﻿using HomePage.Classes.Database.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomePage.Classes.Database.Entities
 {
@@ -33,7 +28,7 @@ namespace HomePage.Classes.Database.Entities
         [Custom(FieldName = "Vergi Numarası",MaxLength =10,MaxLengthMessage ="Vergi Numarası on haneden büyük olamaz",MinLength = 10,MinLengthMessage ="Vergi Numarası 10 haneden küçük olamaz",PlaceHolderText ="Vergi Numarası" )]
         public string TaxNo { get; set; } // Max= 100
         public TaxOffice TaxOffice { get; set; }
-        [Custom(FieldName ="Ticaret Sicil Numarası")]
+        [Custom(FieldName ="Ticaret Sicil Numarası",MinLength = 1,MaxLength = 25)]
         public string TicaretSicilNo { get; set; }
         [Custom(FieldName ="Tc Kimlik Numarası",MinLength = 11,MaxLength = 11,Nullable = true)]
         public string TcNo { get; set; } // Eğer Şahıs Şirketi ise

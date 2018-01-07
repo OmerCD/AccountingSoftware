@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HomePage.Classes.Database.Entities
+﻿namespace HomePage.Classes.Database.Entities
 {
    public class CompanyLogin :DbObject
     {

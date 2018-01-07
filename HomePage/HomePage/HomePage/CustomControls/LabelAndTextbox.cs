@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using HomePage.Classes;
 using System.Text.RegularExpressions;
 
@@ -38,6 +30,11 @@ namespace HomePage.CustomControls
             if (_attribute.Nullable && LatTextBox.TextLength==0)
             {
                 return true;
+            }
+            if (LatTextBox.IsPlaceHolder)
+            {
+                LatErrorLabel.Text = _attribute.MinLengthMessage;
+                return false;
             }
             if (LatTextBox.TextLength < _attribute.MinLength)
             {

@@ -1,17 +1,9 @@
-﻿using HomePage.Classes;
-using HomePage.Classes.Database;
+﻿using HomePage.Classes.Database;
 using HomePage.Classes.Database.Cruds;
 using HomePage.Classes.Database.Entities;
-using HomePage.CustomControls;
 using HomePage.Forms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using HomePage.Classes.Database.Enums;
 using HomePage.Forms.ModuleForms;
@@ -19,35 +11,35 @@ using System.Runtime.InteropServices;
 
 namespace HomePage
 {
-    public partial class MainPage : Form//MetroFramework.Forms.MetroForm
+    public partial class MainPage : Form
     {
         public static User CurrentUser;
 
         public MainPage()
         {
-            if (CurrentUser == null)
+            //if (CurrentUser == null)
+            //{
+            //    CurrentUser = new User("TestUser", "1234", "Test1 Test2", "test@mail.com", UserTypes.Administrator, null);
+            //}
+            using (var frm = new Login())
             {
-                CurrentUser = new User("TestUser", "1234", "Test1 Test2", "test@mail.com", UserTypes.Administrator, null);
-            }
-            //using (var frm = new Login())
-            //{
-            //    var result = frm.ShowDialog();
-            //    if (CurrentUser == null || result != DialogResult.Yes)
-            //    {
-            //        Close();
-            //        Application.Exit();
-            //    }
-            //    else
-            //{
-            InitializeComponent();
+                var result = frm.ShowDialog();
+                if (CurrentUser == null || result != DialogResult.Yes)
+                {
+                    Close();
+                    Application.Exit();
+                }
+                else
+                {
+                    InitializeComponent();
             if (CurrentUser.UserType == UserTypes.Administrator)
             {
                 BtnUsers.Visible = true;
             }
-            //pnlDataGrid.Visible = false;
+                    //pnlDataGrid.Visible = false;
 
-            //}
-            //}
+                }
+            }
 
         }
         Dictionary<string, string> PersonnelNameList;
@@ -143,8 +135,7 @@ namespace HomePage
         {
             if (DVValues.SelectedCells.Count > 0)
             {
-
-                dynamic genericCRUD = GetCRUD(_lastType);
+                var genericCRUD = GetCRUD(_lastType);
                 var entity = genericCRUD.GetOne(DVValues.SelectedId);
 
                 //var entity = _lastCrudType.GetMethod("GetOne")?.Invoke(Activator.CreateInstance(_lastCrudType), new[] { DVValues.SelectedId });
@@ -155,7 +146,11 @@ namespace HomePage
                 }
             }
         }
-
+        /// <summary>
+        /// Returns a dynamic variable based on the type entered. It is used for creating a generic CRUD type
+        /// </summary>
+        /// <param name="type">Disered type of CRUD</param>
+        /// <returns>Dynamic CRUD variable</returns>
         public static dynamic GetCRUD(Type type)
         {
             return Activator.CreateInstance(typeof(CRUD<>).MakeGenericType(type));
@@ -171,23 +166,28 @@ namespace HomePage
         {
             dynamic comps = new CRUD<T>();
             var list = comps.GetAll();
-            DVValues.Init<User>();
+            DVValues.Init<T>();
             foreach (var item in list)
             {
-                CustomControls.DataRow r = new CustomControls.DataRow();
+                var r = new CustomControls.DataRow();
                 DVValues.Add(r.CreateRow(item), item._id);
             }
         }
         private void RefreshDataGridView()
         {
-            dynamic comps = Activator.CreateInstance(typeof(CRUD<>).MakeGenericType(_lastType));
+            dynamic comps = GetCRUD(_lastType);
             var list = comps.GetAll();
-            DVValues.Init<User>();
+            DVValues.Init(_lastType);
             foreach (var item in list)
             {
-                CustomControls.DataRow r = new CustomControls.DataRow();
+                var r = new CustomControls.DataRow();
                 DVValues.Add(r.CreateRow(item), item._id);
             }
+        }
+
+        private void BtnUsers_MouseEnter(object sender, EventArgs e)
+        {
+            BtnUsers.Text = BtnUsers.Text.TrimEnd();
         }
     }
 }

@@ -2,12 +2,9 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
-using Newtonsoft.Json;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace HomePage.Classes.Database
 {
