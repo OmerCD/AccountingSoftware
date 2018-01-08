@@ -33,10 +33,10 @@
             // 
             // BtnLogOut
             // 
-            this.BtnLogOut.BackColor = System.Drawing.Color.Tomato;
+            this.BtnLogOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
             this.BtnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnLogOut.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnLogOut.ForeColor = System.Drawing.Color.White;
+            this.BtnLogOut.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.BtnLogOut.Location = new System.Drawing.Point(3, 3);
             this.BtnLogOut.Name = "BtnLogOut";
             this.BtnLogOut.Size = new System.Drawing.Size(144, 30);
@@ -48,10 +48,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.BackColor = System.Drawing.Color.GhostWhite;
             this.Controls.Add(this.BtnLogOut);
             this.Name = "SettingsContextMenu";
-            this.Size = new System.Drawing.Size(150, 67);
+            this.Size = new System.Drawing.Size(150, 37);
             this.ResumeLayout(false);
 
         }

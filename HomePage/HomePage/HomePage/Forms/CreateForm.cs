@@ -23,17 +23,20 @@ namespace HomePage.Forms
         private void CreateForm_HandleCreated(object sender, EventArgs e)
         {
             CtnData.Object = _entity;
-            if (_goal == FormGoal.Update)
+            switch (_goal)
             {
-                CtnData.ButtonText = "Güncelle";
-                CtnData.ClickEvent = ButtonClickUpdate;
+                case FormGoal.Update:
+                    CtnData.ButtonText = "Güncelle";
+                    CtnData.ClickEvent = ButtonClickUpdate;
+                    Text = "Güncelleme Ekranı";
+                    break;
+                case FormGoal.Add:
+                    CtnData.ButtonText = "Veri Ekle";
+                    CtnData.ClickEvent = ButtonClickAdd;
+                    Text = "Yeni Kayıt Ekle";
+                    break;
             }
-            else if (_goal == FormGoal.Add)
-            {
-                CtnData.ButtonText = "Veri Ekle";
-                CtnData.ClickEvent = ButtonClickAdd;
-            }
-            var size = new Size(CtnData.Size.Width+200, CtnData.Size.Height);
+            var size = new Size(CtnData.Size.Width + 200, CtnData.Size.Height);
             this.Size = size;
             this.MaximumSize = size;
             this.MinimumSize = size;
@@ -43,7 +46,7 @@ namespace HomePage.Forms
         {
             var type = _entity.GetType();
             var genericType = typeof(CRUD<>).MakeGenericType(type);
-            
+
             //dynamic genericCRUD = Activator.CreateInstance(genericType);
             //genericCRUD.Insert(CtnData.Object);
 
@@ -51,7 +54,7 @@ namespace HomePage.Forms
             var method = genericType.GetMethod("Insert");
             var objectC = CtnData.Object;
             method?.Invoke(genericCRUD, new[] { objectC });
-            if (method!=null)
+            if (method != null)
             {
                 Close();
             }
@@ -64,7 +67,7 @@ namespace HomePage.Forms
             var genericCRUD = Activator.CreateInstance(genericType);
             var method = genericType.GetMethod("Update");
             var objectC = CtnData.Object;
-            method?.Invoke(genericCRUD, new[] {_entity._id, objectC });
+            method?.Invoke(genericCRUD, new[] { _entity._id, objectC });
             if (method != null)
             {
                 Close();

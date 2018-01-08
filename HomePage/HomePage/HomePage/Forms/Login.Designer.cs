@@ -78,7 +78,7 @@
             this.LoginButton.Location = new System.Drawing.Point(79, 382);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(120, 30);
-            this.LoginButton.TabIndex = 3;
+            this.LoginButton.TabIndex = 4;
             this.LoginButton.UseVisualStyleBackColor = false;
             this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
             // 
@@ -95,7 +95,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.BackgroundImage = global::HomePage.Properties.Resources._002_power_4;
+            this.btnExit.BackgroundImage = global::HomePage.Properties.Resources.power;
             this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnExit.FlatAppearance.BorderSize = 0;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -115,7 +115,7 @@
             this.ServerIPTextBox.Name = "ServerIPTextBox";
             this.ServerIPTextBox.PlaceHolder = null;
             this.ServerIPTextBox.Size = new System.Drawing.Size(254, 32);
-            this.ServerIPTextBox.TabIndex = 6;
+            this.ServerIPTextBox.TabIndex = 0;
             this.ServerIPTextBox.Text = "Server IP";
             this.ServerIPTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.ServerIPTextBox.Enter += new System.EventHandler(this.TextBox_Enter);
@@ -129,7 +129,7 @@
             this.CbRememberInfo.Location = new System.Drawing.Point(12, 352);
             this.CbRememberInfo.Name = "CbRememberInfo";
             this.CbRememberInfo.Size = new System.Drawing.Size(115, 24);
-            this.CbRememberInfo.TabIndex = 7;
+            this.CbRememberInfo.TabIndex = 3;
             this.CbRememberInfo.Text = "Bilgileri Hatırla";
             this.CbRememberInfo.UseVisualStyleBackColor = true;
             // 

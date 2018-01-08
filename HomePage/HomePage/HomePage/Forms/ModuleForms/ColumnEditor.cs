@@ -25,6 +25,7 @@ namespace HomePage.Forms.ModuleForms
             foreach (var column in columns)
             {
                 var answers = column.PossibleAnswers.Aggregate("", (current, answer) => current + (answer + ','));
+                answers = answers.Substring(0, answers.Length - 1);
                 var row = new ListViewItem(new[] { column.Name, answers });
                 LvColumns.AddRow(row, column._id);
             }
@@ -72,6 +73,11 @@ namespace HomePage.Forms.ModuleForms
         }
 
         private void BtnAddAnswer_Click(object sender, EventArgs e)
+        {
+            AddAnswer();
+        }
+
+        private void AddAnswer()
         {
             if (TbAnswer.TextLength > 2)
             {
@@ -142,6 +148,14 @@ namespace HomePage.Forms.ModuleForms
         private void btnExit_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void TbAnswer_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode==Keys.Enter)
+            {
+                AddAnswer();
+            }
         }
     }
 }

@@ -137,7 +137,7 @@
             this.BtnUpdate.Location = new System.Drawing.Point(171, 7);
             this.BtnUpdate.Name = "BtnUpdate";
             this.BtnUpdate.Size = new System.Drawing.Size(78, 60);
-            this.BtnUpdate.TabIndex = 7;
+            this.BtnUpdate.TabIndex = 2;
             this.BtnUpdate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnUpdate.UseVisualStyleBackColor = true;
             this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
@@ -176,7 +176,7 @@
             this.btnExit.Location = new System.Drawing.Point(863, 6);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(35, 37);
-            this.btnExit.TabIndex = 3;
+            this.btnExit.TabIndex = 4;
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
@@ -190,7 +190,7 @@
             this.BtnDelete.Location = new System.Drawing.Point(87, 7);
             this.BtnDelete.Name = "BtnDelete";
             this.BtnDelete.Size = new System.Drawing.Size(78, 60);
-            this.BtnDelete.TabIndex = 0;
+            this.BtnDelete.TabIndex = 1;
             this.BtnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnDelete.UseVisualStyleBackColor = true;
             this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
@@ -224,7 +224,7 @@
             this.btnSettings.Location = new System.Drawing.Point(822, 6);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(35, 37);
-            this.btnSettings.TabIndex = 4;
+            this.btnSettings.TabIndex = 3;
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
@@ -257,7 +257,7 @@
             this.BtnUsers.Location = new System.Drawing.Point(3, 210);
             this.BtnUsers.Name = "BtnUsers";
             this.BtnUsers.Size = new System.Drawing.Size(108, 30);
-            this.BtnUsers.TabIndex = 6;
+            this.BtnUsers.TabIndex = 3;
             this.BtnUsers.Text = "Kişiler ";
             this.BtnUsers.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.BtnUsers.UseVisualStyleBackColor = true;
@@ -290,7 +290,7 @@
             this.BtnDocuments.Location = new System.Drawing.Point(3, 179);
             this.BtnDocuments.Name = "BtnDocuments";
             this.BtnDocuments.Size = new System.Drawing.Size(109, 30);
-            this.BtnDocuments.TabIndex = 1;
+            this.BtnDocuments.TabIndex = 2;
             this.BtnDocuments.Text = "Evrak";
             this.BtnDocuments.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.BtnDocuments.UseVisualStyleBackColor = true;
@@ -311,7 +311,7 @@
             this.BtnJobs.Location = new System.Drawing.Point(3, 148);
             this.BtnJobs.Name = "BtnJobs";
             this.BtnJobs.Size = new System.Drawing.Size(109, 30);
-            this.BtnJobs.TabIndex = 0;
+            this.BtnJobs.TabIndex = 1;
             this.BtnJobs.Text = "              İşler";
             this.BtnJobs.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.BtnJobs.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;

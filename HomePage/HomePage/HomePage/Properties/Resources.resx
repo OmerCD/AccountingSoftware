@@ -133,7 +133,7 @@
   <data name="houses111" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\houses111.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="004-settings-3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\004-settings-31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="F1login" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -187,7 +187,7 @@
   <data name="houses11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\houses11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="002-power-4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="power" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\002-power-41.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="calculator1" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -205,7 +205,7 @@
   <data name="F1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\F1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Double Ring (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="DoubleRing" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Double Ring (2).gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DocumentPage));
             this.DgvDocuments = new System.Windows.Forms.DataGridView();
             this.btnApplyChanges = new System.Windows.Forms.Button();
             this.BtnColumnEditor = new System.Windows.Forms.Button();
@@ -69,7 +70,7 @@
             this.btnApplyChanges.Location = new System.Drawing.Point(637, 476);
             this.btnApplyChanges.Name = "btnApplyChanges";
             this.btnApplyChanges.Size = new System.Drawing.Size(75, 34);
-            this.btnApplyChanges.TabIndex = 1;
+            this.btnApplyChanges.TabIndex = 2;
             this.btnApplyChanges.Text = "Kaydet";
             this.btnApplyChanges.UseVisualStyleBackColor = false;
             this.btnApplyChanges.Click += new System.EventHandler(this.btnApplyChanges_Click);
@@ -84,7 +85,7 @@
             this.BtnColumnEditor.Location = new System.Drawing.Point(637, 12);
             this.BtnColumnEditor.Name = "BtnColumnEditor";
             this.BtnColumnEditor.Size = new System.Drawing.Size(75, 62);
-            this.BtnColumnEditor.TabIndex = 2;
+            this.BtnColumnEditor.TabIndex = 1;
             this.BtnColumnEditor.Text = "Sütun Editör";
             this.BtnColumnEditor.UseVisualStyleBackColor = false;
             this.BtnColumnEditor.Click += new System.EventHandler(this.BtnColumnEditor_Click);
@@ -98,6 +99,7 @@
             this.Controls.Add(this.BtnColumnEditor);
             this.Controls.Add(this.btnApplyChanges);
             this.Controls.Add(this.DgvDocuments);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(740, 561);
             this.Name = "DocumentPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -73,7 +73,7 @@
             this.ClientSize = new System.Drawing.Size(344, 441);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.CtnData);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "CreateForm";
             this.Text = "CreateForm";
