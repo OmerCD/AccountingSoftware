@@ -3,6 +3,8 @@ using HomePage.CustomControls;
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using HomePage.Classes.Database.Entities;
 using HomePage.Properties;
@@ -24,6 +26,7 @@ namespace HomePage.Forms
 
         private readonly char _passChar;
         private readonly string _passwordPlaceHolder;
+        private readonly LoadingForm _waitingForm = new LoadingForm();
 
         private void InsertAdmin()
         {
@@ -47,6 +50,7 @@ namespace HomePage.Forms
         public Login()
         {
             InitializeComponent();
+            _waitingForm.ClosedBeforeFinished += _waitingForm_ClosedBeforeFinished;
             StartPosition = FormStartPosition.CenterScreen;
             _passChar = PasswordTextBox.PasswordChar;
             UserNameTextBox.PlaceHolder = UserNameTextBox.Text;
@@ -74,6 +78,10 @@ namespace HomePage.Forms
                 }
                 CbRememberInfo.Checked = true;
             }
+        }
+
+        private void _waitingForm_ClosedBeforeFinished()
+        {
         }
 
         private void PasswordTextBox_Enter(object sender, EventArgs e)
@@ -133,18 +141,17 @@ namespace HomePage.Forms
             LoginButton.Enabled = !locked;
             btnExit.Enabled = !locked;
         }
-        private async void ConnectAndLogin()
+        private async Task ConnectAndLogin()
         {
             SetLockLoginForm(true);
-            var waitingForm = new LoadingForm();
-            waitingForm.Show();
+            _waitingForm.Show();
             if (await DbFactory.SetConnection(ServerIPTextBox.Text))
             {
                 
                 InsertAdmin();
                 SetLockLoginForm(false);
-                waitingForm.Close();
-                waitingForm.Dispose();
+                _waitingForm.Close();
+                _waitingForm.Dispose();
                 var userName = UserNameTextBox.Text;
                 var password = PasswordTextBox.Text;
                 var user = DbFactory.UserCRUD.CheckAuthentication(userName, password);
@@ -162,8 +169,8 @@ namespace HomePage.Forms
             }
             else
             {
-                waitingForm.Close();
-                waitingForm.Dispose();
+                _waitingForm.Close();
+                _waitingForm.Dispose();
 
                 var mboxResult = MessageBox.Show("Sunucuya Bağlanılamadı", "Hata", MessageBoxButtons.RetryCancel,
                     MessageBoxIcon.Error);

@@ -38,9 +38,8 @@
             this.CtnData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CtnData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.CtnData.BackColor = System.Drawing.Color.FromArgb(64, 64, 64);
             this.CtnData.ClickEvent = null;
-            this.CtnData.CRUD = null;
             this.CtnData.Location = new System.Drawing.Point(0, 37);
             this.CtnData.Name = "CtnData";
             this.CtnData.Size = new System.Drawing.Size(345, 402);

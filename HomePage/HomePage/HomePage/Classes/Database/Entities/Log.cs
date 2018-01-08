@@ -3,10 +3,11 @@ using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace HomePage.Classes.Database.Entities
 {
-    class Log : DbObject
+    internal class Log : DbObject
     {
         private string GetLocalIPAddress()
         {

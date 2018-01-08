@@ -13,6 +13,12 @@ namespace HomePage.Classes.Database
         {
             Table = DbFactory.User;
         }
+        /// <summary>
+        /// Checks if the given parameters are correct for the login. If it is correct returns User entity, if it is not correct it returns null object
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public User CheckAuthentication(string userName, string password)
         {
             try
