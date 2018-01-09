@@ -39,7 +39,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CtnData.BackColor = System.Drawing.Color.FromArgb(64, 64, 64);
-            this.CtnData.ClickEvent = null;
             this.CtnData.Location = new System.Drawing.Point(0, 37);
             this.CtnData.Name = "CtnData";
             this.CtnData.Size = new System.Drawing.Size(345, 402);
@@ -53,7 +52,7 @@
             this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnExit.FlatAppearance.BorderSize = 0;
             this.btnExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
+            this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(31, 104, 166);
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnExit.ForeColor = System.Drawing.SystemColors.Control;

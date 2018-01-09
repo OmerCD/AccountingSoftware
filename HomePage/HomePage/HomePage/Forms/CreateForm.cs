@@ -10,8 +10,8 @@ namespace HomePage.Forms
 {
     public partial class CreateForm : NoBorderForm
     {
-        private DbObject _entity;
-        private FormGoal _goal;
+        private readonly DbObject _entity;
+        private readonly FormGoal _goal;
         public CreateForm(DbObject entity, FormGoal goal)
         {
             InitializeComponent();
@@ -27,14 +27,18 @@ namespace HomePage.Forms
             {
                 case FormGoal.Update:
                     CtnData.ButtonText = "Güncelle";
-                    CtnData.ClickEvent = ButtonClickUpdate;
+                    CtnData.ButtonClickEvent += ButtonClickUpdate;
                     Text = "Güncelleme Ekranı";
                     break;
                 case FormGoal.Add:
                     CtnData.ButtonText = "Veri Ekle";
-                    CtnData.ClickEvent = ButtonClickAdd;
+                    CtnData.ButtonClickEvent += ButtonClickAdd;
                     Text = "Yeni Kayıt Ekle";
                     break;
+                case FormGoal.Delete:
+                    throw new ArgumentOutOfRangeException();
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
             var size = new Size(CtnData.Size.Width + 200, CtnData.Size.Height);
             this.Size = size;
@@ -45,11 +49,11 @@ namespace HomePage.Forms
         private void ButtonClickAdd(object sender, EventArgs e)
         {
             var type = _entity.GetType();
-            var genericType = typeof(CRUD<>).MakeGenericType(type);
 
-            //dynamic genericCRUD = Activator.CreateInstance(genericType);
+            //var genericCRUD = MainPage.GetCRUD(type);
             //genericCRUD.Insert(CtnData.Object);
 
+            var genericType = typeof(CRUD<>).MakeGenericType(type);
             var genericCRUD = Activator.CreateInstance(genericType);
             var method = genericType.GetMethod("Insert");
             var objectC = CtnData.Object;

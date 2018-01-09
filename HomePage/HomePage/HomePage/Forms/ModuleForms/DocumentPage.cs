@@ -45,7 +45,12 @@ namespace HomePage.Forms.ModuleForms
             }
             InsertLog($"{MainPage.CurrentUser.Name} adlı kişi Dökumanları değiştirdi");
         }
-
+        /// <summary>
+        /// Inserts AnswerIndicies to the database based on given parameters.
+        /// </summary>
+        /// <param name="columns"></param>
+        /// <param name="row"></param>
+        /// <param name="company"></param>
         private void CreateCollectionDatabase(List<Column> columns, DataGridViewRow row, Company company)
         {
             for (var j = EXTRA_COLUMN_COUNT; j < DgvDocuments.ColumnCount; j++)

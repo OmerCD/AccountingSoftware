@@ -3,6 +3,7 @@ using HomePage.CustomControls;
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,8 +27,6 @@ namespace HomePage.Forms
 
         private readonly char _passChar;
         private readonly string _passwordPlaceHolder;
-        private readonly LoadingForm _waitingForm = new LoadingForm();
-
         private void InsertAdmin()
         {
             var settingsCRUD = new CRUD<GeneralSettings>(DbFactory.GeneralSettings);
@@ -43,19 +42,24 @@ namespace HomePage.Forms
                     Password = "admin123"
                 };
                 userCRUD.Insert(personnel);
-                settingsCRUD.Insert(new GeneralSettings {AdminCreated = true});
+                settingsCRUD.Insert(new GeneralSettings { AdminCreated = true });
             }
-            
+
         }
         public Login()
         {
             InitializeComponent();
-            _waitingForm.ClosedBeforeFinished += _waitingForm_ClosedBeforeFinished;
             StartPosition = FormStartPosition.CenterScreen;
             _passChar = PasswordTextBox.PasswordChar;
             UserNameTextBox.PlaceHolder = UserNameTextBox.Text;
             _passwordPlaceHolder = PasswordTextBox.Text;
             ServerIPTextBox.PlaceHolder = ServerIPTextBox.Text;
+
+            SetRememberInfo();
+        }
+
+        private void SetRememberInfo()
+        {
             if (Settings.Default.RememberMe)
             {
                 if (!string.IsNullOrWhiteSpace(Settings.Default.IPAddress))
@@ -80,10 +84,6 @@ namespace HomePage.Forms
             }
         }
 
-        private void _waitingForm_ClosedBeforeFinished()
-        {
-        }
-
         private void PasswordTextBox_Enter(object sender, EventArgs e)
         {
             if (PasswordTextBox.ForeColor != Color.White)
@@ -101,7 +101,7 @@ namespace HomePage.Forms
             {
                 //PasswordTextBox.PasswordChar = _passChar;
             }
-            else if (PasswordTextBox.TextLength<=0)
+            else if (PasswordTextBox.TextLength <= 0)
             {
                 PasswordTextBox.TextAlign = HorizontalAlignment.Center;
                 PasswordTextBox.Text = _passwordPlaceHolder;
@@ -114,23 +114,29 @@ namespace HomePage.Forms
         {
             #region Asıl Login
 
+            if (!ValidationCheck()) return;
+            ConnectAndLogin();
+            #endregion
+        }
+
+        private bool ValidationCheck()
+        {
             if (ServerIPTextBox.TextLength < 11)
             {
                 MessageBox.Show("Server IP adresi 11 haneden kısa olamaz", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                return;
+                return false;
             }
             if (UserNameTextBox.TextLength < 3)
             {
                 MessageBox.Show("Kullanıcı Adı 3 karakterden kısa olamaz", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                return;
+                return false;
             }
             if (PasswordTextBox.TextLength < 6)
             {
                 MessageBox.Show("Şifre 6 karakterden kısa olamaz", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                return;
+                return false;
             }
-            ConnectAndLogin();
-            #endregion
+            return true;
         }
 
         void SetLockLoginForm(bool locked)
@@ -140,49 +146,49 @@ namespace HomePage.Forms
             PasswordTextBox.Enabled = !locked;
             LoginButton.Enabled = !locked;
             btnExit.Enabled = !locked;
+            CbRememberInfo.Enabled = !locked;
         }
-        private async Task ConnectAndLogin()
+        private async void ConnectAndLogin()
         {
             SetLockLoginForm(true);
-            _waitingForm.Show();
-            if (await DbFactory.SetConnection(ServerIPTextBox.Text))
+            using (var waitingForm = new LoadingForm())
             {
-                
-                InsertAdmin();
-                SetLockLoginForm(false);
-                _waitingForm.Close();
-                _waitingForm.Dispose();
-                var userName = UserNameTextBox.Text;
-                var password = PasswordTextBox.Text;
-                var user = DbFactory.UserCRUD.CheckAuthentication(userName, password);
-                if (user == null)
+                waitingForm.Show();
+                if (await DbFactory.SetConnection(ServerIPTextBox.Text))
                 {
-                    MessageBox.Show("Hatalı Giriş Bilgisi", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (CbRememberInfo.Checked)
-                {
-                    SaveInfo();
-                }
-                MainPage.CurrentUser = user;
-                DialogResult = DialogResult.Yes;
-            }
-            else
-            {
-                _waitingForm.Close();
-                _waitingForm.Dispose();
 
-                var mboxResult = MessageBox.Show("Sunucuya Bağlanılamadı", "Hata", MessageBoxButtons.RetryCancel,
-                    MessageBoxIcon.Error);
-                if (mboxResult == DialogResult.Retry)
-                {
-                    
-                    Show();
-                    ConnectAndLogin();
-                }
-                else if (mboxResult==DialogResult.Cancel)
-                {
+                    InsertAdmin();
                     SetLockLoginForm(false);
+                    waitingForm.Close();
+                    var userName = UserNameTextBox.Text;
+                    var password = PasswordTextBox.Text;
+                    var user = DbFactory.UserCRUD.CheckAuthentication(userName, password);
+                    if (user == null)
+                    {
+                        MessageBox.Show("Hatalı Giriş Bilgisi", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    if (CbRememberInfo.Checked)
+                    {
+                        SaveInfo();
+                    }
+                    MainPage.CurrentUser = user;
+                    DialogResult = DialogResult.Yes;
+                }
+                else
+                {
+                    waitingForm.Close();
+                    var mboxResult = MessageBox.Show("Sunucuya Bağlanılamadı", "Hata", MessageBoxButtons.RetryCancel,
+                        MessageBoxIcon.Error);
+                    if (mboxResult == DialogResult.Retry)
+                    {
+                        Show();
+                        ConnectAndLogin();
+                    }
+                    else if (mboxResult == DialogResult.Cancel)
+                    {
+                        SetLockLoginForm(false);
+                    }
                 }
             }
         }
@@ -221,7 +227,7 @@ namespace HomePage.Forms
 
         private void TextBox_Enter(object sender, EventArgs e)
         {
-            var tBox = (MyTextBox) sender;
+            var tBox = (MyTextBox)sender;
             tBox.ForeColor = Color.White;
             tBox.TextAlign = HorizontalAlignment.Center;
         }

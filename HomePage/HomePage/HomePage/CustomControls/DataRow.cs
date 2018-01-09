@@ -12,13 +12,12 @@ namespace HomePage.CustomControls
         {
             InitializeComponent();
         }
-        public int _lastY = 0;
+
         public DataGridViewRow CreateRow<T>(T entity) where T : DbObject
         {
             DataGridViewRow row = new DataGridViewRow();
 
             var properties = typeof(T).GetProperties();
-            //row.CreateCells(_dataGridView);
             foreach (var property in properties)
             {
                 var propertyType = property.PropertyType;
@@ -63,7 +62,7 @@ namespace HomePage.CustomControls
                     {
                         var cell = new DataGridViewTextBoxCell();
                         var nameProperty = propertyType.GetProperty("Name");
-                        var x = nameProperty.GetValue(value);
+                        var x = nameProperty?.GetValue(value);
                         cell.Value = x ?? "---";
                         row.Cells.Add(cell);
                     }
@@ -81,7 +80,7 @@ namespace HomePage.CustomControls
                                 
                                 var itemType = item.GetType();
                                 var itemTypeName = itemType.GetProperty("Name");
-                                names += itemTypeName.GetValue(item) + "\n";
+                                names += itemTypeName?.GetValue(item) + "\n";
                                 
                             }
                             var cell = new DataGridViewTextBoxCell();

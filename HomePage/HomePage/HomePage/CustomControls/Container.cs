@@ -12,18 +12,30 @@ namespace HomePage.CustomControls
 {
     public partial class Container : UserControl
     {
+        /// <summary>
+        /// Object that this container will try to create the view for.
+        /// </summary>
         private object _object;
+        /// <summary>
+        /// This Dictionary keeps track of the controls added for assignment of the properties, that controls created from.
+        /// </summary>
         private readonly Dictionary<string, IMainCustomControl> _valueControls = new Dictionary<string, IMainCustomControl>();
 
+        /// <summary>
+        /// This property will set the Text on the single button in this container.
+        /// </summary>
         public string ButtonText
         {
             set => ContainerButton.Text = value;
         }
+        /// <summary>
+        /// This event will be triggerd when user clicks on the Button of this Container.
+        /// </summary>
+        public event Action<object,EventArgs> ButtonClickEvent;
 
-        public delegate void ButtonClickEvent(object sender, EventArgs e);
-        public ButtonClickEvent ClickEvent { get; set; }
-
-
+        /// <summary>
+        /// It will return the desired object or set up the Form based on desired object.
+        /// </summary>
         public object Object
         {
             set
@@ -37,7 +49,10 @@ namespace HomePage.CustomControls
                 return _object;
             }
         }
-
+        /// <summary>
+        /// It will assign entered values to the right properties of given object.
+        /// </summary>
+        /// <returns></returns>
         private object GetValues()
         {
             var props = _object.GetType().GetProperties();
@@ -46,25 +61,30 @@ namespace HomePage.CustomControls
                 if (prop.CustomAttributes.Any())
                 {
                     var value = _valueControls[prop.Name].Value;
-                    var propType = prop.PropertyType;
-                    if (propType.IsSubclassOf(typeof(DbObject)))
-                    {
-                        var foreignObject = GetField(prop,
-                            ((LabelAndCombobox)_valueControls[prop.Name]).GetSelectedId);
-                        prop.SetValue(_object, foreignObject);
-                    }
-                    else if (propType.IsEnum)
-                    {
-                        var cBox = (LabelAndCombobox)_valueControls[prop.Name];
-                        prop.SetValue(_object, cBox.SelectedIndex);
-                    }
-                    else
-                    {
-                        prop.SetValue(_object, value);
-                    }
+                    SetPropertyValue(prop, value);
                 }
             }
             return _object;
+        }
+
+        private void SetPropertyValue(PropertyInfo prop, object value)
+        {
+            var propType = prop.PropertyType;
+            if (propType.IsSubclassOf(typeof(DbObject)))
+            {
+                var foreignObject = GetField(prop,
+                    ((LabelAndCombobox)_valueControls[prop.Name]).GetSelectedId);
+                prop.SetValue(_object, foreignObject);
+            }
+            else if (propType.IsEnum)
+            {
+                var cBox = (LabelAndCombobox)_valueControls[prop.Name];
+                prop.SetValue(_object, cBox.SelectedIndex);
+            }
+            else
+            {
+                prop.SetValue(_object, value);
+            }
         }
 
         private object GetField(PropertyInfo prop, string getSelectedId)
@@ -93,7 +113,11 @@ namespace HomePage.CustomControls
             LocateButton();
 
         }
-
+        /// <summary>
+        /// Based on given parameters this method tries to create best suiting control for the given property which must have a CustomAttribute.
+        /// </summary>
+        /// <param name="property"></param>
+        /// <param name="attribute"></param>
         private void AddControl(PropertyInfo property,CustomAttribute attribute)
         {
             var propertyType = property.PropertyType;
@@ -145,14 +169,13 @@ namespace HomePage.CustomControls
                 if (result != null)
                 {
                     dynamic valueOfProperty = property.GetValue(_object);
-                    string name = valueOfProperty.Name;
+                    string name = valueOfProperty?.Name;
                     var nameChecked = false;
                     foreach (var pair in result)
                     {
                         if (nameChecked == false && name != pair.Key)
                         {
                             index++;
-
                         }
                         else
                         {
@@ -160,10 +183,10 @@ namespace HomePage.CustomControls
                         }
                         cb.Add(pair.Key, pair.Value);
                     }
-                    cb.ComboBox.SelectedIndex = index;
                 }
                 Add(cb, property.Name);
-                cb.ComboBox.SelectedIndex = index;
+                if (index < result.Count)
+                    cb.ComboBox.SelectedIndex = index;
             }
 
             else if (propertyType.IsArray)
@@ -180,22 +203,26 @@ namespace HomePage.CustomControls
                     if (result != null)
                     {
                         dynamic valueOfProperty = property.GetValue(_object); // todo: Control to show arrays
-                        string name = valueOfProperty?.Name ?? "";
-                        var nameChecked = false;
-                        foreach (var pair in result)
+                        foreach (var element in valueOfProperty)
                         {
-                            if (nameChecked == false && name != pair.Key)
+                            string name = element?.Name ?? "";
+                            var nameChecked = false;
+                            foreach (var pair in result)
                             {
-                                index++;
+                                if (nameChecked == false && name != pair.Key)
+                                {
+                                    index++;
+                                }
+                                else
+                                {
+                                    nameChecked = true;
+                                }
+                                cb.Add(pair.Key, pair.Value);
                             }
-                            else
-                            {
-                                nameChecked = true;
-                            }
-                            cb.Add(pair.Key, pair.Value);
+                            if (name == "") cb.SelectBase();
+                            else if(index<result.Count) cb.ComboBox.SelectedIndex = index;
                         }
-                        if (name == "") cb.SelectBase();
-                        else cb.ComboBox.SelectedIndex = index;
+                       
                     }
                     Add(cb, property.Name);
                 }
@@ -236,7 +263,7 @@ namespace HomePage.CustomControls
             }
             if (!error)
             {
-                ClickEvent(sender, e);
+                ButtonClickEvent?.Invoke(sender, e);
             }
         }
     }

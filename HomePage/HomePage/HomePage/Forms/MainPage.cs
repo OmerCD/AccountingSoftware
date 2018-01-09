@@ -1,5 +1,4 @@
 ﻿using HomePage.Classes.Database;
-using HomePage.Classes.Database.Cruds;
 using HomePage.Classes.Database.Entities;
 using HomePage.Forms;
 using System;
@@ -8,6 +7,7 @@ using HomePage.Classes.Database.Enums;
 using HomePage.Forms.ModuleForms;
 using System.Runtime.InteropServices;
 using HomePage.CustomControls.ContextMenu;
+using MongoDB.Bson;
 
 namespace HomePage
 {
@@ -16,13 +16,10 @@ namespace HomePage
         public static User CurrentUser;
 
         private readonly PoperContainer _poperContextSettings;
+        private Type _lastType;
 
         public MainPage()
         {
-            //if (CurrentUser == null)
-            //{
-            //    CurrentUser = new User("TestUser", "1234", "Test1 Test2", "test@mail.com", UserTypes.Administrator, null);
-            //}
             using (var frm = new Login())
             {
                 var result = frm.ShowDialog();
@@ -39,11 +36,9 @@ namespace HomePage
                         BtnUsers.Visible = true;
                     }
                     var menuContextSettings = new SettingsContextMenu();
-                    _poperContextSettings= new PoperContainer(menuContextSettings);
+                    _poperContextSettings = new PoperContainer(menuContextSettings);
 
                     menuContextSettings.BtnLogOut.Click += BtnLogOut_Click;
-                    //pnlDataGrid.Visible = false;
-
                 }
             }
         }
@@ -82,36 +77,62 @@ namespace HomePage
         private static extern bool ReleaseCapture();
         #endregion
 
-        private Type _lastCrudType;
-        private Type _lastType;
+        /// <summary>
+        /// Assign last selected types by giving the desired types to be used.
+        /// </summary>
+        /// <typeparam name="TObjectType"></typeparam>
+        private void AssignLastTypes<TObjectType>()
+        {
+            _lastType = typeof(TObjectType);
+        }
         private void BtnCompanies_Click(object sender, EventArgs e)
         {
-            _lastCrudType = typeof(CompanyCRUD);
-            _lastType = typeof(Company);
+            AssignLastTypes<Company>();
             RefreshDataGridView<Company>();
         }
 
         private void BtnJobs_Click(object sender, EventArgs e)
         {
-            _lastType = typeof(Job);
-            _lastCrudType = typeof(JobCRUD);
-
+            AssignLastTypes<Job>();
             RefreshDataGridView<Job>();
         }
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(DVValues.SelectedId) == false)
             {
-                if (MessageBox.Show("Emin misiniz?", "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) ==
+                if (CheckIfUserLastAdmin())
+                {
+                    MessageBox.Show("Yalnızca 1 adet yönetici kaldığı için, bu kullanıcıyı silemezsiniz.",
+                        "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if (MessageBox.Show("Emin misiniz?", "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) ==
                     DialogResult.Yes)
                 {
-                    _lastCrudType.GetMethod("Delete")
-                        ?.Invoke(Activator.CreateInstance(_lastCrudType), new[] { DVValues.SelectedId });
+                    var genericCRUD = GetCRUD(_lastType);
+                    genericCRUD.Delete(DVValues.SelectedId);
                     RefreshDataGridView();
                 }
 
             }
 
+        }
+
+        private bool CheckIfUserLastAdmin()
+        {
+            if (_lastType == typeof(User))
+            {
+                var userCRUD = new CRUD<User>();
+                var selectedUser = userCRUD.GetOne(DVValues.SelectedId);
+                if (selectedUser.UserType == UserTypes.Administrator)
+                {
+                    var adminList = userCRUD.GetAll(new BsonDocument { { "UserType", UserTypes.Administrator }, { "IsDeleted", 0 } });
+                    if (adminList.Count < 2)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -166,7 +187,6 @@ namespace HomePage
                 var genericCRUD = GetCRUD(_lastType);
                 var entity = genericCRUD.GetOne(DVValues.SelectedId);
 
-                //var entity = _lastCrudType.GetMethod("GetOne")?.Invoke(Activator.CreateInstance(_lastCrudType), new[] { DVValues.SelectedId });
                 using (var frm = new CreateForm((DbObject)entity, FormGoal.Update))
                 {
                     frm.ShowDialog();
@@ -185,11 +205,13 @@ namespace HomePage
         }
         private void BtnUsers_Click(object sender, EventArgs e)
         {
-            _lastCrudType = typeof(CRUD<User>);
-            _lastType = typeof(User);
+            AssignLastTypes<User>();
             RefreshDataGridView<User>();
         }
-
+        /// <summary>
+        /// Refreshes the DataGridView based on given Type, from database.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
         private void RefreshDataGridView<T>() where T : DbObject, new()
         {
             dynamic comps = new CRUD<T>();
@@ -201,6 +223,9 @@ namespace HomePage
                 DVValues.Add(r.CreateRow(item), item._id);
             }
         }
+        /// <summary>
+        /// Refreshes the DataGridView based on given last type choosen, from database
+        /// </summary>
         private void RefreshDataGridView()
         {
             dynamic comps = GetCRUD(_lastType);

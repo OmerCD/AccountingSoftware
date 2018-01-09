@@ -24,17 +24,21 @@ namespace HomePage.Classes.Database
         {
             var typeName = typeof(T).Name;
             var testProp = typeof(DbFactory).GetProperty(typeName);
-            var factoryValue = testProp.GetValue(null);
+            var factoryValue = testProp?.GetValue(null);
 
             Table = (IMongoCollection<BsonDocument>)factoryValue;
         }
         // ReSharper disable once UnusedMember.Global
+        /// <summary>
+        /// Returns the all names if collection has a Name column.
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<string, string> GetNameList()
         {
             var list = new Dictionary<string, string>();
             var nameList = new HashSet<string> { "ALL" };
             list.Add("ALL", "ALL"); // Tüm data için
-            foreach (dynamic item in new CRUD<T>().GetAll(new BsonDocument()))
+            foreach (dynamic item in new CRUD<T>().GetAll(new BsonDocument { { "IsDeleted", 0 } }))
             {
                 string name = item.Name ?? "";
                 if (nameList.Contains(name) == false)
@@ -47,7 +51,6 @@ namespace HomePage.Classes.Database
 
             return list;
         }
-
         public virtual bool NameCheck(string name)
         {
             try
@@ -68,7 +71,6 @@ namespace HomePage.Classes.Database
             try
             {
                 var filter = new BsonDocument { { "_id", id } };
-                /**/
                 var builder = Builders<BsonDocument>.Update.Set("IsDeleted", 1);
 
                 Table.UpdateOne(filter, builder);
@@ -100,13 +102,26 @@ namespace HomePage.Classes.Database
             }
 
         }
+        /// <summary>
+        /// Removes all content from collection.
+        /// </summary>
         public void ClearColection()
         {
             _database.DropCollection(typeof(T).Name);
         }
-
-        public long Count => Table.Count(new BsonDocument {{"IsDeleted", 0}});
-
+        /// <summary>
+        /// Returns number of rows from collection which is not marked as deleted.
+        /// </summary>
+        public long Count => Table.Count(new BsonDocument { { "IsDeleted", 0 } });
+        /// <summary>
+        /// Returns number of rows from collection.
+        /// </summary>
+        public long CountAll => Table.Count(new BsonDocument());
+        /// <summary>
+        /// Returns all data based on given filter.
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public virtual List<T> GetAll(BsonDocument filter)
         {
             try
@@ -149,7 +164,7 @@ namespace HomePage.Classes.Database
             }
 
         }
-        public virtual T GetOne(string columnName,string value)
+        public virtual T GetOne(string columnName, string value)
         {
             try
             {
@@ -205,6 +220,12 @@ namespace HomePage.Classes.Database
         }
 
         #endregion
+
+        /// <summary>
+        /// Marks rows as undeleted if consistent with the filter.
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public List<T> BringBack(BsonDocument filter)
         {
             try
@@ -213,7 +234,7 @@ namespace HomePage.Classes.Database
                 using (var cursor = Table.FindSync(filter))
                 {
                     var x = cursor.ToList();
-                    results.AddRange(x.Select(item =>BsonSerializer.Deserialize<T>(item)));
+                    results.AddRange(x.Select(item => BsonSerializer.Deserialize<T>(item)));
                 }
                 return results;
             }
@@ -229,8 +250,6 @@ namespace HomePage.Classes.Database
             try
             {
                 Table.InsertOne(entity.ToBsonDocument());
-
-
                 return true;
             }
             catch (Exception)
@@ -254,7 +273,12 @@ namespace HomePage.Classes.Database
 
 
         }
-
+        /// <summary>
+        /// Updates a choosen entity. Note that it can also change _id property of entity.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public virtual bool Update(string id, T entity)
         {
             try
