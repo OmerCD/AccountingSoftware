@@ -1,4 +1,7 @@
-﻿namespace HomePage.CustomControls.ContextMenu
+﻿using System.Drawing;
+using FontAwesome.Sharp;
+
+namespace HomePage.CustomControls.ContextMenu
 {
     partial class SettingsContextMenu
     {
@@ -28,20 +31,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.BtnLogOut = new System.Windows.Forms.Button();
+            this.BtnLogOut = new FontAwesome.Sharp.IconButton();
             this.SuspendLayout();
             // 
             // BtnLogOut
             // 
             this.BtnLogOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
             this.BtnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnLogOut.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.BtnLogOut.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.BtnLogOut.Font = new System.Drawing.Font("Titillium Web", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.BtnLogOut.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.BtnLogOut.IconChar = FontAwesome.Sharp.IconChar.WindowClose;
+            this.BtnLogOut.IconColor = System.Drawing.Color.AliceBlue;
+            this.BtnLogOut.IconSize = 24;
+            this.BtnLogOut.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnLogOut.Location = new System.Drawing.Point(3, 3);
             this.BtnLogOut.Name = "BtnLogOut";
-            this.BtnLogOut.Size = new System.Drawing.Size(144, 30);
+            this.BtnLogOut.Rotation = 0D;
+            this.BtnLogOut.Size = new System.Drawing.Size(144, 41);
             this.BtnLogOut.TabIndex = 0;
             this.BtnLogOut.Text = "Oturumu Kapat";
+            this.BtnLogOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnLogOut.UseVisualStyleBackColor = false;
             // 
             // SettingsContextMenu
@@ -51,13 +61,13 @@
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.Controls.Add(this.BtnLogOut);
             this.Name = "SettingsContextMenu";
-            this.Size = new System.Drawing.Size(150, 37);
+            this.Size = new System.Drawing.Size(150, 47);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        public System.Windows.Forms.Button BtnLogOut;
+        public IconButton BtnLogOut;
     }
 }

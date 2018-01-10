@@ -11,7 +11,14 @@ namespace HomePage.Classes.Database
     {
         public static async Task<bool> SetConnection(string serverIP)
         {
-            _client = new MongoClient($"mongodb://{serverIP}:27017");
+            var port = "27017";
+            if (serverIP.Contains(":"))
+            {
+                var split = serverIP.Split(':');
+                port = split[1];
+                serverIP = split[0];
+            }
+            _client = new MongoClient($"mongodb://{serverIP}:{port}");
             try
             {
                 await Database.RunCommandAsync((Command<BsonDocument>)"{ping:1}");

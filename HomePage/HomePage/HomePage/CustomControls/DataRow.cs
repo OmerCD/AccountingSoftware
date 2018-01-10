@@ -66,7 +66,7 @@ namespace HomePage.CustomControls
                         cell.Value = x ?? "---";
                         row.Cells.Add(cell);
                     }
-                    else if (propertyType.IsArray )
+                    else if (propertyType.IsArray ) //todo for managing DbObject Array
                     {
                         var className = propertyType.Name.Substring(0, propertyType.Name.Length - 2);
                         var tempType = Type.GetType(propertyType.Namespace+"."+className);

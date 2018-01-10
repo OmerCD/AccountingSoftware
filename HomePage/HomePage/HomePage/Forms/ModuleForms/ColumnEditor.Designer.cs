@@ -1,6 +1,7 @@
 ﻿
 
 using System.Windows.Forms;
+using FontAwesome.Sharp;
 
 namespace HomePage.Forms.ModuleForms
 {
@@ -40,7 +41,7 @@ namespace HomePage.Forms.ModuleForms
             this.TbColumnName = new System.Windows.Forms.TextBox();
             this.LbAnswers = new System.Windows.Forms.ListBox();
             this.TbAnswer = new System.Windows.Forms.TextBox();
-            this.BtnAdd = new System.Windows.Forms.Button();
+            this.BtnAdd = new FontAwesome.Sharp.IconButton();
             this.BtnUpdate = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnDeleteAnswer = new System.Windows.Forms.Button();
@@ -125,12 +126,19 @@ namespace HomePage.Forms.ModuleForms
             this.BtnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(132)))), ((int)(((byte)(167)))));
             this.BtnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAdd.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
             this.BtnAdd.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnAdd.Location = new System.Drawing.Point(567, 329);
+            this.BtnAdd.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.BtnAdd.IconColor = System.Drawing.Color.MediumSeaGreen;
+            this.BtnAdd.IconSize = 24;
+            this.BtnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.BtnAdd.Location = new System.Drawing.Point(551, 329);
             this.BtnAdd.Name = "BtnAdd";
-            this.BtnAdd.Size = new System.Drawing.Size(85, 35);
+            this.BtnAdd.Rotation = 0D;
+            this.BtnAdd.Size = new System.Drawing.Size(101, 37);
             this.BtnAdd.TabIndex = 4;
             this.BtnAdd.Text = "Sütun Ekle";
+            this.BtnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
@@ -253,6 +261,7 @@ namespace HomePage.Forms.ModuleForms
             this.Controls.Add(this.BtnAdd);
             this.Controls.Add(this.LvColumns);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(675, 393);
             this.Name = "ColumnEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sütun Editörü";
@@ -270,7 +279,7 @@ namespace HomePage.Forms.ModuleForms
         private TextBox TbColumnName;
         private ListBox LbAnswers;
         private TextBox TbAnswer;
-        private Button BtnAdd;
+        private IconButton BtnAdd;
         private Button BtnUpdate;
         private Button BtnDelete;
         private Button BtnDeleteAnswer;

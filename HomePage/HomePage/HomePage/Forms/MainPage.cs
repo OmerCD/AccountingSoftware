@@ -49,6 +49,7 @@ namespace HomePage
             BtnUsers.Visible = false;
             using (var frm = new Login())
             {
+                Hide();
                 var result = frm.ShowDialog();
                 if (CurrentUser == null || result != DialogResult.Yes)
                 {
@@ -57,6 +58,7 @@ namespace HomePage
                 }
                 else
                 {
+                    Show();
                     if (CurrentUser.UserType == UserTypes.Administrator)
                     {
                         BtnUsers.Visible = true;
