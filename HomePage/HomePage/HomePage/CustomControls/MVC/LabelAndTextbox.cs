@@ -4,14 +4,18 @@ using System.Text.RegularExpressions;
 
 namespace HomePage.CustomControls
 {
-    public partial class LabelAndTextbox : UserControl, IMainCustomControl
+    public partial class LabelAndTextbox
     {
-
+        public LabelAndTextbox()
+        {
+            InitializeComponent();
+            LatTextBox.Filled();
+        }
         public LabelAndTextbox(CustomAttribute attribute, bool isFilled)
         {
             InitializeComponent();
             attribute.SetMessages();
-            LatLabel.Text = attribute.FieldName + ':';
+            ControlLabel.Text = attribute.FieldName + ':';
             LatTextBox.Text = LatTextBox.PlaceHolder = attribute.PlaceHolderText;
             if (isFilled)
                 LatTextBox.Filled();
@@ -24,26 +28,26 @@ namespace HomePage.CustomControls
             LatTextBox.MaxLength = attribute.MaxLength;
         }
         private readonly CustomAttribute _attribute;
-        public bool IsValidated()
+        public override bool IsValidated()
         {
             bool isOk = true;
-            if (_attribute.Nullable && LatTextBox.TextLength==0)
+            if (_attribute.Nullable && LatTextBox.TextLength == 0)
             {
                 return true;
             }
             if (LatTextBox.IsPlaceHolder)
             {
-                LatErrorLabel.Text = _attribute.MinLengthMessage;
+                ErrorLabel.Text = _attribute.MinLengthMessage;
                 return false;
             }
             if (LatTextBox.TextLength < _attribute.MinLength)
             {
-                LatErrorLabel.Text = _attribute.MinLengthMessage;
+                ErrorLabel.Text = _attribute.MinLengthMessage;
                 isOk = false;
             }
             else if (LatTextBox.TextLength > _attribute.MaxLength)
             {
-                LatErrorLabel.Text = _attribute.MaxLengthMessage;
+                ErrorLabel.Text = _attribute.MaxLengthMessage;
                 isOk = false;
             }
             else if (string.IsNullOrEmpty(_attribute.RegexPattern) == false)
@@ -51,22 +55,26 @@ namespace HomePage.CustomControls
 
                 if (Regex.Match(LatTextBox.Text, _attribute.RegexPattern).Success == false)
                 {
-                    LatErrorLabel.Text = "Veri " + _attribute.PlaceHolderText + " kuralına uymalıdır";
+                    ErrorLabel.Text = "Veri " + _attribute.PlaceHolderText + " kuralına uymalıdır";
                     isOk = false;
                 }
                 else
                 {
-                    LatErrorLabel.Text = "";
+                    ErrorLabel.Text = "";
                 }
             }
             else
             {
-                LatErrorLabel.Text = "";
+                ErrorLabel.Text = "";
             }
             return isOk;
         }
 
-
-        public object Value => LatTextBox.Text;
+        public override object Value => LatTextBox.Text;
+        public override void SetValue(object newValue)
+        {
+            if (newValue != null)
+                LatTextBox.Text = newValue+"";
+        }
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace HomePage.CustomControls
+﻿using HomePage.CustomControls.MVC;
+
+namespace HomePage.CustomControls
 {
-    partial class LabelAndCombobox
+    partial class LabelAndCombobox : LabelAndControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,22 +30,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.LacLabel = new System.Windows.Forms.Label();
             this.LacComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // LacLabel
-            // 
-            this.LacLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.LacLabel.AutoSize = true;
-            this.LacLabel.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.LacLabel.ForeColor = System.Drawing.Color.White;
-            this.LacLabel.Location = new System.Drawing.Point(3, 12);
-            this.LacLabel.Name = "LacLabel";
-            this.LacLabel.Size = new System.Drawing.Size(45, 20);
-            this.LacLabel.TabIndex = 1;
-            this.LacLabel.Text = "label1";
             // 
             // LacComboBox
             // 
@@ -58,17 +46,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.LacComboBox);
-            this.Controls.Add(this.LacLabel);
             this.Name = "LabelAndCombobox";
             this.Size = new System.Drawing.Size(620, 46);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        public System.Windows.Forms.Label LacLabel;
         private System.Windows.Forms.ComboBox LacComboBox;
     }
 }

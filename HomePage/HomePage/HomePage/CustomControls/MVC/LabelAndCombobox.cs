@@ -4,16 +4,16 @@ using HomePage.Classes;
 
 namespace HomePage.CustomControls
 {
-    public partial class LabelAndCombobox : UserControl,IMainCustomControl
+    public partial class LabelAndCombobox
     {
-        public List<string> RealValues { get; set; }
+        private List<string> RealValues { get; set; }
 
         public ComboBox ComboBox => LacComboBox;
 
         public LabelAndCombobox(CustomAttribute attribute,params object[] items)
         {
             InitializeComponent();
-            LacLabel.Text = attribute.FieldName + ':';
+            ControlLabel.Text = attribute.FieldName + ':';
             RealValues = new List<string>();
 
             if (items.Length > 0)
@@ -37,11 +37,15 @@ namespace HomePage.CustomControls
             LacComboBox.SelectedIndex = 0;
         }
 
-        public bool IsValidated()
+        public override bool IsValidated()
         {
             return true;
         }
 
-        public object Value => LacComboBox.Items[LacComboBox.SelectedIndex].ToString();
+        public override object Value => LacComboBox.Items[LacComboBox.SelectedIndex].ToString();
+        public override void SetValue(object newValue)
+        {
+            ComboBox.SelectedIndex = (int) newValue;
+        }
     }
 }

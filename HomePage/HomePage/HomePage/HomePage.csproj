@@ -132,31 +132,49 @@
     <Compile Include="CustomControls\DataView.Designer.cs">
       <DependentUpon>DataView.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\LabelAndCheckBox.cs">
+    <Compile Include="CustomControls\MVC\LabelAndCheckBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\LabelAndCheckBox.Designer.cs">
+    <Compile Include="CustomControls\MVC\LabelAndCheckBox.Designer.cs">
       <DependentUpon>LabelAndCheckBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\LabelAndCombobox.cs">
+    <Compile Include="CustomControls\MVC\LabelAndCombobox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\LabelAndCombobox.Designer.cs">
+    <Compile Include="CustomControls\MVC\LabelAndCombobox.Designer.cs">
       <DependentUpon>LabelAndCombobox.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\LabelAndDatePicker.cs">
+    <Compile Include="CustomControls\MVC\LabelAndControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\LabelAndDatePicker.Designer.cs">
+    <Compile Include="CustomControls\MVC\LabelAndControl.Designer.cs">
+      <DependentUpon>LabelAndControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\MVC\LabelAndDatePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\MVC\LabelAndDatePicker.Designer.cs">
       <DependentUpon>LabelAndDatePicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\LabelAndTextbox.cs">
+    <Compile Include="CustomControls\MVC\LabelAndMultiTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\LabelAndTextbox.Designer.cs">
+    <Compile Include="CustomControls\MVC\LabelAndMultiTextBox.Designer.cs">
+      <DependentUpon>LabelAndMultiTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\MVC\LabelAndTextbox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\MVC\LabelAndTextbox.Designer.cs">
       <DependentUpon>LabelAndTextbox.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\IMainCustomControl.cs" />
+    <Compile Include="CustomControls\MVC\MultiFlowAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomControls\MVC\MultiFlowAdd.Designer.cs">
+      <DependentUpon>MultiFlowAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\MyTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -220,17 +238,26 @@
     <EmbeddedResource Include="CustomControls\ContextMenu\Design\SettingsContextMenu.resx">
       <DependentUpon>SettingsContextMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\LabelAndCheckBox.resx">
+    <EmbeddedResource Include="CustomControls\MVC\LabelAndCheckBox.resx">
       <DependentUpon>LabelAndCheckBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\LabelAndCombobox.resx">
+    <EmbeddedResource Include="CustomControls\MVC\LabelAndCombobox.resx">
       <DependentUpon>LabelAndCombobox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\LabelAndDatePicker.resx">
+    <EmbeddedResource Include="CustomControls\MVC\LabelAndControl.resx">
+      <DependentUpon>LabelAndControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\MVC\LabelAndDatePicker.resx">
       <DependentUpon>LabelAndDatePicker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\LabelAndTextbox.resx">
+    <EmbeddedResource Include="CustomControls\MVC\LabelAndMultiTextBox.resx">
+      <DependentUpon>LabelAndMultiTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\MVC\LabelAndTextbox.resx">
       <DependentUpon>LabelAndTextbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\MVC\MultiFlowAdd.resx">
+      <DependentUpon>MultiFlowAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\MyTextBox.resx">
       <DependentUpon>MyTextBox.cs</DependentUpon>

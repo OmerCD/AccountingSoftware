@@ -42,6 +42,8 @@ namespace HomePage.Classes.Database.Entities
         [Custom(FieldName = "Tamamlandı mı ?")]
         public bool IsDone { get; set; }
         public DateTime WarningDay { get; set; }
+        [Custom(FieldName = "Önceki İş")]
+        public Job PreviousJob { get; set; }
        
     }
 }

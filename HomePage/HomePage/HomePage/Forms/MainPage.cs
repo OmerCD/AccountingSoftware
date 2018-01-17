@@ -47,6 +47,8 @@ namespace HomePage
         {
             CurrentUser = null;
             BtnUsers.Visible = false;
+            DVValues.Rows.Clear();
+            DVValues.Columns.Clear();
             using (var frm = new Login())
             {
                 Hide();

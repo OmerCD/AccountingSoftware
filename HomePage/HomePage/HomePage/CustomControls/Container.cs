@@ -7,6 +7,7 @@ using HomePage.Classes;
 using System.Reflection;
 using HomePage.Classes.Database.Entities;
 using HomePage.Classes.Database;
+using HomePage.CustomControls.MVC;
 
 namespace HomePage.CustomControls
 {
@@ -140,7 +141,7 @@ namespace HomePage.CustomControls
             else if (propertyType == typeof(DateTime))
             {
                 var lad =
-                    new LabelAndDatePicker(attribute) { Value = (DateTime)property.GetValue(_object) };
+                    new LabelAndDatePicker(attribute) { DateValue = (DateTime)property.GetValue(_object) };
                 Add(lad, property.Name);
             }
             else if (propertyType.IsEnum)
@@ -193,38 +194,47 @@ namespace HomePage.CustomControls
             {
                 var className = propertyType.Name.Substring(0, propertyType.Name.Length - 2);
                 var tempType = Type.GetType(propertyType.Namespace + "." + className);
-                if (tempType != null && tempType.IsSubclassOf(typeof(DbObject)))
+                if (tempType != null)
                 {
-                    var cb = new LabelAndCombobox(attribute);
-                    var genericType = typeof(CRUD<>).MakeGenericType(tempType);
-                    dynamic instanceCRUD = Activator.CreateInstance(genericType);
-                    Dictionary<string, string> result = instanceCRUD.GetNameList();
-                    var index = 0;
-                    if (result != null)
+                    if (tempType.IsSubclassOf(typeof(DbObject)))
                     {
-                        dynamic valueOfProperty = property.GetValue(_object); // todo: Control to show arrays
-                        foreach (var element in valueOfProperty)
+                        var cb = new LabelAndCombobox(attribute);
+                        var genericType = typeof(CRUD<>).MakeGenericType(tempType);
+                        dynamic instanceCRUD = Activator.CreateInstance(genericType);
+                        Dictionary<string, string> result = instanceCRUD.GetNameList();
+                        var index = 0;
+                        if (result != null)
                         {
-                            string name = element?.Name ?? "";
-                            var nameChecked = false;
-                            foreach (var pair in result)
+                            dynamic valueOfProperty = property.GetValue(_object); // todo: Control to show arrays
+                            foreach (var element in valueOfProperty)
                             {
-                                if (nameChecked == false && name != pair.Key)
+                                string name = element?.Name ?? "";
+                                var nameChecked = false;
+                                foreach (var pair in result)
                                 {
-                                    index++;
+                                    if (nameChecked == false && name != pair.Key)
+                                    {
+                                        index++;
+                                    }
+                                    else
+                                    {
+                                        nameChecked = true;
+                                    }
+                                    cb.Add(pair.Key, pair.Value);
                                 }
-                                else
-                                {
-                                    nameChecked = true;
-                                }
-                                cb.Add(pair.Key, pair.Value);
+                                if (name == "") cb.SelectBase();
+                                else if (index < result.Count) cb.ComboBox.SelectedIndex = index;
                             }
-                            if (name == "") cb.SelectBase();
-                            else if(index<result.Count) cb.ComboBox.SelectedIndex = index;
+
                         }
-                       
+                        Add(cb, property.Name);
                     }
-                    Add(cb, property.Name);
+                    else
+                    {
+                        var value = property.GetValue(_object);
+                        var cb = new LabelAndMultiTextBox(attribute,(string[])value);
+                        Add(cb,property.Name);
+                    }
                 }
             }
         }

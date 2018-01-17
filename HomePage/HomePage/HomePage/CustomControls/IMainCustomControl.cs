@@ -4,5 +4,6 @@
     {
         bool IsValidated();
         object Value { get; }
+        void SetValue(object newValue);
     }
 }

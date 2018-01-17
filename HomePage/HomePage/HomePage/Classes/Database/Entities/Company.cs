@@ -20,7 +20,7 @@ namespace HomePage.Classes.Database.Entities
         {
 
         }
-        [Custom(FieldName ="Şirket Ünvanı",MinLength = 3,MaxLength = 60)]
+        [Custom(FieldName ="Şirket Ünvanı",MinLength = 3,MaxLength = 100)]
         public string Name { get; set; }
         [Custom(FieldName = "Şirket Adresi",MinLength = 10,MaxLength = 255)]
         public string Address { get; set; }
@@ -28,7 +28,7 @@ namespace HomePage.Classes.Database.Entities
         [Custom(FieldName = "Vergi Numarası",MaxLength =10,MaxLengthMessage ="Vergi Numarası on haneden büyük olamaz",MinLength = 10,MinLengthMessage ="Vergi Numarası 10 haneden küçük olamaz",PlaceHolderText ="Vergi Numarası" )]
         public string TaxNo { get; set; } // Max= 100
         public TaxOffice TaxOffice { get; set; }
-        [Custom(FieldName ="Ticaret Sicil Numarası",MinLength = 1,MaxLength = 25)]
+        [Custom(FieldName ="Ticaret Sicil Numarası",MinLength = 4,MaxLength = 7)]
         public string TicaretSicilNo { get; set; }
         [Custom(FieldName ="Tc Kimlik Numarası",MinLength = 11,MaxLength = 11,Nullable = true)]
         public string TcNo { get; set; } // Eğer Şahıs Şirketi ise

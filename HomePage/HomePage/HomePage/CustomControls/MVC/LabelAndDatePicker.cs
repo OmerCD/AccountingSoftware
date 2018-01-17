@@ -4,26 +4,26 @@ using HomePage.Classes;
 
 namespace HomePage.CustomControls
 {
-    public partial class LabelAndDatePicker : UserControl,IMainCustomControl
+    public partial class LabelAndDatePicker
     {
         public LabelAndDatePicker(CustomAttribute attribute)
         {
             InitializeComponent();
             attribute.SetMessages();
-            LadLabel.Text = attribute.FieldName + ":";
+            ControlLabel.Text = attribute.FieldName + ":";
 
             _attribute = attribute;
        
         }
 
         private CustomAttribute _attribute;
-        public bool IsValidated()
+        public override bool IsValidated()
         {
             return true;
         }
 
 
-        public DateTime Value
+        public DateTime DateValue
         {
             get => LadDtp.Value;
             set
@@ -44,6 +44,6 @@ namespace HomePage.CustomControls
             }
         }
 
-        object IMainCustomControl.Value => LadDtp.Value.ToLongDateString();
+        public override object Value => LadDtp.Value.ToLongDateString();
     }
 }
