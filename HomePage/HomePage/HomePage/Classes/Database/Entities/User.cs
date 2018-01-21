@@ -20,6 +20,7 @@ namespace HomePage.Classes.Database.Entities
         public int Rank { get; set; } //Admin 0, kendininkilerden büyüklerin işlerini görebilecek
         [Custom(FieldName = "İzin verilen Modüller")]
         public string[] AllowedModules { get; set; }
+        public Job[] AssignedJobs { get; set; }
 
         public User()
         {

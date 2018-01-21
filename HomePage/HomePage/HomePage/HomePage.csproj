@@ -96,6 +96,24 @@
     <Compile Include="Classes\Database\IRepositoryMain.cs" />
     <Compile Include="Classes\Database\Cruds\UserCRUD.cs" />
     <Compile Include="Classes\Database\Entities\Log.cs" />
+    <Compile Include="CustomControls\Calendar\Calendar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\Calendar\Calendar.Designer.cs">
+      <DependentUpon>Calendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\Calendar\Day.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\Calendar\Day.Designer.cs">
+      <DependentUpon>Day.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\Calendar\Event.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\Calendar\Event.Designer.cs">
+      <DependentUpon>Event.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\Container.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -132,47 +150,47 @@
     <Compile Include="CustomControls\DataView.Designer.cs">
       <DependentUpon>DataView.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\MVC\LabelAndCheckBox.cs">
+    <Compile Include="CustomControls\MVC\Normal\LabelAndCheckBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\MVC\LabelAndCheckBox.Designer.cs">
+    <Compile Include="CustomControls\MVC\Normal\LabelAndCheckBox.Designer.cs">
       <DependentUpon>LabelAndCheckBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\MVC\LabelAndCombobox.cs">
+    <Compile Include="CustomControls\MVC\Normal\LabelAndCombobox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\MVC\LabelAndCombobox.Designer.cs">
+    <Compile Include="CustomControls\MVC\Normal\LabelAndCombobox.Designer.cs">
       <DependentUpon>LabelAndCombobox.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\MVC\LabelAndControl.cs">
+    <Compile Include="CustomControls\MVC\Normal\LabelAndControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\MVC\LabelAndControl.Designer.cs">
+    <Compile Include="CustomControls\MVC\Normal\LabelAndControl.Designer.cs">
       <DependentUpon>LabelAndControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\MVC\LabelAndDatePicker.cs">
+    <Compile Include="CustomControls\MVC\Normal\LabelAndDatePicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\MVC\LabelAndDatePicker.Designer.cs">
+    <Compile Include="CustomControls\MVC\Normal\LabelAndDatePicker.Designer.cs">
       <DependentUpon>LabelAndDatePicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\MVC\LabelAndMultiTextBox.cs">
+    <Compile Include="CustomControls\MVC\Multi\LabelAndMultiControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\MVC\LabelAndMultiTextBox.Designer.cs">
-      <DependentUpon>LabelAndMultiTextBox.cs</DependentUpon>
+    <Compile Include="CustomControls\MVC\Multi\LabelAndMultiControl.Designer.cs">
+      <DependentUpon>LabelAndMultiControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\MVC\LabelAndTextbox.cs">
+    <Compile Include="CustomControls\MVC\Normal\LabelAndTextbox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\MVC\LabelAndTextbox.Designer.cs">
+    <Compile Include="CustomControls\MVC\Normal\LabelAndTextbox.Designer.cs">
       <DependentUpon>LabelAndTextbox.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\IMainCustomControl.cs" />
-    <Compile Include="CustomControls\MVC\MultiFlowAdd.cs">
+    <Compile Include="CustomControls\MVC\Multi\MultiFlowAdd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomControls\MVC\MultiFlowAdd.Designer.cs">
+    <Compile Include="CustomControls\MVC\Multi\MultiFlowAdd.Designer.cs">
       <DependentUpon>MultiFlowAdd.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\MyTextBox.cs">
@@ -193,6 +211,12 @@
     <Compile Include="CustomControls\DataRow.cs" />
     <Compile Include="CustomControls\DataRow.Designer.cs">
       <DependentUpon>DataRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CalendarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CalendarForm.Designer.cs">
+      <DependentUpon>CalendarForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CreateForm.cs">
       <SubType>Form</SubType>
@@ -232,31 +256,40 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CustomControls\Calendar\Calendar.resx">
+      <DependentUpon>Calendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\Calendar\Day.resx">
+      <DependentUpon>Day.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\Calendar\Event.resx">
+      <DependentUpon>Event.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\Container.resx">
       <DependentUpon>Container.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\ContextMenu\Design\SettingsContextMenu.resx">
       <DependentUpon>SettingsContextMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\MVC\LabelAndCheckBox.resx">
+    <EmbeddedResource Include="CustomControls\MVC\Normal\LabelAndCheckBox.resx">
       <DependentUpon>LabelAndCheckBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\MVC\LabelAndCombobox.resx">
+    <EmbeddedResource Include="CustomControls\MVC\Normal\LabelAndCombobox.resx">
       <DependentUpon>LabelAndCombobox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\MVC\LabelAndControl.resx">
+    <EmbeddedResource Include="CustomControls\MVC\Normal\LabelAndControl.resx">
       <DependentUpon>LabelAndControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\MVC\LabelAndDatePicker.resx">
+    <EmbeddedResource Include="CustomControls\MVC\Normal\LabelAndDatePicker.resx">
       <DependentUpon>LabelAndDatePicker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\MVC\LabelAndMultiTextBox.resx">
-      <DependentUpon>LabelAndMultiTextBox.cs</DependentUpon>
+    <EmbeddedResource Include="CustomControls\MVC\Multi\LabelAndMultiControl.resx">
+      <DependentUpon>LabelAndMultiControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\MVC\LabelAndTextbox.resx">
+    <EmbeddedResource Include="CustomControls\MVC\Normal\LabelAndTextbox.resx">
       <DependentUpon>LabelAndTextbox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\MVC\MultiFlowAdd.resx">
+    <EmbeddedResource Include="CustomControls\MVC\Multi\MultiFlowAdd.resx">
       <DependentUpon>MultiFlowAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\MyTextBox.resx">
@@ -267,6 +300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\DataRow.resx">
       <DependentUpon>DataRow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CalendarForm.resx">
+      <DependentUpon>CalendarForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateForm.resx">
       <DependentUpon>CreateForm.cs</DependentUpon>
@@ -426,6 +462,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="f1_1fm_icon.ico" />
+    <None Include="Resources\icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

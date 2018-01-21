@@ -10,7 +10,7 @@ namespace HomePage.Classes.Database.Cruds
         {
             
         }
-        public Dictionary<string, string> GetNameList() // PersonnelName,_id
+        public override Dictionary<string, string> GetNameList() // PersonnelName,_id
         {
             Dictionary<string, string> personnelList = new Dictionary<string, string>();
             HashSet<string> nameList = new HashSet<string> {"ALL"};

@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HomePage.Classes.Database.Entities;
 
 namespace HomePage.CustomControls.MVC
 {
     public partial class MultiFlowAdd<TControl, TOutput> : Form where TControl : LabelAndControl, new()
     {
+        private readonly Dictionary<TOutput, string> _multiAnswers;
         private readonly object[] _values;
         private int _lastIndex = -1;
         private readonly List<LabelAndControl> _controls;
@@ -19,8 +21,9 @@ namespace HomePage.CustomControls.MVC
 
         public TOutput[] Outputs => _list.ToArray();
 
-        public MultiFlowAdd(params object[] values)
+        public MultiFlowAdd(Dictionary<TOutput, string> multiAnswers = null, params object[] values)
         {
+            _multiAnswers = multiAnswers;
             _values = values;
             _controls = new List<LabelAndControl>();
             InitializeComponent();
@@ -30,7 +33,7 @@ namespace HomePage.CustomControls.MVC
 
         private void SetupFields(IReadOnlyCollection<object> values)
         {
-            if (values==null || values.Count == 0)
+            if (values == null || values.Count == 0)
             {
                 AddSingleControl();
             }
@@ -46,12 +49,39 @@ namespace HomePage.CustomControls.MVC
         private void AddSingleControl(object value)
         {
             var control = GetNewControl();
-            control.SetValue(value);
+            ComboBoxControl(control, value);
+            if (_multiAnswers == null)
+                control.SetValue(value);
+
             PanelControls.Controls.Add(control);
         }
+
+        private void ComboBoxControl(LabelAndControl control, object value = null)
+        {
+            if (_multiAnswers != null)
+            {
+                var labControl = ((LabelAndCombobox)control);
+                foreach (var pair in _multiAnswers)
+                {
+                    labControl.Add(pair.Value, pair.Key.ToString());
+                }
+                if (value == null)
+                    labControl.SelectBase();
+                if (value != null)
+                {
+                    labControl.SetIndexById(((DbObject)value)._id);
+                    if (labControl.SelectedIndex==-1)
+                    {
+                        labControl.SelectBase();
+                    }
+                }
+            }
+        }
+
         private void AddSingleControl()
         {
             var control = GetNewControl();
+            ComboBoxControl(control);
             PanelControls.Controls.Add(control);
         }
         private void ButtonAddField_Click(object sender, EventArgs e)
@@ -86,15 +116,29 @@ namespace HomePage.CustomControls.MVC
 
         private void ButtonApply_Click(object sender, EventArgs e)
         {
-            _list = new List<TOutput>();
-            foreach (var control in _controls)
-            {
-                var value = (TOutput)control.Value;
-                if (value != null)
-                    _list.Add(value);
-            }
+            _list = GetSelectedValues();
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private List<TOutput> GetSelectedValues()
+        {
+            var list = new List<TOutput>();
+            foreach (var control in _controls)
+            {
+                TOutput value;
+                if (_multiAnswers != null)
+                {
+                    value = (TOutput)((LabelAndCombobox)control).GetSelectedId;
+                }
+                else
+                {
+                    value = (TOutput)control.Value;
+                }
+                if (value != null)
+                    list.Add(value);
+            }
+            return list;
         }
 
         private void ButtonRemoveAll_Click(object sender, EventArgs e)

@@ -33,12 +33,12 @@ namespace HomePage.Classes.Database
         /// Returns the all names if collection has a Name column.
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string, string> GetNameList()
+        public virtual Dictionary<string, string> GetNameList()
         {
             var list = new Dictionary<string, string>();
             var nameList = new HashSet<string> { "ALL" };
             list.Add("ALL", "ALL"); // Tüm data için
-            foreach (dynamic item in new CRUD<T>().GetAll(new BsonDocument { { "IsDeleted", 0 } }))
+            foreach (dynamic item in GetAll(new BsonDocument { { "IsDeleted", 0 } }))
             {
                 string name = item.Name ?? "";
                 if (nameList.Contains(name) == false)
@@ -150,7 +150,7 @@ namespace HomePage.Classes.Database
         {
             try
             {
-                var filter = new BsonDocument { { "_id", id } };
+                var filter = new BsonDocument { { "_id", id }, { "IsDeleted", 0 } };
                 var cursor = Table.FindSync(filter);
                 cursor.MoveNext();
                 var batch = cursor.Current;
@@ -262,8 +262,6 @@ namespace HomePage.Classes.Database
             try
             {
                 Table.InsertMany(entities.Select(x => x.ToBsonDocument()));
-
-
                 return true;
             }
             catch (Exception)

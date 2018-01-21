@@ -16,7 +16,7 @@ namespace HomePage.CustomControls
             return true;
         }
 
-        public override object Value => LacCheckBox.Checked.ToString();
+        public override object Value => LacCheckBox.Checked;
         public override void SetValue(object newValue)
         {
             LacCheckBox.Checked = (bool) newValue;

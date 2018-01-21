@@ -25,7 +25,7 @@ namespace HomePage.CustomControls
 
         public DateTime DateValue
         {
-            get => LadDtp.Value;
+            get => DateTime.SpecifyKind(LadDtp.Value, DateTimeKind.Utc);
             set
             {
                 if (value<LadDtp.MinDate)
@@ -44,6 +44,6 @@ namespace HomePage.CustomControls
             }
         }
 
-        public override object Value => LadDtp.Value.ToLongDateString();
+        public override object Value => DateTime.SpecifyKind(LadDtp.Value, DateTimeKind.Utc);
     }
 }

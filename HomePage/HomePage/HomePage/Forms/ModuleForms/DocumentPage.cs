@@ -143,7 +143,7 @@ namespace HomePage.Forms.ModuleForms
 
             DgvDocuments.Columns[2].Name = "Son Düzenleyen";
             DgvDocuments.Columns[2].ReadOnly = true;
-            if (MainPage.CurrentUser.UserType != UserTypes.Administrator)
+            if (MainPage.CurrentUser.UserType != UserTypes.Yönetici)
                 DgvDocuments.Columns[2].Visible = false;
 
             DgvDocuments.Columns[3].Name = "Son Düzenleme Tarihi";

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using HomePage.Classes;
 
@@ -23,8 +24,14 @@ namespace HomePage.CustomControls
             }
         }
 
+        public LabelAndCombobox()
+        {
+            InitializeComponent();
+            RealValues = new List<string>();
+        }
+
         public int SelectedIndex => LacComboBox.SelectedIndex;
-        public string GetSelectedId => RealValues[LacComboBox.SelectedIndex];
+        public object GetSelectedId => RealValues[LacComboBox.SelectedIndex];
         public string this[int index] => RealValues[index];
         public void Add(object item,string id)
         {
@@ -41,11 +48,31 @@ namespace HomePage.CustomControls
         {
             return true;
         }
-
+        
         public override object Value => LacComboBox.Items[LacComboBox.SelectedIndex].ToString();
+
+        public void SetIndexById(string id)
+        {
+            LacComboBox.SelectedIndex = RealValues.IndexOf(id);
+        }
         public override void SetValue(object newValue)
         {
-            ComboBox.SelectedIndex = (int) newValue;
+            try
+            {
+                ComboBox.SelectedIndex = (int) newValue;
+            }
+            catch (InvalidCastException)
+            {
+                var stringValue = newValue.ToString();
+                for (int i = 0; i < ComboBox.Items.Count; i++)
+                {
+                    if (ComboBox.Items[i].ToString() == stringValue)
+                    {
+                        ComboBox.SelectedIndex = i;
+                        break;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace HomePage.CustomControls.MVC
 {
-    partial class LabelAndMultiTextBox : LabelAndControl
+    partial class LabelAndMultiControl<T> : LabelAndControl where T : LabelAndControl, new()
     {
         /// <summary> 
         /// Required designer variable.
@@ -33,10 +33,10 @@
             // 
             // ButtonMultiAdd
             // 
-            this.ButtonMultiAdd.BackColor = System.Drawing.Color.LightCoral;
+            this.ButtonMultiAdd.BackColor = System.Drawing.Color.DarkCyan;
             this.ButtonMultiAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMultiAdd.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.ButtonMultiAdd.ForeColor = System.Drawing.Color.LightYellow;
+            this.ButtonMultiAdd.ForeColor = System.Drawing.Color.Ivory;
             this.ButtonMultiAdd.Location = new System.Drawing.Point(209, 9);
             this.ButtonMultiAdd.Name = "ButtonMultiAdd";
             this.ButtonMultiAdd.Size = new System.Drawing.Size(139, 29);
@@ -51,7 +51,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Controls.Add(this.ButtonMultiAdd);
-            this.Name = "LabelAndMultiTextBox";
+            this.Name = "LabelAndMultiControl";
             this.Controls.SetChildIndex(this.ErrorLabel, 0);
             this.Controls.SetChildIndex(this.ControlLabel, 0);
             this.Controls.SetChildIndex(this.ButtonMultiAdd, 0);

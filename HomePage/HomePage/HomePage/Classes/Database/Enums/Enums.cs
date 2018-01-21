@@ -2,21 +2,21 @@
 {
     public enum UserTypes
     {
-        Administrator,
-        Personnel,
-        Intern,
-        Customer
+        Yönetici,
+        Personel,
+        Stajyer,
+        Müşteri
     }
     public enum CustomerTypes
     {
-        Person,
-        Company
+        Şahıs,
+        Şirket
     }
     public enum CompanyTypes
     {
         Anonim,
         Limited,
-        Personal
+        Kişisel
     }
 
     public enum FormGoal

@@ -32,7 +32,7 @@ namespace HomePage.CustomControls
         /// <summary>
         /// This event will be triggerd when user clicks on the Button of this Container.
         /// </summary>
-        public event Action<object,EventArgs> ButtonClickEvent;
+        public event Action<object, EventArgs> ButtonClickEvent;
 
         /// <summary>
         /// It will return the desired object or set up the Form based on desired object.
@@ -61,8 +61,12 @@ namespace HomePage.CustomControls
             {
                 if (prop.CustomAttributes.Any())
                 {
-                    var value = _valueControls[prop.Name].Value;
-                    SetPropertyValue(prop, value);
+                    if (_valueControls.ContainsKey(prop.Name))
+                    {
+                        var value = _valueControls[prop.Name].Value;
+                        SetPropertyValue(prop, value);
+                    }
+
                 }
             }
             return _object;
@@ -74,18 +78,42 @@ namespace HomePage.CustomControls
             if (propType.IsSubclassOf(typeof(DbObject)))
             {
                 var foreignObject = GetField(prop,
-                    ((LabelAndCombobox)_valueControls[prop.Name]).GetSelectedId);
+                    (string)((LabelAndCombobox)_valueControls[prop.Name]).GetSelectedId);
                 prop.SetValue(_object, foreignObject);
+                return;
             }
-            else if (propType.IsEnum)
+            if (propType.IsArray)
+            {
+                var className = propType.Name.Substring(0, propType.Name.Length - 2);
+                var tempType = Type.GetType(propType.Namespace + "." + className);
+                if (tempType != null)
+                {
+                    if (tempType.IsSubclassOf(typeof(DbObject)))
+                    {
+                        var arrayEntities = GetEntityArray(value, tempType);
+                        prop.SetValue(_object, arrayEntities);
+                        return;
+                    }
+                }
+                prop.SetValue(_object, value);
+                return;
+            }
+            if (propType.IsEnum)
             {
                 var cBox = (LabelAndCombobox)_valueControls[prop.Name];
                 prop.SetValue(_object, cBox.SelectedIndex);
+                return;
             }
-            else
-            {
-                prop.SetValue(_object, value);
-            }
+            prop.SetValue(_object, value);
+        }
+
+        private static Array GetEntityArray(object value, Type tempType)
+        {
+            if (value == null) return null;
+            var objectArray = ((object[])value);
+            var arrayEntities = Array.CreateInstance(tempType, objectArray.Length);
+            Array.Copy(objectArray, arrayEntities, objectArray.Length);
+            return arrayEntities;
         }
 
         private object GetField(PropertyInfo prop, string getSelectedId)
@@ -119,7 +147,7 @@ namespace HomePage.CustomControls
         /// </summary>
         /// <param name="property"></param>
         /// <param name="attribute"></param>
-        private void AddControl(PropertyInfo property,CustomAttribute attribute)
+        private void AddControl(PropertyInfo property, CustomAttribute attribute)
         {
             var propertyType = property.PropertyType;
             if (propertyType == typeof(string))
@@ -186,8 +214,12 @@ namespace HomePage.CustomControls
                     }
                 }
                 Add(cb, property.Name);
-                if (index < result.Count)
+                if (result != null && index < result.Count)
                     cb.ComboBox.SelectedIndex = index;
+                else
+                {
+                    cb.SelectBase();
+                }
             }
 
             else if (propertyType.IsArray)
@@ -198,42 +230,55 @@ namespace HomePage.CustomControls
                 {
                     if (tempType.IsSubclassOf(typeof(DbObject)))
                     {
-                        var cb = new LabelAndCombobox(attribute);
                         var genericType = typeof(CRUD<>).MakeGenericType(tempType);
                         dynamic instanceCRUD = Activator.CreateInstance(genericType);
                         Dictionary<string, string> result = instanceCRUD.GetNameList();
+
+                        var results = result.ToDictionary(kp => kp.Value, kp => kp.Key);
+                        var value = (object[])property.GetValue(_object);
+
+                        var cb = new LabelAndMultiControl<LabelAndCombobox>(attribute: attribute, multiAnswers: results, crudObject: instanceCRUD,values:value);
+
                         var index = 0;
                         if (result != null)
                         {
-                            dynamic valueOfProperty = property.GetValue(_object); // todo: Control to show arrays
-                            foreach (var element in valueOfProperty)
-                            {
-                                string name = element?.Name ?? "";
-                                var nameChecked = false;
-                                foreach (var pair in result)
-                                {
-                                    if (nameChecked == false && name != pair.Key)
-                                    {
-                                        index++;
-                                    }
-                                    else
-                                    {
-                                        nameChecked = true;
-                                    }
-                                    cb.Add(pair.Key, pair.Value);
-                                }
-                                if (name == "") cb.SelectBase();
-                                else if (index < result.Count) cb.ComboBox.SelectedIndex = index;
-                            }
+
+                            //foreach (var value in result.Keys)
+                            //{
+                            //    cb.ComboBox.Items.Add(value);
+                            //}
+                            //dynamic valueOfProperty = property.GetValue(_object); // todo: Control to show arrays
+                            //if (valueOfProperty != null)
+                            //{
+                            //    foreach (var element in valueOfProperty)
+                            //    {
+                            //        string name = element?.Name ?? "";
+                            //        var nameChecked = false;
+                            //        foreach (var pair in result)
+                            //        {
+                            //            if (nameChecked == false && name != pair.Key)
+                            //            {
+                            //                index++;
+                            //            }
+                            //            else
+                            //            {
+                            //                nameChecked = true;
+                            //            }
+                            //            cb.Add(pair.Key, pair.Value);
+                            //        }
+                            //        if (name == "") cb.SelectBase();
+                            //        else if (index < result.Count) cb.ComboBox.SelectedIndex = index;
+                            //    }
+                            //}
 
                         }
                         Add(cb, property.Name);
                     }
                     else
                     {
-                        var value = property.GetValue(_object);
-                        var cb = new LabelAndMultiTextBox(attribute,(string[])value);
-                        Add(cb,property.Name);
+                        var value = (object[])property.GetValue(_object);
+                        var cb = new LabelAndMultiControl<LabelAndTextbox>(attribute, values: value);
+                        Add(cb, property.Name);
                     }
                 }
             }
@@ -249,7 +294,7 @@ namespace HomePage.CustomControls
         private void Add(Control userControl, string propertyName)
         {
             _valueControls.Add(propertyName, (IMainCustomControl)userControl);
-            userControl.Location = new Point(userControl.Location.X+30, _lastY);
+            userControl.Location = new Point(userControl.Location.X + 30, _lastY);
             this.Controls.Add(userControl);
             _lastY += userControl.Size.Height + 10;
         }

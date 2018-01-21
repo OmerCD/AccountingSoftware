@@ -8,7 +8,6 @@ namespace HomePage.Classes.Database.Entities
         public string _id { get; set; }
         public DateTime CreationDate { get; protected set; }
         public byte IsDeleted { get; protected set; }
-
         protected DbObject()
         {
             _id = Guid.NewGuid().ToString();

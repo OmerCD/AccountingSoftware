@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
             this.PanelTopBar = new System.Windows.Forms.Panel();
             this.DVValues = new HomePage.CustomControls.DataView();
@@ -43,6 +43,7 @@
             this.BtnAdd = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.PnlMainOperations = new System.Windows.Forms.Panel();
+            this.ButtonCalendar = new System.Windows.Forms.Button();
             this.BtnUsers = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BtnDocuments = new System.Windows.Forms.Button();
@@ -68,34 +69,34 @@
             // DVValues
             // 
             this.DVValues.AllowUserToAddRows = false;
-            this.DVValues.AllowUserToDeleteRows = false;
             this.DVValues.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DVValues.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DVValues.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DVValues.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Tomato;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Gold;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DVValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Tomato;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Gold;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DVValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.DVValues.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightSlateGray;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Titillium Web", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Gold;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DVValues.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightSlateGray;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Titillium Web", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Gold;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DVValues.DefaultCellStyle = dataGridViewCellStyle6;
             this.DVValues.Location = new System.Drawing.Point(120, 117);
             this.DVValues.MultiSelect = false;
             this.DVValues.Name = "DVValues";
             this.DVValues.ReadOnly = true;
+            this.DVValues.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.DVValues.Size = new System.Drawing.Size(892, 604);
             this.DVValues.TabIndex = 1;
             // 
@@ -231,6 +232,7 @@
             // PnlMainOperations
             // 
             this.PnlMainOperations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
+            this.PnlMainOperations.Controls.Add(this.ButtonCalendar);
             this.PnlMainOperations.Controls.Add(this.BtnUsers);
             this.PnlMainOperations.Controls.Add(this.pictureBox1);
             this.PnlMainOperations.Controls.Add(this.BtnDocuments);
@@ -242,6 +244,26 @@
             this.PnlMainOperations.Name = "PnlMainOperations";
             this.PnlMainOperations.Size = new System.Drawing.Size(114, 733);
             this.PnlMainOperations.TabIndex = 0;
+            // 
+            // ButtonCalendar
+            // 
+            this.ButtonCalendar.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.ButtonCalendar.FlatAppearance.BorderSize = 0;
+            this.ButtonCalendar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.ButtonCalendar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
+            this.ButtonCalendar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonCalendar.Font = new System.Drawing.Font("Bahnschrift", 11.25F);
+            this.ButtonCalendar.ForeColor = System.Drawing.SystemColors.Control;
+            this.ButtonCalendar.Image = global::HomePage.Properties.Resources.icon;
+            this.ButtonCalendar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ButtonCalendar.Location = new System.Drawing.Point(4, 246);
+            this.ButtonCalendar.Name = "ButtonCalendar";
+            this.ButtonCalendar.Size = new System.Drawing.Size(108, 30);
+            this.ButtonCalendar.TabIndex = 4;
+            this.ButtonCalendar.Text = "Takvim";
+            this.ButtonCalendar.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.ButtonCalendar.UseVisualStyleBackColor = true;
+            this.ButtonCalendar.Click += new System.EventHandler(this.ButtonCalendar_Click);
             // 
             // BtnUsers
             // 
@@ -298,7 +320,6 @@
             // 
             // BtnJobs
             // 
-            this.BtnJobs.Enabled = false;
             this.BtnJobs.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.BtnJobs.FlatAppearance.BorderSize = 0;
             this.BtnJobs.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
@@ -383,6 +404,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button BtnUsers;
         private System.Windows.Forms.Panel PnlMainOperations;
+        private System.Windows.Forms.Button ButtonCalendar;
     }
 }
 

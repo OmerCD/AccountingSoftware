@@ -31,7 +31,7 @@ namespace HomePage
                 else
                 {
                     InitializeComponent();
-                    if (CurrentUser.UserType == UserTypes.Administrator)
+                    if (CurrentUser.UserType == UserTypes.Yönetici)
                     {
                         BtnUsers.Visible = true;
                     }
@@ -61,7 +61,7 @@ namespace HomePage
                 else
                 {
                     Show();
-                    if (CurrentUser.UserType == UserTypes.Administrator)
+                    if (CurrentUser.UserType == UserTypes.Yönetici)
                     {
                         BtnUsers.Visible = true;
                     }
@@ -91,14 +91,18 @@ namespace HomePage
         }
         private void BtnCompanies_Click(object sender, EventArgs e)
         {
-            AssignLastTypes<Company>();
-            RefreshDataGridView<Company>();
+            EntityChange<Company>();
+        }
+
+        private void EntityChange<T>() where T:DbObject, new()
+        {
+            AssignLastTypes<T>();
+            RefreshDataGridView<T>();
         }
 
         private void BtnJobs_Click(object sender, EventArgs e)
         {
-            AssignLastTypes<Job>();
-            RefreshDataGridView<Job>();
+            EntityChange<Job>();
         }
         private void BtnDelete_Click(object sender, EventArgs e)
         {
@@ -127,9 +131,9 @@ namespace HomePage
             {
                 var userCRUD = new CRUD<User>();
                 var selectedUser = userCRUD.GetOne(DVValues.SelectedId);
-                if (selectedUser.UserType == UserTypes.Administrator)
+                if (selectedUser.UserType == UserTypes.Yönetici)
                 {
-                    var adminList = userCRUD.GetAll(new BsonDocument { { "UserType", UserTypes.Administrator }, { "IsDeleted", 0 } });
+                    var adminList = userCRUD.GetAll(new BsonDocument { { "UserType", UserTypes.Yönetici }, { "IsDeleted", 0 } });
                     if (adminList.Count < 2)
                     {
                         return true;
@@ -209,8 +213,7 @@ namespace HomePage
         }
         private void BtnUsers_Click(object sender, EventArgs e)
         {
-            AssignLastTypes<User>();
-            RefreshDataGridView<User>();
+            EntityChange<User>();
         }
         /// <summary>
         /// Refreshes the DataGridView based on given Type, from database.
@@ -250,6 +253,14 @@ namespace HomePage
         private void btnSettings_Click(object sender, EventArgs e)
         {
             _poperContextSettings.Show(btnSettings);
+        }
+
+        private void ButtonCalendar_Click(object sender, EventArgs e)
+        {
+            using (var frm = new CalendarForm())
+            {
+                frm.ShowDialog();
+            }
         }
     }
 }
