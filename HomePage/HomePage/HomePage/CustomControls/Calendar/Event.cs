@@ -7,14 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using HomePage.Classes;
-using HomePage.Classes.Database.Entities;
 
 namespace HomePage.CustomControls.Calendar
 {
     public partial class Event : UserControl
     {
-        public event EventControl.EventClickAction EventClick;
+        public event Action<object, EventArgs, string> EventClick; 
         public string EventId { get; }
         public Event(Color backColor, Color foreColor, EventInfo eventInfo)
         {
@@ -38,16 +36,5 @@ namespace HomePage.CustomControls.Calendar
             EventClick(sender, e, EventId);
         }
     }
-    public class EventControl
-    {
-        public delegate void EventClickAction(object sender, EventArgs e, string eventId);
-    }
-
-    public class EventInfo:DbObject
-    {
-        [Custom(FieldName = "Olay Adı",MaxLength = 25)]
-        public string Name { get; set; }
-        [Custom(FieldName = "Olay Tarihi")]
-        public DateTime EventDate { get; set; }
-    }
+    
 }

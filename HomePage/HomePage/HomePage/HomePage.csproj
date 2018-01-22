@@ -114,6 +114,7 @@
     <Compile Include="CustomControls\Calendar\Event.Designer.cs">
       <DependentUpon>Event.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\Calendar\EventInfo.cs" />
     <Compile Include="CustomControls\Container.cs">
       <SubType>UserControl</SubType>
     </Compile>
