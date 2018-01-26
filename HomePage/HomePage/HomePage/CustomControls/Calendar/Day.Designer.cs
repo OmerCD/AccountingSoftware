@@ -28,41 +28,65 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flpnlEvents = new System.Windows.Forms.FlowLayoutPanel();
             this.lblDay = new System.Windows.Forms.Label();
+            this.pictureBoxJob = new System.Windows.Forms.PictureBox();
+            this.pictureBoxEvent = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxJob)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEvent)).BeginInit();
             this.SuspendLayout();
-            // 
-            // flpnlEvents
-            // 
-            this.flpnlEvents.Location = new System.Drawing.Point(3, 29);
-            this.flpnlEvents.Name = "flpnlEvents";
-            this.flpnlEvents.Size = new System.Drawing.Size(144, 114);
-            this.flpnlEvents.TabIndex = 3;
             // 
             // lblDay
             // 
             this.lblDay.AutoSize = true;
-            this.lblDay.Location = new System.Drawing.Point(3, 13);
+            this.lblDay.Location = new System.Drawing.Point(3, 0);
             this.lblDay.Name = "lblDay";
             this.lblDay.Size = new System.Drawing.Size(35, 13);
             this.lblDay.TabIndex = 2;
             this.lblDay.Text = "label1";
             // 
+            // pictureBoxJob
+            // 
+            this.pictureBoxJob.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxJob.Image = global::HomePage.Properties.Resources.warning;
+            this.pictureBoxJob.Location = new System.Drawing.Point(99, 19);
+            this.pictureBoxJob.Name = "pictureBoxJob";
+            this.pictureBoxJob.Size = new System.Drawing.Size(24, 24);
+            this.pictureBoxJob.TabIndex = 4;
+            this.pictureBoxJob.TabStop = false;
+            this.pictureBoxJob.Visible = false;
+            // 
+            // pictureBoxEvent
+            // 
+            this.pictureBoxEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxEvent.Image = global::HomePage.Properties.Resources.warning__1_;
+            this.pictureBoxEvent.Location = new System.Drawing.Point(69, 19);
+            this.pictureBoxEvent.Name = "pictureBoxEvent";
+            this.pictureBoxEvent.Size = new System.Drawing.Size(24, 24);
+            this.pictureBoxEvent.TabIndex = 3;
+            this.pictureBoxEvent.TabStop = false;
+            this.pictureBoxEvent.Visible = false;
+            // 
             // Day
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.flpnlEvents);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(67)))), ((int)(((byte)(67)))));
+            this.Controls.Add(this.pictureBoxJob);
+            this.Controls.Add(this.pictureBoxEvent);
             this.Controls.Add(this.lblDay);
             this.Name = "Day";
+            this.Size = new System.Drawing.Size(126, 44);
+            this.Click += new System.EventHandler(this.Day_Click);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxJob)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEvent)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.FlowLayoutPanel flpnlEvents;
         private System.Windows.Forms.Label lblDay;
+        private System.Windows.Forms.PictureBox pictureBoxEvent;
+        private System.Windows.Forms.PictureBox pictureBoxJob;
     }
 }

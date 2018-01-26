@@ -1,6 +1,6 @@
 ﻿namespace HomePage.CustomControls.Calendar
 {
-    partial class Event
+    partial class EventControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -41,13 +41,14 @@
             this.lblEventName.Size = new System.Drawing.Size(70, 27);
             this.lblEventName.TabIndex = 1;
             this.lblEventName.Text = "label1";
+            this.lblEventName.Click += new System.EventHandler(this.lblEventName_Click);
             // 
             // Event
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblEventName);
-            this.Name = "Event";
+            this.Name = "EventControl";
             this.Size = new System.Drawing.Size(70, 27);
             this.ResumeLayout(false);
 

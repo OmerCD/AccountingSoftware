@@ -47,9 +47,11 @@ namespace HomePage.CustomControls
             // 
             // LadDtp
             // 
-            this.LadDtp.Location = new System.Drawing.Point(147, 10);
+            this.LadDtp.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.LadDtp.Location = new System.Drawing.Point(209, 10);
+            this.LadDtp.MinDate = new System.DateTime(1999, 1, 1, 0, 0, 0, 0);
             this.LadDtp.Name = "LadDtp";
-            this.LadDtp.Size = new System.Drawing.Size(200, 20);
+            this.LadDtp.Size = new System.Drawing.Size(200, 27);
             this.LadDtp.TabIndex = 7;
             // 
             // LabelAndDatePicker
@@ -59,7 +61,10 @@ namespace HomePage.CustomControls
             this.Controls.Add(this.LadDtp);
             this.Controls.Add(this.LadErrorLabel);
             this.Name = "LabelAndDatePicker";
-            this.Size = new System.Drawing.Size(620, 46);
+            this.Controls.SetChildIndex(this.LadErrorLabel, 0);
+            this.Controls.SetChildIndex(this.LadDtp, 0);
+            this.Controls.SetChildIndex(this.ErrorLabel, 0);
+            this.Controls.SetChildIndex(this.ControlLabel, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 

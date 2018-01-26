@@ -10,15 +10,20 @@ namespace HomePage.Classes.Database.Entities
 
         }
 
-        public Job(User[] personnel, DateTime deadLine, Company company, string description, string documentAddress,int lastWarningDays)
+        public Job(User[] personnel, DateTime eventDate, Company company, string description, string documentAddress,int lastWarningDays)
         {
             Personnel = personnel;
-            DeadLine = deadLine;
+            EventDate = eventDate;
             Company = company;
             Description = description;
             DocumentAddress = documentAddress;
             IsDone = false;
             SetWarningDay(lastWarningDays);
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
 
         public void JobDone()
@@ -27,16 +32,16 @@ namespace HomePage.Classes.Database.Entities
         }
         public void SetWarningDay(int numberOfDays)
         {
-            WarningDay = DeadLine.AddDays(numberOfDays * -1);
+            WarningDay = EventDate.AddDays(numberOfDays * -1);
         }
 
         [Custom(FieldName ="Personel Adı")]
         public User[] Personnel { get; set; } // if null it means all personnel is atented to this Job
         [Custom(FieldName ="Bitiş Tarihi")]
-        public DateTime DeadLine { get; set; }
+        public DateTime EventDate { get; set; }
         [Custom(FieldName = "Firma Adı")]
         public Company Company { get; set; }
-        [Custom(FieldName = "Açıklama",MaxLength = 255)]
+        [Custom(FieldName = "Açıklama",MaxLength = 500)]
         public string Description { get; set; }//Description
         public string DocumentAddress { get; set; } // Pdf jpeg etc
         [Custom(FieldName = "Tamamlandı mı ?")]

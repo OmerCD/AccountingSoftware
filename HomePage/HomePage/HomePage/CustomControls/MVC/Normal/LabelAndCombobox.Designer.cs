@@ -35,10 +35,11 @@ namespace HomePage.CustomControls
             // 
             // LacComboBox
             // 
+            this.LacComboBox.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.LacComboBox.FormattingEnabled = true;
-            this.LacComboBox.Location = new System.Drawing.Point(209, 13);
+            this.LacComboBox.Location = new System.Drawing.Point(209, 9);
             this.LacComboBox.Name = "LacComboBox";
-            this.LacComboBox.Size = new System.Drawing.Size(121, 21);
+            this.LacComboBox.Size = new System.Drawing.Size(200, 28);
             this.LacComboBox.TabIndex = 2;
             // 
             // LabelAndCombobox
@@ -47,8 +48,11 @@ namespace HomePage.CustomControls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.LacComboBox);
             this.Name = "LabelAndCombobox";
-            this.Size = new System.Drawing.Size(620, 46);
+            this.Controls.SetChildIndex(this.LacComboBox, 0);
+            this.Controls.SetChildIndex(this.ErrorLabel, 0);
+            this.Controls.SetChildIndex(this.ControlLabel, 0);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

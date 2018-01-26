@@ -1,4 +1,6 @@
-﻿namespace HomePage.CustomControls.Calendar
+﻿using System;
+
+namespace HomePage.CustomControls.Calendar
 {
     partial class Calendar
     {
@@ -38,9 +40,11 @@
             // LabelYear
             // 
             this.LabelYear.AutoSize = true;
-            this.LabelYear.Location = new System.Drawing.Point(21, 26);
+            this.LabelYear.Font = new System.Drawing.Font("Titillium Web", 16.25F, System.Drawing.FontStyle.Bold);
+            this.LabelYear.ForeColor = System.Drawing.Color.Coral;
+            this.LabelYear.Location = new System.Drawing.Point(3, 16);
             this.LabelYear.Name = "LabelYear";
-            this.LabelYear.Size = new System.Drawing.Size(35, 13);
+            this.LabelYear.Size = new System.Drawing.Size(73, 34);
             this.LabelYear.TabIndex = 9;
             this.LabelYear.Text = "label1";
             // 
@@ -57,6 +61,8 @@
             this.TLPDates.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.21464F));
             this.TLPDates.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.21465F));
             this.TLPDates.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.71215F));
+            this.TLPDates.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.TLPDates.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.TLPDates.Location = new System.Drawing.Point(3, 63);
             this.TLPDates.Name = "TLPDates";
             this.TLPDates.RowCount = 6;
@@ -71,30 +77,40 @@
             // 
             // btnNextMonth
             // 
-            this.btnNextMonth.Location = new System.Drawing.Point(207, 21);
+            this.btnNextMonth.BackColor = System.Drawing.Color.Transparent;
+            this.btnNextMonth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNextMonth.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnNextMonth.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnNextMonth.Location = new System.Drawing.Point(315, 11);
             this.btnNextMonth.Name = "btnNextMonth";
-            this.btnNextMonth.Size = new System.Drawing.Size(75, 23);
+            this.btnNextMonth.Size = new System.Drawing.Size(136, 37);
             this.btnNextMonth.TabIndex = 7;
-            this.btnNextMonth.Text = "Next";
-            this.btnNextMonth.UseVisualStyleBackColor = true;
+            this.btnNextMonth.Text = "Sonraki Ay";
+            this.btnNextMonth.UseVisualStyleBackColor = false;
             this.btnNextMonth.Click += new System.EventHandler(this.btnNextMonth_Click);
             // 
             // btnPreviousMonth
             // 
-            this.btnPreviousMonth.Location = new System.Drawing.Point(126, 21);
+            this.btnPreviousMonth.BackColor = System.Drawing.Color.Transparent;
+            this.btnPreviousMonth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPreviousMonth.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnPreviousMonth.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnPreviousMonth.Location = new System.Drawing.Point(158, 11);
             this.btnPreviousMonth.Name = "btnPreviousMonth";
-            this.btnPreviousMonth.Size = new System.Drawing.Size(75, 23);
+            this.btnPreviousMonth.Size = new System.Drawing.Size(136, 37);
             this.btnPreviousMonth.TabIndex = 6;
-            this.btnPreviousMonth.Text = "Previous";
-            this.btnPreviousMonth.UseVisualStyleBackColor = true;
+            this.btnPreviousMonth.Text = "Önceki Ay";
+            this.btnPreviousMonth.UseVisualStyleBackColor = false;
             this.btnPreviousMonth.Click += new System.EventHandler(this.btnPreviousMonth_Click);
             // 
             // lblMonth
             // 
             this.lblMonth.AutoSize = true;
-            this.lblMonth.Location = new System.Drawing.Point(85, 26);
+            this.lblMonth.Font = new System.Drawing.Font("Titillium Web", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblMonth.ForeColor = System.Drawing.Color.LightSalmon;
+            this.lblMonth.Location = new System.Drawing.Point(73, 19);
             this.lblMonth.Name = "lblMonth";
-            this.lblMonth.Size = new System.Drawing.Size(35, 13);
+            this.lblMonth.Size = new System.Drawing.Size(64, 29);
             this.lblMonth.TabIndex = 5;
             this.lblMonth.Text = "label1";
             // 
@@ -102,6 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
             this.Controls.Add(this.LabelYear);
             this.Controls.Add(this.TLPDates);
             this.Controls.Add(this.btnNextMonth);
@@ -111,7 +128,6 @@
             this.Size = new System.Drawing.Size(644, 415);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

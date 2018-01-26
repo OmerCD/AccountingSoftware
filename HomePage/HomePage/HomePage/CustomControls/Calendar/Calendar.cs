@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HomePage.Classes.Database.Entities;
 
 namespace HomePage.CustomControls.Calendar
 {
@@ -14,6 +15,9 @@ namespace HomePage.CustomControls.Calendar
     {
         private readonly string[] _months;
         private DateTime _choosenDate;
+        public static Action<Day,DayEvent> SelectedDayChanged;
+        public static DateTime ChoosenDateTime;
+        private Day _lastChooseDayControl;
         public Calendar(string[] monthStrings)
         {
             InitializeComponent();
@@ -31,6 +35,16 @@ namespace HomePage.CustomControls.Calendar
             };
             _choosenDate = DateTime.Now;
             ArrangeDates(_choosenDate);
+            SelectedDayChanged+=SelectedDayChangeEvent;
+        }
+
+        private void SelectedDayChangeEvent(Day sender,DayEvent dayEvent)
+        {
+            if (_lastChooseDayControl!=sender)
+            {
+                if (_lastChooseDayControl != null) _lastChooseDayControl.BackColor = Color.Transparent;
+                _lastChooseDayControl = sender;
+            }
         }
 
         public DateTime ChoosenDate
@@ -49,8 +63,8 @@ namespace HomePage.CustomControls.Calendar
 
             DateTime firstDayOfMonth = new DateTime(choosenDate.Year, choosenDate.Month, 1);
             int daysOfMonth = DateTime.DaysInMonth(choosenDate.Year, choosenDate.Month);
-            DateTime tempDate = choosenDate.AddMonths(-1);
-            int previousDaysOfMonth = DateTime.DaysInMonth(tempDate.Year, tempDate.Month);
+            DateTime previousMonth = choosenDate.AddMonths(-1);
+            int previousDaysOfMonth = DateTime.DaysInMonth(previousMonth.Year, previousMonth.Month);
             int dayOfWeek = (int)firstDayOfMonth.DayOfWeek - 1;
             dayOfWeek = dayOfWeek == -1 ? 6 : dayOfWeek;
 
@@ -59,13 +73,17 @@ namespace HomePage.CustomControls.Calendar
 
             for (int i = 0, j = previousDaysOfMonth - (dayOfWeek - 1); i < dayOfWeek; i++, j++)
             {
-                TLPDates.Controls.Add(new Day(j, null, true));
+                var date = new DateTime(previousMonth.Year,previousMonth.Month,j);
+
+                TLPDates.Controls.Add(new Day(date,true));
             }
 
             int monthDayCounter = 1;
             for (int i = 1; i <= daysOfMonth; i++)
             {
-                TLPDates.Controls.Add(new Day(monthDayCounter++, null, false));
+                var date = new DateTime(choosenDate.Year,choosenDate.Month,monthDayCounter++);
+
+                TLPDates.Controls.Add(new Day(date, false));
             }
 
             DateTime nextMonth = choosenDate.AddMonths(1);
@@ -74,7 +92,9 @@ namespace HomePage.CustomControls.Calendar
             nextDayOfWeek = nextDayOfWeek == -1 ? 6 : nextDayOfWeek;
             for (int i = 0; i < 7 - nextDayOfWeek; i++)
             {
-                TLPDates.Controls.Add(new Day(i + 1, null, true));
+                var date = new DateTime(nextMonth.Year,nextMonth.Month,(i+1));
+
+                TLPDates.Controls.Add(new Day(date, true));
             }
         }
 

@@ -13,6 +13,21 @@ namespace HomePage.Classes.Database
         private readonly IMongoDatabase _database;
         protected IMongoCollection<BsonDocument> Table;
 
+        protected static BsonDocument GenerateDayCheckDocument(DateTime date)
+        {
+            return new BsonDocument
+            {
+                {
+                    "$gte",
+                    new DateTime(date.Year, date.Month, date.Day, 0, 0, 0).ToLocalTime()
+                },
+
+                {
+                    "$lt", new DateTime(date.Year, date.Month, date.AddDays(1).Day, 0, 0, 0).ToLocalTime()
+                }
+            };
+        }
+
 
         public CRUD(IMongoCollection<BsonDocument> tableInstance)
         {
@@ -30,7 +45,7 @@ namespace HomePage.Classes.Database
         }
         // ReSharper disable once UnusedMember.Global
         /// <summary>
-        /// Returns the all names if collection has a Name column.
+        /// Returns the all names and ids if collection has a Name column.
         /// </summary>
         /// <returns></returns>
         public virtual Dictionary<string, string> GetNameList()
@@ -43,13 +58,30 @@ namespace HomePage.Classes.Database
                 string name = item.Name ?? "";
                 if (nameList.Contains(name) == false)
                 {
-                    list.Add(name, item._id);
+                    list.Add(item._id, name);
                     nameList.Add(name);
                 }
 
             }
 
             return list;
+        }
+
+
+        public virtual bool Upsert(T entity)
+        {
+            try
+            {
+                var filter = new BsonDocument { { "_id", entity._id } };
+                var updateOption = new UpdateOptions();
+                updateOption.IsUpsert = true;
+                Table.ReplaceOne(filter, entity.ToBsonDocument(), updateOption);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
         public virtual bool NameCheck(string name)
         {

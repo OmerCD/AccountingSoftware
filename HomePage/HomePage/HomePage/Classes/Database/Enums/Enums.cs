@@ -23,6 +23,7 @@
     {
         Add,
         Update,
-        Delete
+        Delete,
+        None
     }
 }

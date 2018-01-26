@@ -42,6 +42,7 @@ namespace HomePage.CustomControls
             set
             {
                 _object = value;
+                if(value!=null)
                 CreateControls();
             }
             get
@@ -71,7 +72,11 @@ namespace HomePage.CustomControls
             }
             return _object;
         }
-
+        /// <summary>
+        /// Sets the property value of the general scoped object to the given object value.
+        /// </summary>
+        /// <param name="prop"></param>
+        /// <param name="value"></param>
         private void SetPropertyValue(PropertyInfo prop, object value)
         {
             var propType = prop.PropertyType;
@@ -102,6 +107,12 @@ namespace HomePage.CustomControls
             {
                 var cBox = (LabelAndCombobox)_valueControls[prop.Name];
                 prop.SetValue(_object, cBox.SelectedIndex);
+                return;
+            }
+            if (propType == typeof(DateTime))
+            {
+                var date = (DateTime) value;
+                prop.SetValue(_object,date.ToUniversalTime());
                 return;
             }
             prop.SetValue(_object, value);
@@ -202,7 +213,7 @@ namespace HomePage.CustomControls
                     var nameChecked = false;
                     foreach (var pair in result)
                     {
-                        if (nameChecked == false && name != pair.Key)
+                        if (nameChecked == false && name != pair.Value)
                         {
                             index++;
                         }
@@ -210,7 +221,7 @@ namespace HomePage.CustomControls
                         {
                             nameChecked = true;
                         }
-                        cb.Add(pair.Key, pair.Value);
+                        cb.Add(pair.Value, pair.Key);
                     }
                 }
                 Add(cb, property.Name);
@@ -234,44 +245,10 @@ namespace HomePage.CustomControls
                         dynamic instanceCRUD = Activator.CreateInstance(genericType);
                         Dictionary<string, string> result = instanceCRUD.GetNameList();
 
-                        var results = result.ToDictionary(kp => kp.Value, kp => kp.Key);
                         var value = (object[])property.GetValue(_object);
 
-                        var cb = new LabelAndMultiControl<LabelAndCombobox>(attribute: attribute, multiAnswers: results, crudObject: instanceCRUD,values:value);
+                        var cb = new LabelAndMultiControl<LabelAndCombobox>(attribute: attribute, multiAnswers: result, crudObject: instanceCRUD,values:value);
 
-                        var index = 0;
-                        if (result != null)
-                        {
-
-                            //foreach (var value in result.Keys)
-                            //{
-                            //    cb.ComboBox.Items.Add(value);
-                            //}
-                            //dynamic valueOfProperty = property.GetValue(_object); // todo: Control to show arrays
-                            //if (valueOfProperty != null)
-                            //{
-                            //    foreach (var element in valueOfProperty)
-                            //    {
-                            //        string name = element?.Name ?? "";
-                            //        var nameChecked = false;
-                            //        foreach (var pair in result)
-                            //        {
-                            //            if (nameChecked == false && name != pair.Key)
-                            //            {
-                            //                index++;
-                            //            }
-                            //            else
-                            //            {
-                            //                nameChecked = true;
-                            //            }
-                            //            cb.Add(pair.Key, pair.Value);
-                            //        }
-                            //        if (name == "") cb.SelectBase();
-                            //        else if (index < result.Count) cb.ComboBox.SelectedIndex = index;
-                            //    }
-                            //}
-
-                        }
                         Add(cb, property.Name);
                     }
                     else

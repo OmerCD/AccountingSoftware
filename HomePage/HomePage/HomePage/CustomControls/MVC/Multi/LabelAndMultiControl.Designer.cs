@@ -39,13 +39,13 @@
             this.ButtonMultiAdd.ForeColor = System.Drawing.Color.Ivory;
             this.ButtonMultiAdd.Location = new System.Drawing.Point(209, 9);
             this.ButtonMultiAdd.Name = "ButtonMultiAdd";
-            this.ButtonMultiAdd.Size = new System.Drawing.Size(139, 29);
+            this.ButtonMultiAdd.Size = new System.Drawing.Size(200, 27);
             this.ButtonMultiAdd.TabIndex = 7;
             this.ButtonMultiAdd.Text = "Elemanlar";
             this.ButtonMultiAdd.UseVisualStyleBackColor = false;
             this.ButtonMultiAdd.Click += new System.EventHandler(this.ButtonMultiAdd_Click);
             // 
-            // LabelAndMultiTextBox
+            // LabelAndMultiControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

@@ -10,8 +10,14 @@ namespace HomePage.Forms
 {
     public partial class CreateForm : NoBorderForm
     {
-        private readonly DbObject _entity;
+        private DbObject _entity;
         private readonly FormGoal _goal;
+        public object Entity => _entity;
+
+        public string FormTitle
+        {
+            set => LabelTitle.Text = value;
+        }
         public CreateForm(DbObject entity, FormGoal goal)
         {
             InitializeComponent();
@@ -37,6 +43,10 @@ namespace HomePage.Forms
                     break;
                 case FormGoal.Delete:
                     throw new ArgumentOutOfRangeException();
+                case FormGoal.None:
+                    CtnData.ButtonText = "Onayla";
+                    CtnData.ButtonClickEvent += ButtonAssignObjectValues;
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -44,6 +54,13 @@ namespace HomePage.Forms
             this.Size = size;
             this.MaximumSize = size;
             this.MinimumSize = size;
+        }
+
+        private void ButtonAssignObjectValues(object sender, EventArgs e)
+        {
+            _entity = CtnData.Object as DbObject;
+            DialogResult=DialogResult.OK;
+            Close();
         }
 
         private void ButtonClickAdd(object sender, EventArgs e)
@@ -60,6 +77,7 @@ namespace HomePage.Forms
             method?.Invoke(genericCRUD, new[] { objectC });
             if (method != null)
             {
+                DialogResult=DialogResult.OK;
                 Close();
             }
         }
@@ -74,6 +92,7 @@ namespace HomePage.Forms
             method?.Invoke(genericCRUD, new[] { _entity._id, objectC });
             if (method != null)
             {
+                DialogResult = DialogResult.OK;
                 Close();
             }
         }

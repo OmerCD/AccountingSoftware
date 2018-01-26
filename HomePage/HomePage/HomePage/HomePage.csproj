@@ -78,6 +78,7 @@
     <Compile Include="Classes\Database\Cruds\CalendarCRUD.cs" />
     <Compile Include="Classes\Database\Cruds\CompanyColumnIndexCRUD.cs" />
     <Compile Include="Classes\Database\Cruds\CompanyLoginCRUD.cs" />
+    <Compile Include="Classes\Database\Cruds\DayEventCRUD.cs" />
     <Compile Include="Classes\Database\Entities\CompanyLogin.cs" />
     <Compile Include="Classes\Database\Cruds\ColumnCRUD.cs" />
     <Compile Include="Classes\Database\Cruds\CompanyCRUD.cs" />
@@ -108,13 +109,19 @@
     <Compile Include="CustomControls\Calendar\Day.Designer.cs">
       <DependentUpon>Day.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\Calendar\Event.cs">
+    <Compile Include="CustomControls\Calendar\EventControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomControls\Calendar\Event.Designer.cs">
-      <DependentUpon>Event.cs</DependentUpon>
+    <Compile Include="CustomControls\Calendar\EventControl.Designer.cs">
+      <DependentUpon>EventControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\Calendar\EventInfo.cs" />
+    <Compile Include="Classes\Database\Entities\EventInfo.cs" />
+    <Compile Include="CustomControls\Calendar\EventManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\Calendar\EventManager.Designer.cs">
+      <DependentUpon>EventManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\Container.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -263,8 +270,11 @@
     <EmbeddedResource Include="CustomControls\Calendar\Day.resx">
       <DependentUpon>Day.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\Calendar\Event.resx">
-      <DependentUpon>Event.cs</DependentUpon>
+    <EmbeddedResource Include="CustomControls\Calendar\EventControl.resx">
+      <DependentUpon>EventControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\Calendar\EventManager.resx">
+      <DependentUpon>EventManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\Container.resx">
       <DependentUpon>Container.cs</DependentUpon>
@@ -463,6 +473,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="f1_1fm_icon.ico" />
+    <None Include="Resources\warning %281%29.png" />
+    <None Include="Resources\warning.png" />
     <None Include="Resources\icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

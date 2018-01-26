@@ -45,6 +45,7 @@ namespace HomePage.Classes.Database
         private static IMongoCollection<BsonDocument> _personnel;
         private static IMongoCollection<BsonDocument> _generalSettings;
         private static IMongoCollection<BsonDocument> _log;
+        private static IMongoCollection<BsonDocument> _dayEvent;
 
         public static IMongoCollection<BsonDocument> GeneralSettings => _generalSettings ?? (_generalSettings = Database.GetCollection<BsonDocument>(typeof(Entities.GeneralSettings).Name));
         public static IMongoCollection<BsonDocument> User => _user ?? (_user = Database.GetCollection<BsonDocument>(typeof(Entities.User).Name));
@@ -55,6 +56,7 @@ namespace HomePage.Classes.Database
         public static IMongoCollection<BsonDocument> Calendar => _calendar ?? (_calendar = Database.GetCollection<BsonDocument>(typeof(Entities.Calendar).Name));
         public static IMongoCollection<BsonDocument> CompanyLogin => _companyLogin ?? (_companyLogin = Database.GetCollection<BsonDocument>(typeof(Entities.CompanyLogin).Name));
         public static IMongoCollection<BsonDocument> Log => _log ?? (_log = Database.GetCollection<BsonDocument>(typeof(Entities.Log).Name));
+        public static IMongoCollection<BsonDocument> DayEvent=>_dayEvent ??(_dayEvent=Database.GetCollection<BsonDocument>(typeof(Entities.DayEvent).Name));
 
 
         private static UserCRUD _userCRUD;
@@ -64,6 +66,7 @@ namespace HomePage.Classes.Database
         private static JobCRUD _jobCRUD;
         private static CalendarCRUD _calendarCRUD;
         private static CompanyLoginCRUD _companyLoginCRUD;
+        private static DayEventCRUD _dayEventCRUD;
 
         public static UserCRUD UserCRUD => _userCRUD ?? (_userCRUD = new UserCRUD());
         public static CompanyColumnIndexCRUD CompanyColumnIndexCRUD => _companyColumnIndexCRUD ?? (_companyColumnIndexCRUD = new CompanyColumnIndexCRUD());
@@ -72,6 +75,8 @@ namespace HomePage.Classes.Database
         public static JobCRUD JobCRUD => _jobCRUD ?? (_jobCRUD = new JobCRUD());
         public static CalendarCRUD CalendarCRUD => _calendarCRUD ?? (_calendarCRUD = new CalendarCRUD());
         public static CompanyLoginCRUD CompanyLoginCRUD => _companyLoginCRUD ?? (_companyLoginCRUD = new CompanyLoginCRUD());
+        public static DayEventCRUD DayEventCRUD => _dayEventCRUD ?? (_dayEventCRUD = new DayEventCRUD());
+
 
 
     }

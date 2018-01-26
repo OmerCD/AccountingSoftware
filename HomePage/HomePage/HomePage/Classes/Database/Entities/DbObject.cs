@@ -2,7 +2,7 @@
 
 namespace HomePage.Classes.Database.Entities
 {
-    public abstract class DbObject
+    public abstract class DbObject :IDisposable
     {
         // ReSharper disable once InconsistentNaming
         public string _id { get; set; }
@@ -17,6 +17,19 @@ namespace HomePage.Classes.Database.Entities
         public void Delete()
         {
             IsDeleted = 1;
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

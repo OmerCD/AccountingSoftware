@@ -23,7 +23,7 @@ namespace HomePage.CustomControls.MVC
             _values = values;
             InitializeComponent();
             ControlLabel.Text = attribute.FieldName;
-            ButtonMultiAdd.Text = $"({_values?.Length ?? 0})";
+            ButtonMultiAdd.Text = $"Elemanlar ({_values?.Length ?? 0})";
         }
 
         public override bool IsValidated()

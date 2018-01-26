@@ -46,6 +46,18 @@
             this.ControlLabel.Text = "label1";
             this.ControlLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // ErrorLabel
+            // 
+            this.ErrorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ErrorLabel.AutoSize = true;
+            this.ErrorLabel.Font = new System.Drawing.Font("Tahoma", 8F);
+            this.ErrorLabel.ForeColor = System.Drawing.Color.Red;
+            this.ErrorLabel.Location = new System.Drawing.Point(412, 15);
+            this.ErrorLabel.Name = "ErrorLabel";
+            this.ErrorLabel.Size = new System.Drawing.Size(0, 13);
+            this.ErrorLabel.TabIndex = 2;
+            // 
             // LabelAndControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -54,20 +66,10 @@
             this.Controls.Add(this.ControlLabel);
             this.Controls.Add(this.ErrorLabel);
             this.Name = "LabelAndControl";
-            this.Size = new System.Drawing.Size(620, 46);
+            this.Size = new System.Drawing.Size(710, 46);
             this.ResumeLayout(false);
             this.PerformLayout();
-            // 
-            // LatErrorLabel
-            // 
-            this.ErrorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                                                              | System.Windows.Forms.AnchorStyles.Right)));
-            this.ErrorLabel.AutoSize = true;
-            this.ErrorLabel.ForeColor = System.Drawing.Color.Red;
-            this.ErrorLabel.Location = new System.Drawing.Point(384, 16);
-            this.ErrorLabel.Name = "ErrorLabel";
-            this.ErrorLabel.Size = new System.Drawing.Size(0, 13);
-            this.ErrorLabel.TabIndex = 2;
+
         }
 
         #endregion

@@ -49,7 +49,9 @@ namespace HomePage.CustomControls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.LacCheckBox);
             this.Name = "LabelAndCheckBox";
-            this.Size = new System.Drawing.Size(620, 46);
+            this.Controls.SetChildIndex(this.LacCheckBox, 0);
+            this.Controls.SetChildIndex(this.ErrorLabel, 0);
+            this.Controls.SetChildIndex(this.ControlLabel, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 

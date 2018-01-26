@@ -1,31 +1,64 @@
-﻿using HomePage.Classes.Database.Entities;
+﻿using System;
+using HomePage.Classes.Database.Entities;
 using MongoDB.Bson;
 using System.Collections.Generic;
+using System.Linq;
+using MongoDB.Driver;
 
 namespace HomePage.Classes.Database.Cruds
 {
-    public class JobCRUD :CRUD<Job>
+    public class JobCRUD : CRUD<Job>
     {
-        public JobCRUD():base(DbFactory.Job)
+        public JobCRUD() : base(DbFactory.Job)
         {
-            
+
         }
-        public override Dictionary<string, string> GetNameList() // PersonnelName,_id
+
+        public bool CheckIfJobExists(DateTime date)
         {
-            Dictionary<string, string> personnelList = new Dictionary<string, string>();
-            HashSet<string> nameList = new HashSet<string> {"ALL"};
-            personnelList.Add("ALL", "ALL"); // Tüm Personel için
-            foreach (var item in DbFactory.CompanyCRUD.GetAll(new BsonDocument()))
-            {
-                if (nameList.Contains(item.Name) == false)
+            BsonDocument testDoc = GenerateDayCheckDocument(date);
+            var testFilter = new BsonDocument
                 {
-                    personnelList.Add(item.Name, item._id);
-                    nameList.Add(item.Name);
-                }
+                    {
+                        "EventDate",
+                        testDoc
+                    },
+                    {
+                        "IsDeleted",
+                        0
+                    }
+                };
+            var cursor = Table.FindSync<Job>(testFilter);
+            return cursor.Any();
+        }
 
+
+        public Job[] GetJobsAtGivenDate(DateTime date)
+        {
+            try
+            {
+                var testDoc = GenerateDayCheckDocument(date);
+                var testFilter = new BsonDocument
+                {
+                    {
+                        "EventDate",
+                        testDoc
+                    },
+                    {
+                        "IsDeleted",
+                        0
+                    }
+                };
+                var cursor = Table.FindSync<Job>(testFilter);
+                cursor.MoveNext();
+                var batch = cursor.Current;
+                return batch.ToArray();
             }
+            catch (Exception)
+            {
 
-            return personnelList;
+                return new Job[0];
+            }
         }
     }
 }
