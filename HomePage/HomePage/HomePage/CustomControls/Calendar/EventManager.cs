@@ -94,5 +94,27 @@ namespace HomePage.CustomControls.Calendar
                 }
             }
         }
+
+        private void ButtonAddJob_Click(object sender, EventArgs e)
+        {
+            if (_currentDayEvent != null)
+            {
+                using (var frm = new CreateForm(new Job{EventDate = _currentDayEvent.EventDate}, FormGoal.Add))
+                {
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        RefreshLists();
+                    }
+                }
+            }
+        }
+
+        private void ListBoxEventsList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ListBoxEventsList.SelectedIndex!=-1)
+            {
+                EventViewer.Object=_currentDayEvent.Events.First(x => x._id == (((ListBoxItem) (ListBoxEventsList.SelectedItem)).Id));
+            }
+        }
     }
 }

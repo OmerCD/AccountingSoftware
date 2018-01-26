@@ -50,6 +50,7 @@
             this.ListBoxEventsList.Name = "ListBoxEventsList";
             this.ListBoxEventsList.Size = new System.Drawing.Size(136, 204);
             this.ListBoxEventsList.TabIndex = 0;
+            this.ListBoxEventsList.SelectedIndexChanged += new System.EventHandler(this.ListBoxEventsList_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -132,6 +133,7 @@
             this.ButtonAddJob.TabIndex = 6;
             this.ButtonAddJob.Text = "İş Ekle";
             this.ButtonAddJob.UseVisualStyleBackColor = false;
+            this.ButtonAddJob.Click += new System.EventHandler(this.ButtonAddJob_Click);
             // 
             // EventManager
             // 

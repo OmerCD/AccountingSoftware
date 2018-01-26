@@ -33,11 +33,12 @@
             // 
             // ContainerButton
             // 
-            this.ContainerButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ContainerButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ContainerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ContainerButton.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.ContainerButton.ForeColor = System.Drawing.Color.White;
-            this.ContainerButton.Location = new System.Drawing.Point(154, 236);
+            this.ContainerButton.Location = new System.Drawing.Point(155, 172);
             this.ContainerButton.Name = "ContainerButton";
             this.ContainerButton.Size = new System.Drawing.Size(130, 48);
             this.ContainerButton.TabIndex = 0;

@@ -279,7 +279,7 @@ namespace HomePage.CustomControls
         private void LocateButton()
         {
             this.Size = new Size(this.Width + 120, this.Height + ContainerButton.Height + 120);
-            this.ContainerButton.Location = new Point(this.ContainerButton.Location.X - 40, this._lastY - 70);
+            //this.ContainerButton.Location = new Point(this.ContainerButton.Location.X - 40, this._lastY - 70);
         }
 
         private void ContainerButton_Click(object sender, EventArgs e)
