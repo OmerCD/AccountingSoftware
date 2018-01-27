@@ -18,6 +18,7 @@ namespace HomePage.CustomControls.Calendar
         public static Action<Day,DayEvent> SelectedDayChanged;
         public static DateTime ChoosenDateTime;
         private Day _lastChooseDayControl;
+        private bool _isDesigner = false;
         public Calendar(string[] monthStrings)
         {
             InitializeComponent();
@@ -25,8 +26,9 @@ namespace HomePage.CustomControls.Calendar
             _choosenDate = DateTime.Now;
             ArrangeDates(_choosenDate);
         }
-        public Calendar()
+        public Calendar(bool designer)
         {
+            _isDesigner = designer;
             InitializeComponent();
             _months = new[]
             {
@@ -34,8 +36,8 @@ namespace HomePage.CustomControls.Calendar
                 "Aralık"
             };
             _choosenDate = DateTime.Now;
-            ArrangeDates(_choosenDate);
             SelectedDayChanged+=SelectedDayChangeEvent;
+            ArrangeDates(_choosenDate);
         }
 
         private void SelectedDayChangeEvent(Day sender,DayEvent dayEvent)
@@ -79,7 +81,7 @@ namespace HomePage.CustomControls.Calendar
             {
                 var date = new DateTime(previousMonth.Year,previousMonth.Month,j);
 
-                TLPDates.Controls.Add(new Day(date,true));
+                TLPDates.Controls.Add(new Day(date,true,_isDesigner));
             }
 
             int monthDayCounter = 1;
@@ -87,7 +89,7 @@ namespace HomePage.CustomControls.Calendar
             {
                 var date = new DateTime(choosenDate.Year,choosenDate.Month,monthDayCounter++);
 
-                TLPDates.Controls.Add(new Day(date, false));
+                TLPDates.Controls.Add(new Day(date, false, _isDesigner));
             }
 
             DateTime nextMonth = choosenDate.AddMonths(1);
@@ -98,7 +100,7 @@ namespace HomePage.CustomControls.Calendar
             {
                 var date = new DateTime(nextMonth.Year,nextMonth.Month,(i+1));
 
-                TLPDates.Controls.Add(new Day(date, true));
+                TLPDates.Controls.Add(new Day(date, true, _isDesigner));
             }
         }
 

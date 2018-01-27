@@ -13,6 +13,8 @@ namespace HomePage.CustomControls
 {
     public partial class Container : UserControl
     {
+        private readonly bool _fixedSize;
+
         /// <summary>
         /// Object that this container will try to create the view for.
         /// </summary>
@@ -162,9 +164,9 @@ namespace HomePage.CustomControls
         {
             foreach (var control in _valueControls)
             {
-                Controls.Remove((Control) control.Value);
+                Controls.Remove((Control)control.Value);
             }
-            _valueControls= new Dictionary<string, IMainCustomControl>();
+            _valueControls = new Dictionary<string, IMainCustomControl>();
             _lastY = 0;
         }
 
@@ -276,10 +278,10 @@ namespace HomePage.CustomControls
             }
         }
 
-        public Container()
+        public Container(bool fixedSize)
         {
+            _fixedSize = fixedSize;
             InitializeComponent();
-
         }
         private int _lastY;
 
@@ -287,14 +289,16 @@ namespace HomePage.CustomControls
         {
             _valueControls.Add(propertyName, (IMainCustomControl)userControl);
             userControl.Location = new Point(userControl.Location.X + 30, _lastY);
+            userControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             this.Controls.Add(userControl);
             _lastY += userControl.Size.Height + 10;
         }
 
         private void LocateButton()
         {
-            this.Size = new Size(this.Width + 120, _lastY+ContainerButton.Height);
-            this.ContainerButton.Location = new Point(this.ContainerButton.Location.X , _lastY);
+            if (!_fixedSize)
+                this.Size = new Size(this.Width+120, _lastY + ContainerButton.Height);
+            this.ContainerButton.Location = new Point(this.Size.Width/2-ContainerButton.Size.Width/2, _lastY);
         }
 
         private void ContainerButton_Click(object sender, EventArgs e)
@@ -312,6 +316,11 @@ namespace HomePage.CustomControls
             {
                 ButtonClickEvent?.Invoke(sender, e);
             }
+        }
+
+        private void Container_Resize(object sender, EventArgs e)
+        {
+            this.ContainerButton.Location = new Point(this.Size.Width / 2 - ContainerButton.Size.Width / 2, _lastY);
         }
     }
 }

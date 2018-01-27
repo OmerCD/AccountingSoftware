@@ -17,7 +17,7 @@ namespace HomePage.CustomControls.Calendar
     {
         private readonly DateTime _dateTime;
 
-        public Day(DateTime dateTime,bool blurred)
+        public Day(DateTime dateTime, bool blurred, bool designer)
         {
             _dateTime = dateTime;
             InitializeComponent();
@@ -26,14 +26,15 @@ namespace HomePage.CustomControls.Calendar
             {
                 lblDay.ForeColor = Color.Red;
             }
-            CheckDayEvents(dateTime);
+            if (!designer)
+                CheckDayEvents(dateTime);
         }
 
         private void CheckDayEvents(DateTime dateTime)
         {
             var dayEventCRUD = DbFactory.DayEventCRUD;
             var dayEvent = dayEventCRUD.GetOne("EventDate", dateTime);
-            if (dayEvent != null && dayEvent.Events.Count>0)
+            if (dayEvent != null && dayEvent.Events.Count > 0)
             {
                 pictureBoxEvent.Visible = true;
             }
@@ -59,7 +60,7 @@ namespace HomePage.CustomControls.Calendar
             }
             ForeColor = Color.Black;
             BackColor = Color.Goldenrod;
-            Calendar.SelectedDayChanged?.Invoke(this,selectedDay);
+            Calendar.SelectedDayChanged?.Invoke(this, selectedDay);
         }
     }
 }

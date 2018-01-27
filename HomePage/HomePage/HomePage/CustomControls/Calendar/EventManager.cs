@@ -18,6 +18,7 @@ namespace HomePage.CustomControls.Calendar
     public partial class EventManager : UserControl
     {
         private DayEvent _currentDayEvent;
+        private Type _lastType;
         private void RefreshLists()
         {
             RefreshEventList();
@@ -54,6 +55,41 @@ namespace HomePage.CustomControls.Calendar
         {
             InitializeComponent();
             Calendar.SelectedDayChanged+=SelectedDayChanged;
+            EventViewer.ButtonClickEvent += EventViewer_ButtonClickEvent;
+        }
+
+        private void EventViewer_ButtonClickEvent(object arg1, EventArgs arg2)
+        {
+            var type = _lastType;
+            var genericType = typeof(CRUD<>).MakeGenericType(type);
+
+            var genericCRUD = Activator.CreateInstance(genericType);
+            var method = genericType.GetMethod("Update");
+            var objectC = EventViewer.Object;
+            string id="";
+            if (type == typeof(Job))
+            {
+                int selectedIndex = ListBoxJobList.SelectedIndex;
+                if (selectedIndex!=-1)
+                {
+                    id = ((ListBoxItem) ListBoxJobList.Items[selectedIndex]).Id;
+                }
+            }
+            else if (type == typeof(DayEvent))
+            {
+                int selectedIndex = ListBoxEventsList.SelectedIndex;
+                if (selectedIndex!=-1)
+                {
+                    id = ((ListBoxItem)ListBoxEventsList.Items[selectedIndex]).Id;
+                    var newEvent = (Event)EventViewer.Object;
+                    var oldEventIndex = _currentDayEvent.Events.FindIndex(x => x._id == id);
+                    _currentDayEvent.Events[oldEventIndex] = newEvent;
+                    objectC = _currentDayEvent;
+                }
+            }
+
+            method?.Invoke(genericCRUD, new[] { id, objectC });
+
         }
 
         private void SelectedDayChanged(object sender,DayEvent dayEvent)
@@ -113,7 +149,17 @@ namespace HomePage.CustomControls.Calendar
         {
             if (ListBoxEventsList.SelectedIndex!=-1)
             {
-                EventViewer.Object=_currentDayEvent.Events.First(x => x._id == (((ListBoxItem) (ListBoxEventsList.SelectedItem)).Id));
+                EventViewer.Object=_currentDayEvent.Events.First(x => x._id == ((ListBoxItem) ListBoxEventsList.SelectedItem).Id);
+                _lastType = typeof(DayEvent);
+            }
+        }
+
+        private void ListBoxJobList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ListBoxJobList.SelectedIndex!=-1)
+            {
+                EventViewer.Object = DbFactory.JobCRUD.GetOne(((ListBoxItem) ListBoxJobList.SelectedItem).Id);
+                _lastType = typeof(Job);
             }
         }
     }

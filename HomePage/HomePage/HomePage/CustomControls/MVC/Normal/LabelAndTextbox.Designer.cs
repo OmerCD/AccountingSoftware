@@ -23,7 +23,7 @@ namespace HomePage.CustomControls
             // LatTextBox
             // 
             this.LatTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.LatTextBox.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.LatTextBox.ForeColor = System.Drawing.Color.Silver;
             this.LatTextBox.Location = new System.Drawing.Point(209, 10);

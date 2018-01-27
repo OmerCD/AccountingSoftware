@@ -35,6 +35,8 @@ namespace HomePage.CustomControls
             // 
             // LacCheckBox
             // 
+            this.LacCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.LacCheckBox.AutoSize = true;
             this.LacCheckBox.Location = new System.Drawing.Point(209, 13);
             this.LacCheckBox.Name = "LacCheckBox";

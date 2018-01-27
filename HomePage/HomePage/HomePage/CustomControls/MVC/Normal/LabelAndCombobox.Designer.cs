@@ -35,6 +35,8 @@ namespace HomePage.CustomControls
             // 
             // LacComboBox
             // 
+            this.LacComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.LacComboBox.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.LacComboBox.FormattingEnabled = true;
             this.LacComboBox.Location = new System.Drawing.Point(209, 9);
