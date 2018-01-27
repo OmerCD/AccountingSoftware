@@ -70,10 +70,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CtnData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.CtnData.Location = new System.Drawing.Point(12, 43);
+            this.CtnData.Location = new System.Drawing.Point(0, 38);
             this.CtnData.Name = "CtnData";
             this.CtnData.Object = null;
-            this.CtnData.Size = new System.Drawing.Size(403, 111);
+            this.CtnData.Size = new System.Drawing.Size(427, 128);
             this.CtnData.TabIndex = 6;
             // 
             // CreateForm
@@ -85,7 +85,6 @@
             this.Controls.Add(this.CtnData);
             this.Controls.Add(this.LabelTitle);
             this.Controls.Add(this.btnExit);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CreateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
