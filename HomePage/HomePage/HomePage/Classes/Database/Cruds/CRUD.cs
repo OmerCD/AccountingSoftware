@@ -196,6 +196,49 @@ namespace HomePage.Classes.Database
             }
 
         }
+
+        public List<T> Search(string column, string value)
+        {
+
+            BsonDocument GetFilter()
+            {
+                return new BsonDocument { { column, new BsonDocument { { "$regex", "(?i)"+value+"(?-i)" } } } };
+            }
+
+            var cursor = Table.FindSync(GetFilter());
+            cursor.MoveNext();
+            var batch = cursor.Current;
+            List<T> results = new List<T>();
+            results.AddRange(batch.Select(item => BsonSerializer.Deserialize<T>(item)));
+            return results;
+        }
+
+        public List<T> MultipleColumnSearch(string value, IEnumerable<string> columns)
+        {
+            BsonDocument GetFilter(string column)
+            {
+                return new BsonDocument { { column, new BsonDocument { { "$regex", "(?i)" + value + "(?-i)" } } } };
+            }
+            var filterArray = new BsonArray();
+            foreach (var column in columns)
+            {
+                filterArray.Add(GetFilter(column));
+            }
+            var bsonOr = new BsonDocument{
+            {
+                "$or",
+                filterArray
+            }};
+
+            //var bsonResult = new BsonDocument{{"$match",bsonOr}};
+            var cursor = Table.FindSync(bsonOr);
+            cursor.MoveNext();
+            var batch = cursor.Current;
+            List<T> results = new List<T>();
+            results.AddRange(batch.Select(item => BsonSerializer.Deserialize<T>(item)));
+            return results;
+        }
+
         public virtual T GetOne(string columnName, string value)
         {
             try

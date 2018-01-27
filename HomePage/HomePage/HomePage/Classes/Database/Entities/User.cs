@@ -5,15 +5,15 @@ namespace HomePage.Classes.Database.Entities
    
     public class User : DbObject
     {
-        [Custom(MinLength = 4,MaxLength =32,FieldName ="Kullanıcı Adı")]
+        [Custom(MinLength = 4,MaxLength =32,FieldName ="Kullanıcı Adı",Searchable = true)]
         public string UserName { get; set; }
         [Custom(MinLength = 6, MaxLength = 14,IsPassword =true,FieldName ="Şifre")]
         public string Password {  get; set; }
-        [Custom(MinLength = 2, MaxLength = 40, FieldName = "İsim Soyisim")]
+        [Custom(MinLength = 2, MaxLength = 40, FieldName = "İsim Soyisim",Searchable = true)]
         public string Name { get; set; }
-        [Custom(MinLength = 3, MaxLength = 64,PlaceHolderText ="isim@domain.com", FieldName = "E-Posta",RegexPattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")]
+        [Custom(MinLength = 3, MaxLength = 64,PlaceHolderText ="isim@domain.com", FieldName = "E-Posta",RegexPattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$",Searchable = true)]
         public string Email { get; set; }
-        [Custom(MinLength = 10, MaxLength = 10, PlaceHolderText = "5XXXXXXXXX", FieldName = "Telefon Numarası",RegexPattern = @"^[0-9]{9}")]
+        [Custom(MinLength = 10, MaxLength = 10, PlaceHolderText = "5XXXXXXXXX", FieldName = "Telefon Numarası",RegexPattern = @"^[0-9]{9}",Searchable = true)]
         public string PhoneNumber { get; set; }
         [Custom(FieldName = "Kullanıcı Tipi")]
         public UserTypes UserType { get; set; }
