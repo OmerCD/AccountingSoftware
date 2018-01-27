@@ -57,6 +57,7 @@ namespace HomePage.CustomControls.Calendar
                     EventDate = _dateTime
                 };
             }
+            ForeColor = Color.Black;
             BackColor = Color.Goldenrod;
             Calendar.SelectedDayChanged?.Invoke(this,selectedDay);
         }

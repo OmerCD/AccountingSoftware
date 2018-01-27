@@ -50,10 +50,10 @@ namespace HomePage.Forms
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            var size = new Size(CtnData.Size.Width + 200, CtnData.Size.Height);
+            var size = new Size(CtnData.Size.Width, CtnData.Size.Height+CtnData.ContainerButton.Height+80);
             this.Size = size;
-            this.MaximumSize = size;
-            this.MinimumSize = size;
+            //this.MaximumSize = size;
+            //this.MinimumSize = size;
         }
 
         private void ButtonAssignObjectValues(object sender, EventArgs e)

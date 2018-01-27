@@ -29,21 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateForm));
-            this.CtnData = new HomePage.CustomControls.Container();
             this.btnExit = new System.Windows.Forms.Button();
             this.LabelTitle = new System.Windows.Forms.Label();
+            this.CtnData = new HomePage.CustomControls.Container();
             this.SuspendLayout();
-            // 
-            // CtnData
-            // 
-            this.CtnData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CtnData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.CtnData.Location = new System.Drawing.Point(0, 37);
-            this.CtnData.Name = "CtnData";
-            this.CtnData.Size = new System.Drawing.Size(345, 402);
-            this.CtnData.TabIndex = 0;
             // 
             // btnExit
             // 
@@ -57,7 +46,7 @@
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnExit.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnExit.Location = new System.Drawing.Point(305, 0);
+            this.btnExit.Location = new System.Drawing.Point(388, 0);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(35, 37);
             this.btnExit.TabIndex = 4;
@@ -75,18 +64,31 @@
             this.LabelTitle.Size = new System.Drawing.Size(0, 29);
             this.LabelTitle.TabIndex = 5;
             // 
+            // CtnData
+            // 
+            this.CtnData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CtnData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.CtnData.Location = new System.Drawing.Point(12, 43);
+            this.CtnData.Name = "CtnData";
+            this.CtnData.Object = null;
+            this.CtnData.Size = new System.Drawing.Size(403, 111);
+            this.CtnData.TabIndex = 6;
+            // 
             // CreateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(344, 441);
+            this.ClientSize = new System.Drawing.Size(427, 166);
+            this.Controls.Add(this.CtnData);
             this.Controls.Add(this.LabelTitle);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.CtnData);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Name = "CreateForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CreateForm";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -94,9 +96,8 @@
         }
 
         #endregion
-
-        private CustomControls.Container CtnData;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label LabelTitle;
+        private CustomControls.Container CtnData;
     }
 }

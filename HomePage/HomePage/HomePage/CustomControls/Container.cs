@@ -20,7 +20,7 @@ namespace HomePage.CustomControls
         /// <summary>
         /// This Dictionary keeps track of the controls added for assignment of the properties, that controls created from.
         /// </summary>
-        private readonly Dictionary<string, IMainCustomControl> _valueControls = new Dictionary<string, IMainCustomControl>();
+        private Dictionary<string, IMainCustomControl> _valueControls = new Dictionary<string, IMainCustomControl>();
 
         /// <summary>
         /// This property will set the Text on the single button in this container.
@@ -42,8 +42,8 @@ namespace HomePage.CustomControls
             set
             {
                 _object = value;
-                if(value!=null)
-                CreateControls();
+                if (value != null)
+                    CreateControls();
             }
             get
             {
@@ -57,17 +57,20 @@ namespace HomePage.CustomControls
         /// <returns></returns>
         private object GetValues()
         {
-            var props = _object.GetType().GetProperties();
-            foreach (var prop in props)
+            if (_object != null)
             {
-                if (prop.CustomAttributes.Any())
+                var props = _object.GetType().GetProperties();
+                foreach (var prop in props)
                 {
-                    if (_valueControls.ContainsKey(prop.Name))
+                    if (prop.CustomAttributes.Any())
                     {
-                        var value = _valueControls[prop.Name].Value;
-                        SetPropertyValue(prop, value);
-                    }
+                        if (_valueControls.ContainsKey(prop.Name))
+                        {
+                            var value = _valueControls[prop.Name].Value;
+                            SetPropertyValue(prop, value);
+                        }
 
+                    }
                 }
             }
             return _object;
@@ -111,8 +114,8 @@ namespace HomePage.CustomControls
             }
             if (propType == typeof(DateTime))
             {
-                var date = (DateTime) value;
-                prop.SetValue(_object,date.ToUniversalTime());
+                var date = (DateTime)value;
+                prop.SetValue(_object, date.ToUniversalTime());
                 return;
             }
             prop.SetValue(_object, value);
@@ -137,6 +140,7 @@ namespace HomePage.CustomControls
 
         private void CreateControls()
         {
+            ClearControls();
             var properties = _object.GetType().GetProperties();
             foreach (var property in properties)
             {
@@ -153,6 +157,17 @@ namespace HomePage.CustomControls
             LocateButton();
 
         }
+
+        private void ClearControls()
+        {
+            foreach (var control in _valueControls)
+            {
+                Controls.Remove((Control) control.Value);
+            }
+            _valueControls= new Dictionary<string, IMainCustomControl>();
+            _lastY = 0;
+        }
+
         /// <summary>
         /// Based on given parameters this method tries to create best suiting control for the given property which must have a CustomAttribute.
         /// </summary>
@@ -247,7 +262,7 @@ namespace HomePage.CustomControls
 
                         var value = (object[])property.GetValue(_object);
 
-                        var cb = new LabelAndMultiControl<LabelAndCombobox>(attribute: attribute, multiAnswers: result, crudObject: instanceCRUD,values:value);
+                        var cb = new LabelAndMultiControl<LabelAndCombobox>(attribute: attribute, multiAnswers: result, crudObject: instanceCRUD, values: value);
 
                         Add(cb, property.Name);
                     }
@@ -278,8 +293,8 @@ namespace HomePage.CustomControls
 
         private void LocateButton()
         {
-            this.Size = new Size(this.Width + 120, this.Height + ContainerButton.Height + 120);
-            //this.ContainerButton.Location = new Point(this.ContainerButton.Location.X - 40, this._lastY - 70);
+            this.Size = new Size(this.Width + 120, _lastY+ContainerButton.Height+50);
+            this.ContainerButton.Location = new Point(this.ContainerButton.Location.X , _lastY);
         }
 
         private void ContainerButton_Click(object sender, EventArgs e)

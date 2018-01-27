@@ -42,14 +42,18 @@ namespace HomePage.CustomControls.Calendar
         {
             if (_lastChooseDayControl!=sender)
             {
-                if (_lastChooseDayControl != null) _lastChooseDayControl.BackColor = Color.Transparent;
+                if (_lastChooseDayControl != null)
+                {
+                    _lastChooseDayControl.BackColor = Color.FromArgb(67,67,67);
+                    _lastChooseDayControl.ForeColor = Color.White;
+                }
                 _lastChooseDayControl = sender;
             }
         }
 
         public DateTime ChoosenDate
         {
-            get { return _choosenDate; }
+            get => _choosenDate;
             set
             {
                 _choosenDate = value;
