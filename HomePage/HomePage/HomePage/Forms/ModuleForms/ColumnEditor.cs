@@ -15,7 +15,7 @@ namespace HomePage.Forms.ModuleForms
         {
             InitializeComponent();
             _columnCrud = new ColumnCRUD();
-            cCaption = 18;
+            cCaption = 32;
         }
 
         private void RefreshColumnList()

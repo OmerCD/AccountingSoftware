@@ -55,21 +55,21 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DgvDocuments.DefaultCellStyle = dataGridViewCellStyle1;
             this.DgvDocuments.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.DgvDocuments.Location = new System.Drawing.Point(12, 12);
+            this.DgvDocuments.Location = new System.Drawing.Point(10, 10);
             this.DgvDocuments.Name = "DgvDocuments";
-            this.DgvDocuments.Size = new System.Drawing.Size(619, 498);
+            this.DgvDocuments.Size = new System.Drawing.Size(585, 500);
             this.DgvDocuments.TabIndex = 0;
             // 
             // btnApplyChanges
             // 
             this.btnApplyChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnApplyChanges.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(188)))), ((int)(((byte)(145)))));
+            this.btnApplyChanges.BackColor = System.Drawing.Color.ForestGreen;
             this.btnApplyChanges.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnApplyChanges.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnApplyChanges.ForeColor = System.Drawing.Color.Black;
-            this.btnApplyChanges.Location = new System.Drawing.Point(637, 476);
+            this.btnApplyChanges.Font = new System.Drawing.Font("Titillium Web", 12F, System.Drawing.FontStyle.Bold);
+            this.btnApplyChanges.ForeColor = System.Drawing.Color.White;
+            this.btnApplyChanges.Location = new System.Drawing.Point(605, 475);
             this.btnApplyChanges.Name = "btnApplyChanges";
-            this.btnApplyChanges.Size = new System.Drawing.Size(75, 34);
+            this.btnApplyChanges.Size = new System.Drawing.Size(110, 35);
             this.btnApplyChanges.TabIndex = 2;
             this.btnApplyChanges.Text = "Kaydet";
             this.btnApplyChanges.UseVisualStyleBackColor = false;
@@ -78,13 +78,13 @@
             // BtnColumnEditor
             // 
             this.BtnColumnEditor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnColumnEditor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
+            this.BtnColumnEditor.BackColor = System.Drawing.Color.OrangeRed;
             this.BtnColumnEditor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnColumnEditor.Font = new System.Drawing.Font("Titillium Web", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnColumnEditor.ForeColor = System.Drawing.Color.Black;
-            this.BtnColumnEditor.Location = new System.Drawing.Point(637, 12);
+            this.BtnColumnEditor.ForeColor = System.Drawing.Color.White;
+            this.BtnColumnEditor.Location = new System.Drawing.Point(605, 10);
             this.BtnColumnEditor.Name = "BtnColumnEditor";
-            this.BtnColumnEditor.Size = new System.Drawing.Size(75, 62);
+            this.BtnColumnEditor.Size = new System.Drawing.Size(110, 35);
             this.BtnColumnEditor.TabIndex = 1;
             this.BtnColumnEditor.Text = "Sütun Editör";
             this.BtnColumnEditor.UseVisualStyleBackColor = false;

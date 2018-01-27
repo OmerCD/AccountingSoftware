@@ -467,6 +467,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="f1_1fm_icon.ico" />
+    <None Include="Resources\warning-red.png" />
+    <None Include="Resources\warning-yellow.png" />
     <None Include="Resources\settings.png" />
     <None Include="Resources\calendar2.png" />
     <None Include="Resources\sidebar-document.png" />

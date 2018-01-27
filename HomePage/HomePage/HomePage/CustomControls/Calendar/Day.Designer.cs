@@ -47,7 +47,7 @@
             // pictureBoxJob
             // 
             this.pictureBoxJob.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxJob.Image = global::HomePage.Properties.Resources.warning;
+            this.pictureBoxJob.Image = global::HomePage.Properties.Resources.warning_red;
             this.pictureBoxJob.Location = new System.Drawing.Point(101, 3);
             this.pictureBoxJob.Name = "pictureBoxJob";
             this.pictureBoxJob.Size = new System.Drawing.Size(24, 24);
@@ -58,7 +58,7 @@
             // pictureBoxEvent
             // 
             this.pictureBoxEvent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxEvent.Image = global::HomePage.Properties.Resources.warning__1_;
+            this.pictureBoxEvent.Image = global::HomePage.Properties.Resources.warning_yellow;
             this.pictureBoxEvent.Location = new System.Drawing.Point(71, 3);
             this.pictureBoxEvent.Name = "pictureBoxEvent";
             this.pictureBoxEvent.Size = new System.Drawing.Size(24, 24);

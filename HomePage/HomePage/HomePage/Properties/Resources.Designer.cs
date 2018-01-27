@@ -173,16 +173,6 @@ namespace HomePage.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap F1LoginBtn {
-            get {
-                object obj = ResourceManager.GetObject("F1LoginBtn", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap F1transparent {
             get {
                 object obj = ResourceManager.GetObject("F1transparent", resourceCulture);
@@ -263,9 +253,9 @@ namespace HomePage.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap warning {
+        internal static System.Drawing.Bitmap warning_red {
             get {
-                object obj = ResourceManager.GetObject("warning", resourceCulture);
+                object obj = ResourceManager.GetObject("warning-red", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -273,9 +263,9 @@ namespace HomePage.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap warning__1_ {
+        internal static System.Drawing.Bitmap warning_yellow {
             get {
-                object obj = ResourceManager.GetObject("warning (1)", resourceCulture);
+                object obj = ResourceManager.GetObject("warning-yellow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
