@@ -56,6 +56,7 @@
             this.Controls.Add(this.ContainerButton);
             this.Name = "Container";
             this.Size = new System.Drawing.Size(350, 263);
+            this.Resize += new System.EventHandler(this.Container_Resize);
             this.ResumeLayout(false);
 
         }

@@ -112,12 +112,6 @@
     <Compile Include="CustomControls\Calendar\Day.Designer.cs">
       <DependentUpon>Day.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\Calendar\EventControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CustomControls\Calendar\EventControl.Designer.cs">
-      <DependentUpon>EventControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Classes\Database\Entities\EventInfo.cs" />
     <Compile Include="CustomControls\Calendar\EventManager.cs">
       <SubType>UserControl</SubType>
@@ -272,9 +266,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\Calendar\Day.resx">
       <DependentUpon>Day.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\Calendar\EventControl.resx">
-      <DependentUpon>EventControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\Calendar\EventManager.resx">
       <DependentUpon>EventManager.cs</DependentUpon>

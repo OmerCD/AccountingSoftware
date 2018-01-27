@@ -32,9 +32,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ListBoxJobList = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.EventViewer = new HomePage.CustomControls.Container();
             this.ButtonAddEvent = new System.Windows.Forms.Button();
             this.ButtonAddJob = new System.Windows.Forms.Button();
+            this.EventViewer = new CustomControls.Container(true);
             this.SuspendLayout();
             // 
             // ListBoxEventsList
@@ -78,6 +78,7 @@
             this.ListBoxJobList.Name = "ListBoxJobList";
             this.ListBoxJobList.Size = new System.Drawing.Size(136, 204);
             this.ListBoxJobList.TabIndex = 2;
+            this.ListBoxJobList.SelectedIndexChanged += new System.EventHandler(this.ListBoxJobList_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -94,14 +95,15 @@
             // 
             // EventViewer
             // 
-            this.EventViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.EventViewer.BackColor = System.Drawing.Color.Gainsboro;
+            //this.EventViewer.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            this.EventViewer.AutoScroll = true;
+            this.EventViewer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(67)))), ((int)(((byte)(67)))));
             this.EventViewer.Location = new System.Drawing.Point(301, 40);
             this.EventViewer.Name = "EventViewer";
-            this.EventViewer.Size = new System.Drawing.Size(464, 251);
+            this.EventViewer.Object = null;
+            this.EventViewer.Size = new System.Drawing.Size(800, 251);
             this.EventViewer.TabIndex = 4;
+            this.EventViewer.ButtonText = "Güncelle";
             // 
             // ButtonAddEvent
             // 
@@ -148,7 +150,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ListBoxEventsList);
             this.Name = "EventManager";
-            this.Size = new System.Drawing.Size(782, 318);
+            this.Size = new System.Drawing.Size(918, 318);
             this.ResumeLayout(false);
             this.PerformLayout();
 
