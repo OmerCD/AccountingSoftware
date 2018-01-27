@@ -39,7 +39,7 @@ namespace HomePage.CustomControls.ContextMenu
             this.BtnLogOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
             this.BtnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnLogOut.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.BtnLogOut.Font = new System.Drawing.Font("Titillium Web", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.BtnLogOut.Font = new System.Drawing.Font("Titillium Web", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.BtnLogOut.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.BtnLogOut.IconChar = FontAwesome.Sharp.IconChar.WindowClose;
             this.BtnLogOut.IconColor = System.Drawing.Color.AliceBlue;
@@ -48,7 +48,7 @@ namespace HomePage.CustomControls.ContextMenu
             this.BtnLogOut.Location = new System.Drawing.Point(3, 3);
             this.BtnLogOut.Name = "BtnLogOut";
             this.BtnLogOut.Rotation = 0D;
-            this.BtnLogOut.Size = new System.Drawing.Size(144, 41);
+            this.BtnLogOut.Size = new System.Drawing.Size(150, 32);
             this.BtnLogOut.TabIndex = 0;
             this.BtnLogOut.Text = "Oturumu Kapat";
             this.BtnLogOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -61,7 +61,7 @@ namespace HomePage.CustomControls.ContextMenu
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.Controls.Add(this.BtnLogOut);
             this.Name = "SettingsContextMenu";
-            this.Size = new System.Drawing.Size(150, 47);
+            this.Size = new System.Drawing.Size(150, 87);
             this.ResumeLayout(false);
 
         }

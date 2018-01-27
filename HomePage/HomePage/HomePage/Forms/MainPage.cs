@@ -45,28 +45,7 @@ namespace HomePage
 
         private void BtnLogOut_Click(object sender, EventArgs e)
         {
-            CurrentUser = null;
-            BtnUsers.Visible = false;
-            DVValues.Rows.Clear();
-            DVValues.Columns.Clear();
-            using (var frm = new Login())
-            {
-                Hide();
-                var result = frm.ShowDialog();
-                if (CurrentUser == null || result != DialogResult.Yes)
-                {
-                    Close();
-                    Application.Exit();
-                }
-                else
-                {
-                    Show();
-                    if (CurrentUser.UserType == UserTypes.Yönetici)
-                    {
-                        BtnUsers.Visible = true;
-                    }
-                }
-            }
+
         }
 
         #region Move Form
@@ -261,6 +240,11 @@ namespace HomePage
             {
                 frm.ShowDialog();
             }
+        }
+
+        private void TextBoxSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }
