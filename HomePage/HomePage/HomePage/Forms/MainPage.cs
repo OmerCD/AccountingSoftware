@@ -2,12 +2,16 @@
 using HomePage.Classes.Database.Entities;
 using HomePage.Forms;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using HomePage.Classes.Database.Enums;
 using HomePage.Forms.ModuleForms;
 using System.Runtime.InteropServices;
+using HomePage.Classes;
 using HomePage.CustomControls.ContextMenu;
 using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace HomePage
 {
@@ -17,6 +21,8 @@ namespace HomePage
 
         private readonly PoperContainer _poperContextSettings;
         private Type _lastType;
+
+        private dynamic LastCRUD => GetCRUD(_lastType);
 
         public MainPage()
         {
@@ -45,7 +51,28 @@ namespace HomePage
 
         private void BtnLogOut_Click(object sender, EventArgs e)
         {
-
+            CurrentUser = null;
+            BtnUsers.Visible = false;
+            DVValues.Rows.Clear();
+            DVValues.Columns.Clear();
+            using (var frm = new Login())
+            {
+                Hide();
+                var result = frm.ShowDialog();
+                if (CurrentUser == null || result != DialogResult.Yes)
+                {
+                    Close();
+                    Application.Exit();
+                }
+                else
+                {
+                    Show();
+                    if (CurrentUser.UserType == UserTypes.Yönetici)
+                    {
+                        BtnUsers.Visible = true;
+                    }
+                }
+            }
         }
 
         #region Move Form
@@ -73,7 +100,7 @@ namespace HomePage
             EntityChange<Company>();
         }
 
-        private void EntityChange<T>() where T:DbObject, new()
+        private void EntityChange<T>() where T : DbObject, new()
         {
             AssignLastTypes<T>();
             RefreshDataGridView<T>();
@@ -95,7 +122,7 @@ namespace HomePage
                 else if (MessageBox.Show("Emin misiniz?", "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) ==
                     DialogResult.Yes)
                 {
-                    var genericCRUD = GetCRUD(_lastType);
+                    var genericCRUD = LastCRUD;
                     genericCRUD.Delete(DVValues.SelectedId);
                     RefreshDataGridView();
                 }
@@ -108,7 +135,7 @@ namespace HomePage
         {
             if (_lastType == typeof(User))
             {
-                var userCRUD = new CRUD<User>();
+                var userCRUD = DbFactory.UserCRUD;
                 var selectedUser = userCRUD.GetOne(DVValues.SelectedId);
                 if (selectedUser.UserType == UserTypes.Yönetici)
                 {
@@ -244,7 +271,23 @@ namespace HomePage
 
         private void TextBoxSearch_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Enter)
+            {
+                var searchText = TextBoxSearch.Text;
+                var genericCRUD = LastCRUD;
+                var test = genericCRUD.MultipleColumnSearch(searchText, GetSearchableAreas(_lastType)); // todo : Show Searched fields
+            }
+        }
 
+        private IEnumerable<string> GetSearchableAreas(Type classType)
+        {
+            var properties = classType.GetProperties().Where(x => x.CustomAttributes.Any());
+            foreach (var property in properties)
+            {
+                CustomAttribute attribute = (CustomAttribute)property.GetCustomAttributes(true)[0];
+                if (attribute.Searchable)
+                    yield return property.Name;
+            }
         }
     }
 }
