@@ -116,7 +116,7 @@ namespace HomePage.CustomControls
             }
             if (propType == typeof(DateTime))
             {
-                var date = (DateTime)value;
+                var date = ((DateTime) value);
                 prop.SetValue(_object, date.ToUniversalTime());
                 return;
             }

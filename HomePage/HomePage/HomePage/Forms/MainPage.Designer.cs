@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
             this.PanelTopBar = new System.Windows.Forms.Panel();
             this.DVValues = new HomePage.CustomControls.DataView();
@@ -45,9 +45,9 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnAdd = new System.Windows.Forms.Button();
+            this.ButtonCompanies = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.BtnJobs = new System.Windows.Forms.Button();
-            this.BtnCompanies = new System.Windows.Forms.Button();
             this.ButtonCalendar = new System.Windows.Forms.Button();
             this.BtnUsers = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -80,23 +80,23 @@
             this.DVValues.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DVValues.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DVValues.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Tomato;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Gold;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DVValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Tomato;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Gold;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DVValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DVValues.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightSlateGray;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Titillium Web", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Gold;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DVValues.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightSlateGray;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Titillium Web", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Gold;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DVValues.DefaultCellStyle = dataGridViewCellStyle4;
             this.DVValues.Location = new System.Drawing.Point(166, 117);
             this.DVValues.MultiSelect = false;
             this.DVValues.Name = "DVValues";
@@ -125,7 +125,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.TextBoxSearch);
             this.panel1.Location = new System.Drawing.Point(558, 44);
@@ -175,9 +175,9 @@
             // PnlMainOperations
             // 
             this.PnlMainOperations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
+            this.PnlMainOperations.Controls.Add(this.ButtonCompanies);
             this.PnlMainOperations.Controls.Add(this.btnSettings);
             this.PnlMainOperations.Controls.Add(this.BtnJobs);
-            this.PnlMainOperations.Controls.Add(this.BtnCompanies);
             this.PnlMainOperations.Controls.Add(this.ButtonCalendar);
             this.PnlMainOperations.Controls.Add(this.BtnUsers);
             this.PnlMainOperations.Controls.Add(this.pictureBox1);
@@ -262,6 +262,25 @@
             this.BtnAdd.UseVisualStyleBackColor = true;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
+            // ButtonCompanies
+            // 
+            this.ButtonCompanies.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.ButtonCompanies.FlatAppearance.BorderSize = 0;
+            this.ButtonCompanies.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.ButtonCompanies.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
+            this.ButtonCompanies.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonCompanies.Font = new System.Drawing.Font("Titillium Web", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.ButtonCompanies.ForeColor = System.Drawing.SystemColors.Control;
+            this.ButtonCompanies.Image = global::HomePage.Properties.Resources.three_buildings;
+            this.ButtonCompanies.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ButtonCompanies.Location = new System.Drawing.Point(4, 197);
+            this.ButtonCompanies.Name = "ButtonCompanies";
+            this.ButtonCompanies.Size = new System.Drawing.Size(150, 32);
+            this.ButtonCompanies.TabIndex = 10;
+            this.ButtonCompanies.Text = "Şirketler";
+            this.ButtonCompanies.UseVisualStyleBackColor = true;
+            this.ButtonCompanies.Click += new System.EventHandler(this.BtnCompanies_Click);
+            // 
             // btnSettings
             // 
             this.btnSettings.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -273,7 +292,7 @@
             this.btnSettings.ForeColor = System.Drawing.SystemColors.Control;
             this.btnSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnSettings.Image")));
             this.btnSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSettings.Location = new System.Drawing.Point(5, 320);
+            this.btnSettings.Location = new System.Drawing.Point(4, 353);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(150, 32);
             this.btnSettings.TabIndex = 9;
@@ -292,32 +311,13 @@
             this.BtnJobs.ForeColor = System.Drawing.SystemColors.Control;
             this.BtnJobs.Image = global::HomePage.Properties.Resources.works;
             this.BtnJobs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnJobs.Location = new System.Drawing.Point(5, 160);
+            this.BtnJobs.Location = new System.Drawing.Point(4, 158);
             this.BtnJobs.Name = "BtnJobs";
             this.BtnJobs.Size = new System.Drawing.Size(150, 32);
             this.BtnJobs.TabIndex = 8;
             this.BtnJobs.Text = "İşler";
             this.BtnJobs.UseVisualStyleBackColor = true;
             this.BtnJobs.Click += new System.EventHandler(this.BtnJobs_Click);
-            // 
-            // BtnCompanies
-            // 
-            this.BtnCompanies.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.BtnCompanies.FlatAppearance.BorderSize = 0;
-            this.BtnCompanies.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.BtnCompanies.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(104)))), ((int)(((byte)(166)))));
-            this.BtnCompanies.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCompanies.Font = new System.Drawing.Font("Titillium Web", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnCompanies.ForeColor = System.Drawing.SystemColors.Control;
-            this.BtnCompanies.Image = global::HomePage.Properties.Resources.home;
-            this.BtnCompanies.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnCompanies.Location = new System.Drawing.Point(5, 120);
-            this.BtnCompanies.Name = "BtnCompanies";
-            this.BtnCompanies.Size = new System.Drawing.Size(150, 32);
-            this.BtnCompanies.TabIndex = 7;
-            this.BtnCompanies.Text = "Anasayfa";
-            this.BtnCompanies.UseVisualStyleBackColor = true;
-            this.BtnCompanies.Click += new System.EventHandler(this.BtnCompanies_Click);
             // 
             // ButtonCalendar
             // 
@@ -330,7 +330,7 @@
             this.ButtonCalendar.ForeColor = System.Drawing.SystemColors.Control;
             this.ButtonCalendar.Image = ((System.Drawing.Image)(resources.GetObject("ButtonCalendar.Image")));
             this.ButtonCalendar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ButtonCalendar.Location = new System.Drawing.Point(5, 280);
+            this.ButtonCalendar.Location = new System.Drawing.Point(4, 314);
             this.ButtonCalendar.Name = "ButtonCalendar";
             this.ButtonCalendar.Size = new System.Drawing.Size(150, 32);
             this.ButtonCalendar.TabIndex = 4;
@@ -349,7 +349,7 @@
             this.BtnUsers.ForeColor = System.Drawing.SystemColors.Control;
             this.BtnUsers.Image = global::HomePage.Properties.Resources.user;
             this.BtnUsers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnUsers.Location = new System.Drawing.Point(5, 240);
+            this.BtnUsers.Location = new System.Drawing.Point(4, 275);
             this.BtnUsers.Name = "BtnUsers";
             this.BtnUsers.Size = new System.Drawing.Size(150, 32);
             this.BtnUsers.TabIndex = 3;
@@ -365,7 +365,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(160, 109);
+            this.pictureBox1.Size = new System.Drawing.Size(160, 152);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -381,7 +381,7 @@
             this.BtnDocuments.ForeColor = System.Drawing.SystemColors.Control;
             this.BtnDocuments.Image = global::HomePage.Properties.Resources.sidebar_document;
             this.BtnDocuments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnDocuments.Location = new System.Drawing.Point(5, 200);
+            this.BtnDocuments.Location = new System.Drawing.Point(4, 236);
             this.BtnDocuments.Name = "BtnDocuments";
             this.BtnDocuments.Size = new System.Drawing.Size(150, 32);
             this.BtnDocuments.TabIndex = 2;
@@ -437,8 +437,8 @@
         private System.Windows.Forms.TextBox TextBoxSearch;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button BtnJobs;
-        private System.Windows.Forms.Button BtnCompanies;
         private System.Windows.Forms.Button btnSettings;
+        private System.Windows.Forms.Button ButtonCompanies;
     }
 }
 

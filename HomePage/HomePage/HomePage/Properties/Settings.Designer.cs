@@ -70,5 +70,17 @@ namespace HomePage.Properties {
                 this["RememberMe"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Font {
+            get {
+                return ((string)(this["Font"]));
+            }
+            set {
+                this["Font"] = value;
+            }
+        }
     }
 }

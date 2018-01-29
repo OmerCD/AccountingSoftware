@@ -215,7 +215,7 @@ namespace HomePage
         /// <returns>Dynamic CRUD variable</returns>
         public static dynamic GetCRUD(Type type)
         {
-            return Activator.CreateInstance(typeof(CRUD<>).MakeGenericType(type));
+            return type != null ? Activator.CreateInstance(typeof(CRUD<>).MakeGenericType(type)) : null;
         }
         private void BtnUsers_Click(object sender, EventArgs e)
         {
@@ -230,12 +230,18 @@ namespace HomePage
             dynamic comps = new CRUD<T>();
             var list = comps.GetAll();
             DVValues.Init<T>();
+            FillDataGrid(list);
+        }
+
+        private void FillDataGrid(dynamic list)
+        {
             foreach (var item in list)
             {
                 var r = new CustomControls.DataRow();
                 DVValues.Add(r.CreateRow(item), item._id);
             }
         }
+
         /// <summary>
         /// Refreshes the DataGridView based on given last type choosen, from database
         /// </summary>
@@ -244,16 +250,12 @@ namespace HomePage
             dynamic comps = GetCRUD(_lastType);
             var list = comps.GetAll();
             DVValues.Init(_lastType);
-            foreach (var item in list)
-            {
-                var r = new CustomControls.DataRow();
-                DVValues.Add(r.CreateRow(item), item._id);
-            }
+            FillDataGrid(list);
         }
 
         private void BtnUsers_MouseEnter(object sender, EventArgs e)
         {
-            BtnUsers.Text = BtnUsers.Text.TrimEnd();
+            //BtnUsers.Text = BtnUsers.Text.TrimEnd();
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
@@ -273,9 +275,20 @@ namespace HomePage
         {
             if (e.KeyCode == Keys.Enter)
             {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
                 var searchText = TextBoxSearch.Text;
+                if (searchText == "")
+                {
+                    RefreshDataGridView();
+                    return;
+                }
                 var genericCRUD = LastCRUD;
-                var test = genericCRUD.MultipleColumnSearch(searchText, GetSearchableAreas(_lastType)); // todo : Show Searched fields
+                if (genericCRUD == null) return;
+                var list = genericCRUD.MultipleColumnSearch(searchText, GetSearchableAreas(_lastType));
+                DVValues.Rows.Clear();
+                if (list != null)
+                    FillDataGrid(list);
             }
         }
 

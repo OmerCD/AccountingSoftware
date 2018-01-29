@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateForm));
             this.btnExit = new System.Windows.Forms.Button();
             this.LabelTitle = new System.Windows.Forms.Label();
+            this.CtnData = new CustomControls.Container(false);
             this.SuspendLayout();
             // 
             // btnExit

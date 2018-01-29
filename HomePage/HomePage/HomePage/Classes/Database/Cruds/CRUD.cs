@@ -19,11 +19,11 @@ namespace HomePage.Classes.Database
             {
                 {
                     "$gte",
-                    new DateTime(date.Year, date.Month, date.Day, 0, 0, 0).ToLocalTime()
+                    new DateTime(date.Year, date.Month, date.Day, 0, 0, 0)
                 },
 
                 {
-                    "$lt", new DateTime(date.Year, date.Month, date.AddDays(1).Day, 0, 0, 0).ToLocalTime()
+                    "$lt", new DateTime(date.Year, date.Month, date.AddDays(1).Day,0, 0, 0)
                 }
             };
         }
@@ -73,8 +73,7 @@ namespace HomePage.Classes.Database
             try
             {
                 var filter = new BsonDocument { { "_id", entity._id } };
-                var updateOption = new UpdateOptions();
-                updateOption.IsUpsert = true;
+                var updateOption = new UpdateOptions {IsUpsert = true};
                 Table.ReplaceOne(filter, entity.ToBsonDocument(), updateOption);
                 return true;
             }
@@ -215,6 +214,10 @@ namespace HomePage.Classes.Database
 
         public List<T> MultipleColumnSearch(string value, IEnumerable<string> columns)
         {
+            if (!columns.Any())
+            {
+                return null;
+            }
             BsonDocument GetFilter(string column)
             {
                 return new BsonDocument { { column, new BsonDocument { { "$regex", "(?i)" + value + "(?-i)" } } } };

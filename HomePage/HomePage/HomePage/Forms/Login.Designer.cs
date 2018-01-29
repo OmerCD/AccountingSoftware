@@ -83,6 +83,7 @@
             // 
             this.btnExit.BackgroundImage = global::HomePage.Properties.Resources.power;
             this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.FlatAppearance.BorderSize = 0;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Location = new System.Drawing.Point(270, 5);
@@ -134,9 +135,11 @@
             // 
             // Login
             // 
+            this.AcceptButton = this.LoginButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
+            this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(300, 452);
             this.Controls.Add(this.LoginButton);
             this.Controls.Add(this.CbRememberInfo);
