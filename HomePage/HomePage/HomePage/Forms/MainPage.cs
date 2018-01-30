@@ -4,6 +4,7 @@ using HomePage.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using HomePage.Classes.Database.Enums;
 using HomePage.Forms.ModuleForms;
@@ -230,6 +231,15 @@ namespace HomePage
         /// <returns>Dynamic CRUD variable</returns>
         public static dynamic GetCRUD(Type type)
         {
+            var CRUDType = typeof(CRUD<>).MakeGenericType(type);
+            var properties = typeof(GenericFactory).GetProperties();
+            foreach (var property in properties)
+            {
+                if (property.PropertyType == CRUDType)
+                {
+                    return property.GetValue(null);
+                }
+            }
             return type != null ? Activator.CreateInstance(typeof(CRUD<>).MakeGenericType(type)) : null;
         }
         private void BtnUsers_Click(object sender, EventArgs e)

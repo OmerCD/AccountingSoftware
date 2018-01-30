@@ -3,11 +3,12 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Threading.Tasks;
+using HomePage.Classes.Database.Entities;
 using HomePage.Document;
 
 namespace HomePage.Classes.Database
 {
-    public class DbFactory
+    public struct DbFactory
     {
         public static async Task<bool> SetConnection(string serverIP)
         {
@@ -56,8 +57,7 @@ namespace HomePage.Classes.Database
         public static IMongoCollection<BsonDocument> Calendar => _calendar ?? (_calendar = Database.GetCollection<BsonDocument>(typeof(Entities.Calendar).Name));
         public static IMongoCollection<BsonDocument> CompanyLogin => _companyLogin ?? (_companyLogin = Database.GetCollection<BsonDocument>(typeof(Entities.CompanyLogin).Name));
         public static IMongoCollection<BsonDocument> Log => _log ?? (_log = Database.GetCollection<BsonDocument>(typeof(Entities.Log).Name));
-        public static IMongoCollection<BsonDocument> DayEvent=>_dayEvent ??(_dayEvent=Database.GetCollection<BsonDocument>(typeof(Entities.DayEvent).Name));
-
+        public static IMongoCollection<BsonDocument> DayEvent => _dayEvent ?? (_dayEvent = Database.GetCollection<BsonDocument>(typeof(Entities.DayEvent).Name));
 
         private static UserCRUD _userCRUD;
         private static CompanyColumnIndexCRUD _companyColumnIndexCRUD;
@@ -76,8 +76,26 @@ namespace HomePage.Classes.Database
         public static CalendarCRUD CalendarCRUD => _calendarCRUD ?? (_calendarCRUD = new CalendarCRUD());
         public static CompanyLoginCRUD CompanyLoginCRUD => _companyLoginCRUD ?? (_companyLoginCRUD = new CompanyLoginCRUD());
         public static DayEventCRUD DayEventCRUD => _dayEventCRUD ?? (_dayEventCRUD = new DayEventCRUD());
+    }
 
+    public struct GenericFactory
+    {
+        private static CRUD<User> _userGenericCRUD;
+        private static CRUD<CompanyColumnIndex> _companyColumnIndexGenericCRUD;
+        private static CRUD<Column> _columnGenericCRUD;
+        private static CRUD<Company> _companyGenericCRUD;
+        private static CRUD<Job> _jobGenericCRUD;
+        private static CRUD<Calendar> _calendarGenericCRUD;
+        private static CRUD<CompanyLogin> _companyLoginGenericCRUD;
+        private static CRUD<DayEvent> _dayEventGenericCRUD;
 
-
+        public static CRUD<User> UserGenericCRUD => _userGenericCRUD ?? (_userGenericCRUD = new CRUD<User>());
+        public static CRUD<CompanyColumnIndex> CompanyColumnIndexGenericCRUD => _companyColumnIndexGenericCRUD ?? (_companyColumnIndexGenericCRUD = new CRUD<CompanyColumnIndex>());
+        public static CRUD<Column> ColumnGenericCRUD => _columnGenericCRUD ?? (_columnGenericCRUD = new CRUD<Column>());
+        public static CRUD<Company> CompanyGenericCRUD => _companyGenericCRUD ?? (_companyGenericCRUD = new CRUD<Company>());
+        public static CRUD<Job> JobGenericCRUD => _jobGenericCRUD ?? (_jobGenericCRUD = new CRUD<Job>());
+        public static CRUD<Calendar> CalendarGenericCRUD => _calendarGenericCRUD ?? (_calendarGenericCRUD = new CRUD<Calendar>());
+        public static CRUD<CompanyLogin> CompanyLoginGenericCRUD => _companyLoginGenericCRUD ?? (_companyLoginGenericCRUD = new CRUD<CompanyLogin>());
+        public static CRUD<DayEvent> DayEventGenericCRUD => _dayEventGenericCRUD ?? (_dayEventGenericCRUD = new CRUD<DayEvent>());
     }
 }
