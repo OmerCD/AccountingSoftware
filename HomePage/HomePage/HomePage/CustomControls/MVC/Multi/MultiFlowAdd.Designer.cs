@@ -40,8 +40,10 @@ namespace HomePage.CustomControls.MVC
             // 
             // PanelControls
             // 
+            this.PanelControls.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PanelControls.AutoScroll = true;
-            this.PanelControls.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelControls.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.PanelControls.Location = new System.Drawing.Point(0, 0);
             this.PanelControls.Name = "PanelControls";
@@ -51,6 +53,7 @@ namespace HomePage.CustomControls.MVC
             // 
             // ButtonAddField
             // 
+            this.ButtonAddField.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonAddField.BackColor = System.Drawing.Color.Tomato;
             this.ButtonAddField.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonAddField.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -65,6 +68,7 @@ namespace HomePage.CustomControls.MVC
             // 
             // ButtonRemoveField
             // 
+            this.ButtonRemoveField.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonRemoveField.BackColor = System.Drawing.Color.Tomato;
             this.ButtonRemoveField.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonRemoveField.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -79,6 +83,7 @@ namespace HomePage.CustomControls.MVC
             // 
             // ButtonApply
             // 
+            this.ButtonApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonApply.BackColor = System.Drawing.Color.Tomato;
             this.ButtonApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonApply.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -93,6 +98,7 @@ namespace HomePage.CustomControls.MVC
             // 
             // ButtonRemoveAll
             // 
+            this.ButtonRemoveAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonRemoveAll.BackColor = System.Drawing.Color.Tomato;
             this.ButtonRemoveAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonRemoveAll.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -107,6 +113,7 @@ namespace HomePage.CustomControls.MVC
             // 
             // ButtonRevert
             // 
+            this.ButtonRevert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonRevert.BackColor = System.Drawing.Color.Tomato;
             this.ButtonRevert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonRevert.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
@@ -136,8 +143,9 @@ namespace HomePage.CustomControls.MVC
             this.Controls.Add(this.ButtonRemoveField);
             this.Controls.Add(this.ButtonAddField);
             this.Controls.Add(this.PanelControls);
+            this.MinimumSize = new System.Drawing.Size(670, 545);
             this.Name = "MultiFlowAdd";
-            this.Text = "MultiFlowAdd";
+            this.Text = "Çoklu Ekleme Ekranı";
             this.ResumeLayout(false);
 
         }

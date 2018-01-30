@@ -32,6 +32,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.LabelTitle = new System.Windows.Forms.Label();
             this.CtnData = new CustomControls.Container(false);
+
             this.SuspendLayout();
             // 
             // btnExit
@@ -46,7 +47,7 @@
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnExit.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnExit.Location = new System.Drawing.Point(390, 5);
+            this.btnExit.Location = new System.Drawing.Point(548, 5);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(24, 24);
             this.btnExit.TabIndex = 4;
@@ -73,7 +74,7 @@
             this.CtnData.Location = new System.Drawing.Point(0, 38);
             this.CtnData.Name = "CtnData";
             this.CtnData.Object = null;
-            this.CtnData.Size = new System.Drawing.Size(420, 128);
+            this.CtnData.Size = new System.Drawing.Size(578, 128);
             this.CtnData.TabIndex = 6;
             // 
             // CreateForm
@@ -81,7 +82,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(420, 166);
+            this.ClientSize = new System.Drawing.Size(578, 166);
             this.Controls.Add(this.CtnData);
             this.Controls.Add(this.LabelTitle);
             this.Controls.Add(this.btnExit);

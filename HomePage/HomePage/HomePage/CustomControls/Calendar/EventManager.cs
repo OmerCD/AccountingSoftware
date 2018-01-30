@@ -95,6 +95,7 @@ namespace HomePage.CustomControls.Calendar
         private void SelectedDayChanged(object sender,DayEvent dayEvent)
         {
             _currentDayEvent = dayEvent;
+            EventViewer.Object = null;
             RefreshLists();
         }
 

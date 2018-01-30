@@ -51,6 +51,7 @@ namespace HomePage.Forms.ModuleForms
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnExit = new System.Windows.Forms.Button();
+            this.ButtonAddAnswer = new System.Windows.Forms.Button();
             this.answerContextMenuStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -70,7 +71,7 @@ namespace HomePage.Forms.ModuleForms
             this.LvColumns.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.LvColumns.MultiSelect = false;
             this.LvColumns.Name = "LvColumns";
-            this.LvColumns.Size = new System.Drawing.Size(326, 367);
+            this.LvColumns.Size = new System.Drawing.Size(328, 367);
             this.LvColumns.TabIndex = 0;
             this.LvColumns.UseCompatibleStateImageBehavior = false;
             this.LvColumns.View = System.Windows.Forms.View.Details;
@@ -91,7 +92,7 @@ namespace HomePage.Forms.ModuleForms
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(38, 26);
+            this.label1.Location = new System.Drawing.Point(6, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 20);
             this.label1.TabIndex = 1;
@@ -102,7 +103,7 @@ namespace HomePage.Forms.ModuleForms
             this.TbColumnName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TbColumnName.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.TbColumnName.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.TbColumnName.Location = new System.Drawing.Point(110, 23);
+            this.TbColumnName.Location = new System.Drawing.Point(78, 21);
             this.TbColumnName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TbColumnName.Name = "TbColumnName";
             this.TbColumnName.Size = new System.Drawing.Size(190, 27);
@@ -115,7 +116,7 @@ namespace HomePage.Forms.ModuleForms
             this.LbAnswers.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.LbAnswers.FormattingEnabled = true;
             this.LbAnswers.ItemHeight = 20;
-            this.LbAnswers.Location = new System.Drawing.Point(110, 105);
+            this.LbAnswers.Location = new System.Drawing.Point(78, 103);
             this.LbAnswers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.LbAnswers.Name = "LbAnswers";
             this.LbAnswers.Size = new System.Drawing.Size(190, 184);
@@ -149,7 +150,7 @@ namespace HomePage.Forms.ModuleForms
             this.TbAnswer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TbAnswer.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.TbAnswer.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.TbAnswer.Location = new System.Drawing.Point(110, 64);
+            this.TbAnswer.Location = new System.Drawing.Point(78, 62);
             this.TbAnswer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TbAnswer.Name = "TbAnswer";
             this.TbAnswer.Size = new System.Drawing.Size(190, 27);
@@ -168,7 +169,7 @@ namespace HomePage.Forms.ModuleForms
             this.BtnAdd.IconColor = System.Drawing.Color.Green;
             this.BtnAdd.IconSize = 30;
             this.BtnAdd.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.BtnAdd.Location = new System.Drawing.Point(110, 310);
+            this.BtnAdd.Location = new System.Drawing.Point(78, 308);
             this.BtnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnAdd.Name = "BtnAdd";
             this.BtnAdd.Rotation = 0D;
@@ -191,7 +192,7 @@ namespace HomePage.Forms.ModuleForms
             this.BtnUpdate.IconColor = System.Drawing.Color.DarkCyan;
             this.BtnUpdate.IconSize = 32;
             this.BtnUpdate.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.BtnUpdate.Location = new System.Drawing.Point(12, 421);
+            this.BtnUpdate.Location = new System.Drawing.Point(90, 421);
             this.BtnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnUpdate.Name = "BtnUpdate";
             this.BtnUpdate.Rotation = 0D;
@@ -214,7 +215,7 @@ namespace HomePage.Forms.ModuleForms
             this.BtnDelete.IconColor = System.Drawing.Color.Red;
             this.BtnDelete.IconSize = 32;
             this.BtnDelete.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.BtnDelete.Location = new System.Drawing.Point(150, 421);
+            this.BtnDelete.Location = new System.Drawing.Point(228, 421);
             this.BtnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnDelete.Name = "BtnDelete";
             this.BtnDelete.Rotation = 0D;
@@ -230,7 +231,7 @@ namespace HomePage.Forms.ModuleForms
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(38, 69);
+            this.label2.Location = new System.Drawing.Point(6, 67);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 20);
             this.label2.TabIndex = 11;
@@ -239,6 +240,7 @@ namespace HomePage.Forms.ModuleForms
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.ButtonAddAnswer);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.TbColumnName);
@@ -247,11 +249,11 @@ namespace HomePage.Forms.ModuleForms
             this.groupBox1.Controls.Add(this.TbAnswer);
             this.groupBox1.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(344, 46);
+            this.groupBox1.Location = new System.Drawing.Point(356, 46);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(306, 367);
+            this.groupBox1.Size = new System.Drawing.Size(372, 367);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sütun Özellikleri";
@@ -268,7 +270,7 @@ namespace HomePage.Forms.ModuleForms
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnExit.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnExit.Location = new System.Drawing.Point(645, 5);
+            this.btnExit.Location = new System.Drawing.Point(723, 5);
             this.btnExit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(24, 24);
@@ -276,12 +278,26 @@ namespace HomePage.Forms.ModuleForms
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // ButtonAddAnswer
+            // 
+            this.ButtonAddAnswer.BackColor = System.Drawing.Color.ForestGreen;
+            this.ButtonAddAnswer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonAddAnswer.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.ButtonAddAnswer.ForeColor = System.Drawing.Color.White;
+            this.ButtonAddAnswer.Location = new System.Drawing.Point(274, 59);
+            this.ButtonAddAnswer.Name = "ButtonAddAnswer";
+            this.ButtonAddAnswer.Size = new System.Drawing.Size(92, 32);
+            this.ButtonAddAnswer.TabIndex = 12;
+            this.ButtonAddAnswer.Text = "Ekle";
+            this.ButtonAddAnswer.UseVisualStyleBackColor = false;
+            this.ButtonAddAnswer.Click += new System.EventHandler(this.BtnAddAnswer_Click);
+            // 
             // ColumnEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
-            this.ClientSize = new System.Drawing.Size(675, 484);
+            this.ClientSize = new System.Drawing.Size(753, 484);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.BtnDelete);
@@ -320,5 +336,6 @@ namespace HomePage.Forms.ModuleForms
         private ToolStripMenuItem BtnDeleteAnswer;
         private IconButton BtnUpdate;
         private IconButton BtnDelete;
+        private Button ButtonAddAnswer;
     }
 }

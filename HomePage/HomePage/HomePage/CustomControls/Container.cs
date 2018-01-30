@@ -14,7 +14,7 @@ namespace HomePage.CustomControls
     public partial class Container : UserControl
     {
         private readonly bool _fixedSize;
-
+        private bool _expanded = false;
         /// <summary>
         /// Object that this container will try to create the view for.
         /// </summary>
@@ -44,7 +44,9 @@ namespace HomePage.CustomControls
             set
             {
                 _object = value;
-                if (value != null)
+                if (value == null)
+                    ClearControls();
+                else
                     CreateControls();
             }
             get
@@ -116,7 +118,7 @@ namespace HomePage.CustomControls
             }
             if (propType == typeof(DateTime))
             {
-                var date = ((DateTime) value);
+                var date = ((DateTime)value);
                 prop.SetValue(_object, date.ToUniversalTime());
                 return;
             }
@@ -162,12 +164,14 @@ namespace HomePage.CustomControls
 
         private void ClearControls()
         {
+            ContainerButton.Visible = false;
             foreach (var control in _valueControls)
             {
                 Controls.Remove((Control)control.Value);
             }
             _valueControls = new Dictionary<string, IMainCustomControl>();
             _lastY = 0;
+
         }
 
         /// <summary>
@@ -296,9 +300,14 @@ namespace HomePage.CustomControls
 
         private void LocateButton()
         {
+            if (!_expanded)
+            {
+                this.Size = new Size(this.Width + 120, this.Height);
+                _expanded = true;
+            }
             if (!_fixedSize)
-                this.Size = new Size(this.Width+120, _lastY + ContainerButton.Height);
-            this.ContainerButton.Location = new Point(this.Size.Width/2-ContainerButton.Size.Width/2, _lastY);
+                this.Size = new Size(this.Width, _lastY + ContainerButton.Height);
+            this.ContainerButton.Location = new Point(this.Size.Width / 2 - ContainerButton.Size.Width / 2, _lastY);
         }
 
         private void ContainerButton_Click(object sender, EventArgs e)

@@ -29,6 +29,7 @@ namespace HomePage.Forms.ModuleForms
                 var row = new ListViewItem(new[] { column.Name, answers });
                 LvColumns.AddRow(row, column._id);
             }
+            ClearColumnPropertyFields();
         }
         private void ColumnEditor_Load(object sender, EventArgs e)
         {
@@ -55,6 +56,11 @@ namespace HomePage.Forms.ModuleForms
             return sArray;
         }
 
+        private void ClearColumnPropertyFields()
+        {
+            TbColumnName.Text = TbAnswer.Text = "";
+            LbAnswers.Items.Clear();
+        }
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             if (ColumnCheck())
@@ -69,6 +75,10 @@ namespace HomePage.Forms.ModuleForms
                     _columnCrud.Insert(column);
                     RefreshColumnList();
                 }
+                else
+                {
+                    MessageBox.Show("Bir sütun için en az 2 adet cevap eklenmesi gerekmektedir.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
@@ -82,6 +92,11 @@ namespace HomePage.Forms.ModuleForms
             if (TbAnswer.TextLength > 2)
             {
                 LbAnswers.Items.Add(TbAnswer.Text);
+                TbAnswer.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Cevap 2 karakterden kısa olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -105,7 +120,7 @@ namespace HomePage.Forms.ModuleForms
             }
             else
             {
-                //todo
+                MessageBox.Show("Herhangi bir veri seçmediniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -119,13 +134,13 @@ namespace HomePage.Forms.ModuleForms
                 }
                 else
                 {
-                    //todo
+                    MessageBox.Show("Aynı isimle başka bir sütun bulunmaktadır.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
             else
             {
-                //todo
+                MessageBox.Show("Sütun adı 2 karakterden kısa olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
         }
@@ -134,14 +149,18 @@ namespace HomePage.Forms.ModuleForms
         {
             if (LvColumns.SelectedIndices.Count > 0)
             {
-                if (_columnCrud.Delete(LvColumns.SelectedId))
+                if (MessageBox.Show("Bu sütunu silmek istediğinizden emin misiniz?.", "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==DialogResult.Yes)
                 {
-                    RefreshColumnList();
+                    if (_columnCrud.Delete(LvColumns.SelectedId))
+                    {
+                        RefreshColumnList();
+                    }
                 }
+                
             }
             else
             {
-                //todo
+                MessageBox.Show("Herhangi bir veri seçmediniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -152,8 +171,10 @@ namespace HomePage.Forms.ModuleForms
 
         private void TbAnswer_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode==Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
                 AddAnswer();
             }
         }

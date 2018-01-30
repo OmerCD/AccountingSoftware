@@ -122,15 +122,16 @@
             // 
             // LoginButton
             // 
+            this.LoginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(154)))), ((int)(((byte)(212)))));
             this.LoginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LoginButton.Font = new System.Drawing.Font("Titillium Web", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.LoginButton.ForeColor = System.Drawing.Color.DarkOrange;
+            this.LoginButton.ForeColor = System.Drawing.Color.White;
             this.LoginButton.Location = new System.Drawing.Point(25, 371);
             this.LoginButton.Name = "LoginButton";
-            this.LoginButton.Size = new System.Drawing.Size(250, 55);
+            this.LoginButton.Size = new System.Drawing.Size(250, 69);
             this.LoginButton.TabIndex = 6;
             this.LoginButton.Text = "Giriş Yap";
-            this.LoginButton.UseVisualStyleBackColor = true;
+            this.LoginButton.UseVisualStyleBackColor = false;
             this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
             // 
             // Login

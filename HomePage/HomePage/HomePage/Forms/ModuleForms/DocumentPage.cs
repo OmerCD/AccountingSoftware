@@ -26,7 +26,7 @@ namespace HomePage.Forms.ModuleForms
 
         private void ApplyChanges()
         {
-            Company FindCompany(IEnumerable<Company> companyList,string id)
+            Company FindCompany(IEnumerable<Company> companyList, string id)
             {
                 return companyList.FirstOrDefault(company => company._id == id);
             }
@@ -76,7 +76,7 @@ namespace HomePage.Forms.ModuleForms
 
         private void InsertLog(string actionText)
         {
-            var log = new Log(actionText,this.GetType().Name);
+            var log = new Log(actionText, this.GetType().Name);
             var logCRUD = new CRUD<Log>();
             logCRUD.Insert(log);
         }
@@ -87,6 +87,7 @@ namespace HomePage.Forms.ModuleForms
 
         private void RefreshDataGridView()
         {
+            DgvDocuments.Columns.Clear();
             var columns = _columnCrud.GetAll();
             var companies = _companyCrud.GetAll();
             int CheckIfTupleExists(IReadOnlyList<Tuple<string, int>> tupleList, string id)
@@ -164,6 +165,9 @@ namespace HomePage.Forms.ModuleForms
             using (var frm = new ColumnEditor())
             {
                 frm.ShowDialog();
+
+                RefreshDataGridView();
+
             }
         }
     }

@@ -40,6 +40,21 @@ namespace HomePage
                     if (CurrentUser.UserType == UserTypes.Yönetici)
                     {
                         BtnUsers.Visible = true;
+                        LayoutPanelGenericButtons.Visible = true;
+                    }
+                    else
+                    {
+                        LayoutPanelMainButtons.Controls.Remove(BtnUsers);
+                        BtnUsers.Dispose();
+                        if (CurrentUser.UserType == UserTypes.Stajyer)
+                        {
+                            PanelTop.Controls.Remove(LayoutPanelGenericButtons);
+                            LayoutPanelGenericButtons.Dispose();
+                        }
+                        else
+                        {
+                            LayoutPanelGenericButtons.Visible = true;
+                        }
                     }
                     var menuContextSettings = new SettingsContextMenu();
                     _poperContextSettings = new PoperContainer(menuContextSettings);
