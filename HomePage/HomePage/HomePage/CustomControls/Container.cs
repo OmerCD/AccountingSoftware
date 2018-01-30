@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using HomePage.Classes;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using HomePage.Classes.Database.Entities;
 using HomePage.Classes.Database;
 using HomePage.CustomControls.MVC;
@@ -153,7 +154,8 @@ namespace HomePage.CustomControls
                 {
                     var attribute = (CustomAttribute)attributes[0];
 
-                    AddControl(property, attribute);
+                    var tuple = AddControl(property, attribute,_object);
+                    Add(tuple.control, tuple.name);
                 }
 
             }
@@ -179,12 +181,13 @@ namespace HomePage.CustomControls
         /// </summary>
         /// <param name="property"></param>
         /// <param name="attribute"></param>
-        private void AddControl(PropertyInfo property, CustomAttribute attribute)
+        /// <param name="sourceObject"></param>
+        private (UserControl control, string name) AddControl(PropertyInfo property, CustomAttribute attribute,object sourceObject)
         {
             var propertyType = property.PropertyType;
             if (propertyType == typeof(string))
             {
-                var value = property.GetValue(_object);
+                var value = property.GetValue(obj: sourceObject);
                 var fill = value != null;
                 var text = value?.ToString();
                 if (!fill && !string.IsNullOrEmpty(attribute.PlaceHolderText))
@@ -196,28 +199,28 @@ namespace HomePage.CustomControls
                     {
                         LatTextBox = { Text = text }
                     };
-                Add(lat, property.Name);
+                return (lat, property.Name);
             }
             else if (propertyType == typeof(DateTime))
             {
                 var lad =
-                    new LabelAndDatePicker(attribute) { DateValue = (DateTime)property.GetValue(_object) };
-                Add(lad, property.Name);
+                    new LabelAndDatePicker(attribute) { DateValue = (DateTime)property.GetValue(sourceObject) };
+                return (lad, property.Name);
             }
             else if (propertyType.IsEnum)
             {
                 var enumValues = Enum.GetValues(propertyType);
                 var cb = new LabelAndCombobox(attribute, (from object enumValue in enumValues select enumValue).ToArray());
-                var enumIndex = (int)property.GetValue(_object);
+                var enumIndex = (int)property.GetValue(sourceObject);
                 cb.ComboBox.SelectedIndex = enumIndex;
-                Add(cb, property.Name);
+                return (cb, property.Name);
             }
             else if (propertyType == typeof(bool))
             {
                 var cb = new LabelAndCheckBox(attribute.FieldName);
-                var tick = (bool)property.GetValue(_object);
+                var tick = (bool)property.GetValue(sourceObject);
                 cb.LacCheckBox.Checked = tick;
-                Add(cb, property.Name);
+                return (cb, property.Name);
             }
             else if (propertyType.IsSubclassOf(typeof(DbObject)))
             {
@@ -229,7 +232,7 @@ namespace HomePage.CustomControls
 
                 if (result != null)
                 {
-                    dynamic valueOfProperty = property.GetValue(_object);
+                    dynamic valueOfProperty = property.GetValue(sourceObject);
                     string name = valueOfProperty?.Name;
                     var nameChecked = false;
                     foreach (var pair in result)
@@ -245,13 +248,13 @@ namespace HomePage.CustomControls
                         cb.Add(pair.Value, pair.Key);
                     }
                 }
-                Add(cb, property.Name);
                 if (result != null && index < result.Count)
                     cb.ComboBox.SelectedIndex = index;
                 else
                 {
                     cb.SelectBase();
                 }
+                return (cb, property.Name);
             }
 
             else if (propertyType.IsArray)
@@ -260,26 +263,27 @@ namespace HomePage.CustomControls
                 var tempType = Type.GetType(propertyType.Namespace + "." + className);
                 if (tempType != null)
                 {
-                    if (tempType.IsSubclassOf(typeof(DbObject)))
+                    if (tempType.IsSubclassOf(typeof(DbObject)) || tempType==typeof(DbObject))
                     {
                         var genericType = typeof(CRUD<>).MakeGenericType(tempType);
                         dynamic instanceCRUD = Activator.CreateInstance(genericType);
                         Dictionary<string, string> result = instanceCRUD.GetNameList();
 
-                        var value = (object[])property.GetValue(_object);
+                        var value = (object[])property.GetValue(sourceObject);
 
                         var cb = new LabelAndMultiControl<LabelAndCombobox>(attribute: attribute, multiAnswers: result, crudObject: instanceCRUD, values: value);
 
-                        Add(cb, property.Name);
+                        return (cb, property.Name);
                     }
                     else
                     {
-                        var value = (object[])property.GetValue(_object);
+                        var value = (object[])property.GetValue(sourceObject);
                         var cb = new LabelAndMultiControl<LabelAndTextbox>(attribute, values: value);
-                        Add(cb, property.Name);
+                        return (cb, property.Name);
                     }
                 }
             }
+            return (null, null);
         }
 
         public Container(bool fixedSize)
@@ -291,11 +295,14 @@ namespace HomePage.CustomControls
 
         private void Add(Control userControl, string propertyName)
         {
-            _valueControls.Add(propertyName, (IMainCustomControl)userControl);
-            userControl.Location = new Point(userControl.Location.X + 30, _lastY);
-            userControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            this.Controls.Add(userControl);
-            _lastY += userControl.Size.Height + 10;
+            if (userControl != null && propertyName != null)
+            {
+                _valueControls.Add(propertyName, (IMainCustomControl)userControl);
+                userControl.Location = new Point(userControl.Location.X + 30, _lastY);
+                userControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+                this.Controls.Add(userControl);
+                _lastY += userControl.Size.Height + 10;
+            }
         }
 
         private void LocateButton()
