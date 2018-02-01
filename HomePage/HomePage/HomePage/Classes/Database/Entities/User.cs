@@ -18,7 +18,7 @@ namespace HomePage.Classes.Database.Entities
         [Custom(FieldName = "Kullanıcı Tipi")]
         public UserTypes UserType { get; set; }
         public int Rank { get; set; } //Admin 0, kendininkilerden büyüklerin işlerini görebilecek
-        [Custom(FieldName = "İzin verilen Modüller")]
+        //[Custom(FieldName = "İzin verilen Modüller")] //todo
         public string[] AllowedModules { get; set; }
         public Job[] AssignedJobs { get; set; }
 

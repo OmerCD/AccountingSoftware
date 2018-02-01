@@ -27,9 +27,10 @@ namespace HomePage.CustomControls.ContextMenu
 
             if ((keyData & Keys.Enter) == Keys.Enter)
             {
-                if (this.ActiveControl is Button)
+                var button = ActiveControl as Button;
+                if (button != null)
                 {
-                    (this.ActiveControl as Button).PerformClick();
+                    button.PerformClick();
                     return true;
                 }
             }

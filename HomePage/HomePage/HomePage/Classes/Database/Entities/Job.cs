@@ -34,8 +34,9 @@ namespace HomePage.Classes.Database.Entities
         {
             WarningDay = EventDate.AddDays(numberOfDays * -1);
         }
-
-        [Custom(FieldName ="Personel Adı",Searchable = true)]
+        [Custom(FieldName = "İş Adı", MinLength = 4, MaxLength = 25, Searchable = true)]
+        public string Name { get; set; }
+        [Custom(FieldName ="Atanan Personeller",Searchable = true)]
         public User[] Personnel { get; set; } // if null it means all personnel is atented to this Job
         [Custom(FieldName ="Bitiş Tarihi")]
         public DateTime EventDate { get; set; }
@@ -44,14 +45,13 @@ namespace HomePage.Classes.Database.Entities
         [Custom(FieldName = "Açıklama",MaxLength = 500,Searchable = true)]
         public string Description { get; set; }//Description
         public string DocumentAddress { get; set; } // Pdf jpeg etc
+        public DateTime WarningDay { get; set; }
+        //[Custom(FieldName = "Önceki İş")] //todo
+        public Job PreviousJob { get; set; }
         [Custom(FieldName = "Tamamlandı mı ?")]
         public bool IsDone { get; set; }
-        public DateTime WarningDay { get; set; }
-        [Custom(FieldName = "Önceki İş")]
-        public Job PreviousJob { get; set; }
-        [Custom(FieldName = "İş Adı",MinLength = 4,MaxLength = 25,Searchable = true)]
-        public string Name { get; set; }
-        [Custom(FieldName = "Yorumlar")]
+
+        //[Custom(FieldName = "Yorumlar")]//todo
         public Comment[] Comments { get; set; }
 
         public struct Comment

@@ -50,7 +50,7 @@ namespace HomePage.Forms
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            var size = new Size(CtnData.Size.Width, CtnData.Size.Height+CtnData.ContainerButton.Height+80);
+            var size = new Size(CtnData.Size.Width, CtnData.Size.Height + CtnData.ContainerButton.Height + 80);
             this.Size = size;
             //this.MaximumSize = size;
             //this.MinimumSize = size;
@@ -59,7 +59,7 @@ namespace HomePage.Forms
         private void ButtonAssignObjectValues(object sender, EventArgs e)
         {
             _entity = CtnData.Object as DbObject;
-            DialogResult=DialogResult.OK;
+            DialogResult = DialogResult.OK;
             Close();
         }
 
@@ -77,7 +77,7 @@ namespace HomePage.Forms
             method?.Invoke(genericCRUD, new[] { objectC });
             if (method != null)
             {
-                DialogResult=DialogResult.OK;
+                DialogResult = DialogResult.OK;
                 Close();
             }
         }
@@ -86,9 +86,23 @@ namespace HomePage.Forms
             var type = _entity.GetType();
             var genericType = typeof(CRUD<>).MakeGenericType(type);
 
-            var genericCRUD = Activator.CreateInstance(genericType);
+            var genericCRUD = MainPage.GetCRUD(type);
             var method = genericType.GetMethod("Update");
             var objectC = CtnData.Object;
+
+            if (type == typeof(User))
+            {
+                var newUser = (User)objectC;
+                if (newUser.UserType != UserTypes.Yönetici)
+                {
+                    if (UserCRUD.CheckIfUserLastAdmin(type, _entity._id))
+                    {
+                        MessageBox.Show("Son yönetici tipini değiştiremezsiniz.","Uyarı",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+            }
+
             method?.Invoke(genericCRUD, new[] { _entity._id, objectC });
             if (method != null)
             {

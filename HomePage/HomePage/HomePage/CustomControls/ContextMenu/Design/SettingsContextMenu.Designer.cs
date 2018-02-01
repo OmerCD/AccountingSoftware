@@ -79,11 +79,11 @@ namespace HomePage.CustomControls.ContextMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.GhostWhite;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(67)))), ((int)(((byte)(67)))));
             this.Controls.Add(this.ıconButton1);
             this.Controls.Add(this.BtnLogOut);
             this.Name = "SettingsContextMenu";
-            this.Size = new System.Drawing.Size(150, 87);
+            this.Size = new System.Drawing.Size(150, 75);
             this.ResumeLayout(false);
 
         }

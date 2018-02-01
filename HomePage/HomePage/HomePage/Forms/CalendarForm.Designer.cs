@@ -68,7 +68,7 @@ namespace HomePage.Forms
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(900, 775);
             this.Name = "CalendarForm";
-            this.Text = "CalendarForm";
+            this.Text = "Takvim Sayfası";
             this.ResumeLayout(false);
 
         }

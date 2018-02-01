@@ -130,7 +130,9 @@ namespace HomePage
         {
             if (string.IsNullOrEmpty(DVValues.SelectedId) == false)
             {
-                if (CheckIfUserLastAdmin())
+                var genericCRUD = LastCRUD;
+
+                if (UserCRUD.CheckIfUserLastAdmin(_lastType,DVValues.SelectedId))
                 {
                     MessageBox.Show("Yalnızca 1 adet yönetici kaldığı için, bu kullanıcıyı silemezsiniz.",
                         "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -138,31 +140,12 @@ namespace HomePage
                 else if (MessageBox.Show("Emin misiniz?", "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) ==
                     DialogResult.Yes)
                 {
-                    var genericCRUD = LastCRUD;
                     genericCRUD.Delete(DVValues.SelectedId);
                     RefreshDataGridView();
                 }
 
             }
 
-        }
-
-        private bool CheckIfUserLastAdmin()
-        {
-            if (_lastType == typeof(User))
-            {
-                var userCRUD = DbFactory.UserCRUD;
-                var selectedUser = userCRUD.GetOne(DVValues.SelectedId);
-                if (selectedUser.UserType == UserTypes.Yönetici)
-                {
-                    var adminList = userCRUD.GetAll(new BsonDocument { { "UserType", UserTypes.Yönetici }, { "IsDeleted", 0 } });
-                    if (adminList.Count < 2)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)

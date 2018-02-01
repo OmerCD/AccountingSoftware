@@ -3,6 +3,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Linq;
+using HomePage.Classes.Database.Enums;
 using MongoDB.Bson.Serialization;
 
 namespace HomePage.Classes.Database
@@ -35,6 +36,23 @@ namespace HomePage.Classes.Database
                 return null;
             }
 
+        }
+        public static bool CheckIfUserLastAdmin(Type type,string userId)
+        {
+            if (type == typeof(User))
+            {
+                var userCRUD = DbFactory.UserCRUD;
+                var selectedUser = userCRUD.GetOne(userId);
+                if (selectedUser.UserType == UserTypes.Yönetici)
+                {
+                    var adminList = userCRUD.GetAll(new BsonDocument { { "UserType", UserTypes.Yönetici }, { "IsDeleted", 0 } });
+                    if (adminList.Count < 2)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }
