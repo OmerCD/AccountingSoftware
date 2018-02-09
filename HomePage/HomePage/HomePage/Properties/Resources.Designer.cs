@@ -143,6 +143,16 @@ namespace HomePage.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ExcelIconBlue64 {
+            get {
+                object obj = ResourceManager.GetObject("ExcelIconBlue64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap F1 {
             get {
                 object obj = ResourceManager.GetObject("F1", resourceCulture);
@@ -206,6 +216,16 @@ namespace HomePage.Properties {
         internal static System.Drawing.Bitmap magnifier {
             get {
                 object obj = ResourceManager.GetObject("magnifier", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap magnifier1 {
+            get {
+                object obj = ResourceManager.GetObject("magnifier1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

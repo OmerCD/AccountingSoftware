@@ -15,6 +15,8 @@ namespace HomePage.Classes.Database
 
         protected static BsonDocument GenerateDayCheckDocument(DateTime date)
         {
+            var highDate = date.AddDays(1);
+            highDate = new DateTime(highDate.Year, highDate.Month, highDate.Day, 0, 0, 0);
             return new BsonDocument
             {
                 {
@@ -23,7 +25,7 @@ namespace HomePage.Classes.Database
                 },
 
                 {
-                    "$lt", new DateTime(date.Year, date.Month, date.AddDays(1).Day,0, 0, 0)
+                    "$lt", highDate
                 }
             };
         }
@@ -179,20 +181,16 @@ namespace HomePage.Classes.Database
 
         public virtual T GetOne(string id)
         {
-            try
+            if (id=="ALL")
             {
+                return new T {_id = null};
+            }
                 var filter = new BsonDocument { { "_id", id }, { "IsDeleted", 0 } };
                 var cursor = Table.FindSync(filter);
                 cursor.MoveNext();
                 var batch = cursor.Current;
                 return BsonSerializer.Deserialize<T>(batch.FirstOrDefault());
 
-            }
-            catch (Exception)
-            {
-
-                return new T { _id = null };
-            }
 
         }
 

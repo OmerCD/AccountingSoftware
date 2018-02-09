@@ -17,6 +17,12 @@ namespace HomePage.Forms
         public CalendarForm()
         {
             InitializeComponent();
+            eventManager1.EventAdded += NewEventAddedEvent;
+        }
+
+        private void NewEventAddedEvent(int refreshedDay,int refreshedMonth)
+        {
+            calendar1.RefreshDay(refreshedDay,refreshedMonth);
         }
     }
 }

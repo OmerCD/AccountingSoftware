@@ -62,5 +62,11 @@ namespace HomePage.CustomControls.Calendar
             BackColor = Color.Goldenrod;
             Calendar.SelectedDayChanged?.Invoke(this, selectedDay);
         }
+
+        public void RefreshDay()
+        {
+            pictureBoxJob.Visible = pictureBoxEvent.Visible = false;
+            CheckDayEvents(_dateTime);
+        }
     }
 }

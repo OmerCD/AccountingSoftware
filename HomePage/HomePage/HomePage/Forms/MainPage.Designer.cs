@@ -35,15 +35,16 @@
             this.DVValues = new HomePage.CustomControls.DataView();
             this.PanelTop = new System.Windows.Forms.Panel();
             this.LayoutPanelGenericButtons = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.TextBoxSearch = new System.Windows.Forms.TextBox();
+            this.PnlMainOperations = new System.Windows.Forms.Panel();
+            this.LayoutPanelMainButtons = new System.Windows.Forms.FlowLayoutPanel();
+            this.ButtonExcel = new HomePage.CustomControls.GenericButton();
             this.BtnAdd = new HomePage.CustomControls.GenericButton();
             this.BtnDelete = new HomePage.CustomControls.GenericButton();
             this.BtnUpdate = new HomePage.CustomControls.GenericButton();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.TextBoxSearch = new System.Windows.Forms.TextBox();
             this.btnExit = new System.Windows.Forms.Button();
-            this.PnlMainOperations = new System.Windows.Forms.Panel();
-            this.LayoutPanelMainButtons = new System.Windows.Forms.FlowLayoutPanel();
             this.BtnJobs = new System.Windows.Forms.Button();
             this.BtnDocuments = new System.Windows.Forms.Button();
             this.BtnUsers = new System.Windows.Forms.Button();
@@ -55,9 +56,9 @@
             this.PanelTop.SuspendLayout();
             this.LayoutPanelGenericButtons.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.PnlMainOperations.SuspendLayout();
             this.LayoutPanelMainButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -124,11 +125,67 @@
             this.LayoutPanelGenericButtons.Controls.Add(this.BtnAdd);
             this.LayoutPanelGenericButtons.Controls.Add(this.BtnDelete);
             this.LayoutPanelGenericButtons.Controls.Add(this.BtnUpdate);
+            this.LayoutPanelGenericButtons.Controls.Add(this.ButtonExcel);
             this.LayoutPanelGenericButtons.Location = new System.Drawing.Point(0, 1);
             this.LayoutPanelGenericButtons.Name = "LayoutPanelGenericButtons";
             this.LayoutPanelGenericButtons.Size = new System.Drawing.Size(411, 87);
             this.LayoutPanelGenericButtons.TabIndex = 10;
             this.LayoutPanelGenericButtons.Visible = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.pictureBox2);
+            this.panel1.Controls.Add(this.TextBoxSearch);
+            this.panel1.Location = new System.Drawing.Point(558, 44);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(293, 40);
+            this.panel1.TabIndex = 9;
+            // 
+            // TextBoxSearch
+            // 
+            this.TextBoxSearch.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.TextBoxSearch.Location = new System.Drawing.Point(37, 7);
+            this.TextBoxSearch.Name = "TextBoxSearch";
+            this.TextBoxSearch.Size = new System.Drawing.Size(251, 27);
+            this.TextBoxSearch.TabIndex = 0;
+            this.TextBoxSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxSearch_KeyDown);
+            // 
+            // PnlMainOperations
+            // 
+            this.PnlMainOperations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
+            this.PnlMainOperations.Controls.Add(this.LayoutPanelMainButtons);
+            this.PnlMainOperations.Controls.Add(this.pictureBox1);
+            this.PnlMainOperations.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PnlMainOperations.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.PnlMainOperations.Location = new System.Drawing.Point(0, 0);
+            this.PnlMainOperations.Name = "PnlMainOperations";
+            this.PnlMainOperations.Size = new System.Drawing.Size(160, 733);
+            this.PnlMainOperations.TabIndex = 0;
+            // 
+            // LayoutPanelMainButtons
+            // 
+            this.LayoutPanelMainButtons.Controls.Add(this.BtnJobs);
+            this.LayoutPanelMainButtons.Controls.Add(this.BtnDocuments);
+            this.LayoutPanelMainButtons.Controls.Add(this.BtnUsers);
+            this.LayoutPanelMainButtons.Controls.Add(this.ButtonCalendar);
+            this.LayoutPanelMainButtons.Controls.Add(this.ButtonCompanies);
+            this.LayoutPanelMainButtons.Controls.Add(this.btnSettings);
+            this.LayoutPanelMainButtons.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.LayoutPanelMainButtons.Location = new System.Drawing.Point(0, 158);
+            this.LayoutPanelMainButtons.Name = "LayoutPanelMainButtons";
+            this.LayoutPanelMainButtons.Size = new System.Drawing.Size(157, 572);
+            this.LayoutPanelMainButtons.TabIndex = 11;
+            // 
+            // ButtonExcel
+            // 
+            this.ButtonExcel.ButtonImage = global::HomePage.Properties.Resources.ExcelIconBlue64;
+            this.ButtonExcel.ButtonText = "Excel";
+            this.ButtonExcel.Location = new System.Drawing.Point(261, 3);
+            this.ButtonExcel.Name = "ButtonExcel";
+            this.ButtonExcel.Size = new System.Drawing.Size(80, 82);
+            this.ButtonExcel.TabIndex = 3;
+            this.ButtonExcel.ClickEvent += new System.Action<object, System.EventArgs>(this.ButtonExcel_ClickEvent);
             // 
             // BtnAdd
             // 
@@ -160,16 +217,6 @@
             this.BtnUpdate.TabIndex = 2;
             this.BtnUpdate.ClickEvent += new System.Action<object, System.EventArgs>(this.BtnUpdate_Click);
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.TextBoxSearch);
-            this.panel1.Location = new System.Drawing.Point(558, 44);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(293, 40);
-            this.panel1.TabIndex = 9;
-            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::HomePage.Properties.Resources.magnifier;
@@ -179,15 +226,6 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
-            // 
-            // TextBoxSearch
-            // 
-            this.TextBoxSearch.Font = new System.Drawing.Font("Titillium Web", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.TextBoxSearch.Location = new System.Drawing.Point(37, 7);
-            this.TextBoxSearch.Name = "TextBoxSearch";
-            this.TextBoxSearch.Size = new System.Drawing.Size(251, 27);
-            this.TextBoxSearch.TabIndex = 0;
-            this.TextBoxSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxSearch_KeyDown);
             // 
             // btnExit
             // 
@@ -206,32 +244,6 @@
             this.btnExit.TabIndex = 4;
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // PnlMainOperations
-            // 
-            this.PnlMainOperations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
-            this.PnlMainOperations.Controls.Add(this.LayoutPanelMainButtons);
-            this.PnlMainOperations.Controls.Add(this.pictureBox1);
-            this.PnlMainOperations.Dock = System.Windows.Forms.DockStyle.Left;
-            this.PnlMainOperations.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
-            this.PnlMainOperations.Location = new System.Drawing.Point(0, 0);
-            this.PnlMainOperations.Name = "PnlMainOperations";
-            this.PnlMainOperations.Size = new System.Drawing.Size(160, 733);
-            this.PnlMainOperations.TabIndex = 0;
-            // 
-            // LayoutPanelMainButtons
-            // 
-            this.LayoutPanelMainButtons.Controls.Add(this.BtnJobs);
-            this.LayoutPanelMainButtons.Controls.Add(this.BtnDocuments);
-            this.LayoutPanelMainButtons.Controls.Add(this.BtnUsers);
-            this.LayoutPanelMainButtons.Controls.Add(this.ButtonCalendar);
-            this.LayoutPanelMainButtons.Controls.Add(this.ButtonCompanies);
-            this.LayoutPanelMainButtons.Controls.Add(this.btnSettings);
-            this.LayoutPanelMainButtons.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.LayoutPanelMainButtons.Location = new System.Drawing.Point(0, 158);
-            this.LayoutPanelMainButtons.Name = "LayoutPanelMainButtons";
-            this.LayoutPanelMainButtons.Size = new System.Drawing.Size(157, 572);
-            this.LayoutPanelMainButtons.TabIndex = 11;
             // 
             // BtnJobs
             // 
@@ -380,9 +392,9 @@
             this.LayoutPanelGenericButtons.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.PnlMainOperations.ResumeLayout(false);
             this.LayoutPanelMainButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -410,6 +422,7 @@
         private CustomControls.GenericButton BtnAdd;
         private CustomControls.GenericButton BtnDelete;
         private CustomControls.GenericButton BtnUpdate;
+        private CustomControls.GenericButton ButtonExcel;
     }
 }
 

@@ -96,7 +96,7 @@ namespace HomePage.Forms.ModuleForms
             }
             else
             {
-                MessageBox.Show("Cevap 2 karakterden kısa olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Cevap 3 karakterden kısa olamaz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

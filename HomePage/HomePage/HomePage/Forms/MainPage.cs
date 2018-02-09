@@ -310,5 +310,14 @@ namespace HomePage
                     yield return property.Name;
             }
         }
+
+        private void ButtonExcel_ClickEvent(object arg1, EventArgs arg2)
+        {
+            using (var waitingForm = new LoadingForm())
+            {
+                var excelExporter = new ExcelExport();
+                excelExporter.Export(DVValues);
+            }
+        }
     }
 }

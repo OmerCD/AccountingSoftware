@@ -39,7 +39,8 @@ namespace HomePage.Forms
                 var personnel = new User
                 {
                     UserName = "admin",
-                    Password = "admin123"
+                    Password = "admin123",
+                    Name="admin admin"
                 };
                 userCRUD.Insert(personnel);
                 settingsCRUD.Insert(new GeneralSettings { AdminCreated = true });

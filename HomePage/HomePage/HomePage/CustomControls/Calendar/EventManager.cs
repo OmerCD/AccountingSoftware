@@ -19,6 +19,7 @@ namespace HomePage.CustomControls.Calendar
     {
         private DayEvent _currentDayEvent;
         private Type _lastType;
+        public event Action<int,int> EventAdded;
         private void RefreshLists()
         {
             RefreshEventList();
@@ -126,6 +127,7 @@ namespace HomePage.CustomControls.Calendar
                         var eventEntity = frm.Entity as Event;
                         _currentDayEvent.Events.Add(eventEntity);
                         DbFactory.DayEventCRUD.Upsert(_currentDayEvent);
+                        EventAdded(_currentDayEvent.EventDate.Day,_currentDayEvent.EventDate.Month);
                         RefreshLists();
                     }
                 }
@@ -140,6 +142,7 @@ namespace HomePage.CustomControls.Calendar
                 {
                     if (frm.ShowDialog() == DialogResult.OK)
                     {
+                        EventAdded(_currentDayEvent.EventDate.Day, _currentDayEvent.EventDate.Month);
                         RefreshLists();
                     }
                 }

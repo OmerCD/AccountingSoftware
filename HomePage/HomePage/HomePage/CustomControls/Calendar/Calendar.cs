@@ -13,14 +13,21 @@ namespace HomePage.CustomControls.Calendar
 {
     public partial class Calendar : UserControl
     {
+        struct DayIndetifier
+        {
+            public int Day { get; set; }
+            public int Month { get; set; }
+        }
         private readonly string[] _months;
         private DateTime _choosenDate;
-        public static Action<Day,DayEvent> SelectedDayChanged;
+        public static Action<Day, DayEvent> SelectedDayChanged;
         public static DateTime ChoosenDateTime;
         private Day _lastChooseDayControl;
         private bool _isDesigner = false;
+        private Dictionary<DayIndetifier, Day> _controlList;
         public Calendar(string[] monthStrings)
         {
+
             InitializeComponent();
             _months = monthStrings;
             _choosenDate = DateTime.Now;
@@ -36,17 +43,17 @@ namespace HomePage.CustomControls.Calendar
                 "Aralık"
             };
             _choosenDate = DateTime.Now;
-            SelectedDayChanged+=SelectedDayChangeEvent;
+            SelectedDayChanged += SelectedDayChangeEvent;
             ArrangeDates(_choosenDate);
         }
 
-        private void SelectedDayChangeEvent(Day sender,DayEvent dayEvent)
+        private void SelectedDayChangeEvent(Day sender, DayEvent dayEvent)
         {
-            if (_lastChooseDayControl!=sender)
+            if (_lastChooseDayControl != sender)
             {
                 if (_lastChooseDayControl != null)
                 {
-                    _lastChooseDayControl.BackColor = Color.FromArgb(67,67,67);
+                    _lastChooseDayControl.BackColor = Color.FromArgb(67, 67, 67);
                     _lastChooseDayControl.ForeColor = Color.White;
                 }
                 _lastChooseDayControl = sender;
@@ -63,9 +70,20 @@ namespace HomePage.CustomControls.Calendar
             }
         }
 
+        public void RefreshDay(int day, int month)
+        {
+            var givenDay = new DayIndetifier {Day = day, Month = month};
+            var dayControl = _controlList[givenDay];
+            dayControl.RefreshDay();
+        }
+        public void RefreshCalendar()
+        {
+            ArrangeDates(_choosenDate);
+        }
         private void ArrangeDates(DateTime choosenDate)
         {
             TLPDates.Controls.Clear();
+            _controlList = new Dictionary<DayIndetifier, Day>();
 
             DateTime firstDayOfMonth = new DateTime(choosenDate.Year, choosenDate.Month, 1);
             int daysOfMonth = DateTime.DaysInMonth(choosenDate.Year, choosenDate.Month);
@@ -79,17 +97,16 @@ namespace HomePage.CustomControls.Calendar
 
             for (int i = 0, j = previousDaysOfMonth - (dayOfWeek - 1); i < dayOfWeek; i++, j++)
             {
-                var date = new DateTime(previousMonth.Year,previousMonth.Month,j);
-
-                TLPDates.Controls.Add(new Day(date,true,_isDesigner));
+                var date = new DateTime(previousMonth.Year, previousMonth.Month, j);
+                AddDayControl(date,true);
             }
 
             int monthDayCounter = 1;
             for (int i = 1; i <= daysOfMonth; i++)
             {
-                var date = new DateTime(choosenDate.Year,choosenDate.Month,monthDayCounter++);
+                var date = new DateTime(choosenDate.Year, choosenDate.Month, monthDayCounter++);
 
-                TLPDates.Controls.Add(new Day(date, false, _isDesigner));
+                AddDayControl(date,false);
             }
 
             DateTime nextMonth = choosenDate.AddMonths(1);
@@ -98,10 +115,17 @@ namespace HomePage.CustomControls.Calendar
             nextDayOfWeek = nextDayOfWeek == -1 ? 6 : nextDayOfWeek;
             for (int i = 0; i < 7 - nextDayOfWeek; i++)
             {
-                var date = new DateTime(nextMonth.Year,nextMonth.Month,(i+1));
+                var date = new DateTime(nextMonth.Year, nextMonth.Month, (i + 1));
 
-                TLPDates.Controls.Add(new Day(date, true, _isDesigner));
+                AddDayControl(date,true);
             }
+        }
+
+        private void AddDayControl(DateTime date,bool blurred)
+        {
+            var day = new Day(date, blurred, _isDesigner);
+            _controlList.Add(new DayIndetifier { Day = date.Day, Month = date.Month }, day);
+            TLPDates.Controls.Add(day);
         }
 
         private void btnNextMonth_Click(object sender, EventArgs e)
